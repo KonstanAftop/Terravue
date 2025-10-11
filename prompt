@@ -1,0 +1,44 @@
+Navigasi dan Isi Section Lengkap
+1. Dashboard Utama (Homepage)
+Current Carbon Price Indonesia: Harga karbon terkini yang update real-time atau simulasi.
+Trending Topics & Insights: Artikel, berita, dan highlight isu pasar karbon nasional/global.
+Ringkasan Lahan User: Statistik jumlah lahan, status verifikasi, dan potensi karbon milik user.
+Visualisasi Peta Mini: Peta kecil interaktif lokasi lahan user.
+Grafik Progress Penyerapan Karbon: Data dummy untuk monitoring perkembangan karbon.
+Notifikasi & Pengumuman: Update terkait verifikasi, event pasar, dan peraturan.
+2. Kelola Lahan (Land Management)
+Daftar lahan yang dimiliki user, dengan fitur cari dan sortir.
+Tombol untuk tambah lahan baru dengan form input data dasar.
+Halaman detail lahan yang menampilkan:
+Informasi lengkap lahan (koordinat, luas, status verifikasi).
+Form verifikasi final sebelum pendaftaran lahan.
+Peta interaktif untuk penandaan batas lahan dipisah ke halaman khusus peta.
+History aktivitas dan update perubahan terkait lahan.
+3. Peta Dunia (Global Map)
+Peta dunia interaktif dengan wilayah lahan yang sudah terverifikasi ditandai khusus.
+Klik wilayah menampilkan info popup detail:
+Pemilik lahan, batas wilayah, status verifikasi, estimasi karbon.
+Fitur pencarian wilayah/kawasan.
+Filter wilayah berdasarkan status verifikasi dan kategori lahan.
+4. Market Karbon (Carbon Market)
+Tampilan seperti aplikasi trading saham (listing kredit karbon).
+Fitur listing karbon oleh pemilik lahan.
+Proses transaksi pembelian kredit karbon dengan popup verifikasi.
+Grafik harga pasar karbon realtime atau simulasi.
+Daftar transaksi terakhir dan status pembelian.
+5. Profil & Aktivitas Pengguna (User Profile & Activity)
+Data profil dan pengaturan akun.
+Riwayat transaksi pembelian dan penjualan karbon.
+Laporan ESG dengan opsi kustomisasi laporan sesuai kebutuhan.
+Dokumentasi penggunaan aplikasi dan FAQ.
+6. Logout
+Contoh Navigasi Sidebar
+text
+[TerraVue Logo]
+- Dashboard
+- Kelola Lahan
+- Peta Dunia
+- Market Karbon
+- Profil & Aktivitas
+- Logout
+Struktur navigasi ini dirancang untuk memberikan alur user yang mudah dan fokus pada fitur utama Terravue, baik sebagai alat monitoring lahan karbon maupun platform marketplace karbon yang transparan dan interaktif. Apakah ingin saya buatkan wireframe visualnya sekarang?
