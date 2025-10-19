@@ -49,7 +49,7 @@ app.use('/api/v1/activity', activityRouter)
 
 // Start server
 app.listen(PORT, () => {
-  console.log('\n🌱 TerraVue API Server')
+  console.log('\n🌱 Terravue API Server')
   console.log('======================')
   console.log(`✓ Server running on port ${PORT}`)
   console.log(`✓ Environment: ${process.env.NODE_ENV || 'development'}`)

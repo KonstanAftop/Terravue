@@ -1,6 +1,6 @@
 # Summary
 
-**TerraVue MVP PRD Complete**
+**Terravue MVP PRD Complete**
 
 This PRD defines a comprehensive MVP for Indonesia's premier carbon market platform, structured around 4 sequential epics delivering:
 

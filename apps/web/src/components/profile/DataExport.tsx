@@ -104,7 +104,7 @@ export const DataExport = () => {
         Export Your Data
       </Typography>
       <Typography variant="body2" color="text.secondary" gutterBottom sx={{ mb: 3 }}>
-        Download a copy of your TerraVue data in your preferred format.
+        Download a copy of your Terravue data in your preferred format.
       </Typography>
 
       {error && (

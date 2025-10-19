@@ -48,7 +48,7 @@ export const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => 
       }}
     >
       <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
-        Login to TerraVue
+        Login to Terravue
       </Typography>
       
       {error && (

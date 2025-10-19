@@ -21,7 +21,7 @@ Subject: Konfirmasi Transaksi - ${transaction.id}
 
 Yth. ${buyer?.fullName},
 
-Terima kasih telah membeli kredit karbon melalui TerraVue!
+Terima kasih telah membeli kredit karbon melalui Terravue!
 
 Detail Transaksi:
 - ID Transaksi: ${transaction.id}
@@ -46,7 +46,7 @@ Kredit karbon Anda akan ditransfer ke portofolio dalam 24 jam.
 Terima kasih telah mendukung konservasi hutan berkelanjutan di Indonesia!
 
 Salam,
-Tim TerraVue
+Tim Terravue
 
 ========================
     `
@@ -74,7 +74,7 @@ Detail Penjualan:
 Dana akan ditransfer ke rekening Anda dalam 3-5 hari kerja.
 
 Salam,
-Tim TerraVue
+Tim Terravue
 
 ========================
     `
@@ -104,7 +104,7 @@ Status transaksi Anda telah diperbarui:
 ${this.getStatusMessage(transaction.status)}
 
 Salam,
-Tim TerraVue
+Tim Terravue
 
 ========================
     `
@@ -131,7 +131,7 @@ Berikut adalah bukti transaksi Anda:
 
 ===================================
          BUKTI PEMBAYARAN
-         TerraVue Platform
+         Terravue Platform
 ===================================
 
 ID Transaksi: ${transaction.id}
@@ -163,7 +163,7 @@ Status: ${this.translateStatus(transaction.status)}
 Dokumen ini adalah bukti pembayaran yang sah.
 
 Terima kasih!
-Tim TerraVue
+Tim Terravue
 
 ========================
     `

@@ -231,7 +231,7 @@ export const TransactionConfirmation = ({
 
         {/* Terms */}
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 2 }}>
-          Dengan melanjutkan, Anda menyetujui syarat dan ketentuan TerraVue. Kredit karbon akan ditransfer ke
+          Dengan melanjutkan, Anda menyetujui syarat dan ketentuan Terravue. Kredit karbon akan ditransfer ke
           portofolio Anda dalam 24 jam setelah pembayaran dikonfirmasi.
         </Typography>
       </DialogContent>

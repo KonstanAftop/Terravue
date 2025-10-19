@@ -74,7 +74,7 @@ export const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
       }}
     >
       <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
-        Register for TerraVue
+        Register for Terravue
       </Typography>
       
       {(error || validationError) && (

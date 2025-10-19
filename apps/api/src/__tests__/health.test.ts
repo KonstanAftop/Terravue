@@ -16,7 +16,7 @@ describe('Health Check Endpoints', () => {
     
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('status', 'healthy')
-    expect(response.body).toHaveProperty('service', 'TerraVue API')
+    expect(response.body).toHaveProperty('service', 'Terravue API')
     expect(response.body).toHaveProperty('version')
     expect(response.body).toHaveProperty('environment')
   })

@@ -1,10 +1,10 @@
 # Epic 4: Global Mapping & Analytics
 
-**Epic Goal:** Complete the MVP with interactive world mapping, comprehensive analytics, and user activity tracking that provides market transparency, builds trust, and delivers the full TerraVue experience as outlined in the platform specification.
+**Epic Goal:** Complete the MVP with interactive world mapping, comprehensive analytics, and user activity tracking that provides market transparency, builds trust, and delivers the full Terravue experience as outlined in the platform specification.
 
 ## Story 4.1: Interactive Global Map
 
-As a TerraVue user,
+As a Terravue user,
 I want to explore verified carbon projects on an interactive world map,
 so that I can understand the global distribution and impact of carbon initiatives.
 
@@ -20,7 +20,7 @@ so that I can understand the global distribution and impact of carbon initiative
 
 ## Story 4.2: User Profile and Activity Management
 
-As a TerraVue user,
+As a Terravue user,
 I want to manage my profile and view my platform activity,
 so that I can track my engagement and update my account information.
 
@@ -52,7 +52,7 @@ so that I can demonstrate my sustainability commitments to stakeholders.
 
 ## Story 4.4: Notifications and Communication System
 
-As a TerraVue user,
+As a Terravue user,
 I want to receive relevant notifications and updates about platform activity,
 so that I can stay informed about important events and opportunities.
 

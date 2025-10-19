@@ -1,4 +1,4 @@
-# TerraVue - Indonesian Carbon Market Platform Product Requirements Document (PRD)
+# Terravue - Indonesian Carbon Market Platform Product Requirements Document (PRD)
 
 This document has been sharded into multiple sections for easier navigation and maintenance.
 

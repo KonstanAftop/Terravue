@@ -53,7 +53,7 @@ so that I can acquire verified credits for my sustainability goals.
 
 ## Story 3.4: Market Analytics and Pricing
 
-As a TerraVue user,
+As a Terravue user,
 I want to see market analytics and pricing trends,
 so that I can make informed trading decisions.
 

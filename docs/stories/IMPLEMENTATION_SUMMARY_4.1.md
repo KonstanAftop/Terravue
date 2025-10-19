@@ -1,7 +1,7 @@
 # Story 4.1 Implementation Summary - FINAL STORY! 🎉
 
 ## Overview
-Successfully implemented the interactive global map - the FINAL feature completing the TerraVue MVP!
+Successfully implemented the interactive global map - the FINAL feature completing the Terravue MVP!
 
 ## Implementation Date
 October 11, 2025
@@ -94,7 +94,7 @@ Claude Sonnet 4.5
 ## How to Use
 
 ### Access Global Map
-1. **Login** to TerraVue (any account type)
+1. **Login** to Terravue (any account type)
 2. Click **"Peta Dunia"** in the sidebar
 3. See all verified carbon projects on the map!
 
@@ -191,7 +191,7 @@ Query parameters:
 7. Time-series visualization of project growth
 
 ---
-**Status**: ✅ COMPLETE - TerraVue MVP 100% DONE! 🎉
+**Status**: ✅ COMPLETE - Terravue MVP 100% DONE! 🎉
 **Story**: 4.1 Interactive Global Map
 **Epic**: 4 Global Mapping & Analytics
 **Achievement**: FINAL STORY COMPLETED!

@@ -134,7 +134,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 700, letterSpacing: 1 }}>
-          🌍 TerraVue
+          🌍 Terravue
         </Typography>
         <Typography variant="caption" sx={{ opacity: 0.9 }}>
           Carbon Market Platform
@@ -240,7 +240,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              TerraVue
+              Terravue
             </Typography>
           </Toolbar>
         </AppBar>
@@ -292,7 +292,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         <DialogTitle id="logout-dialog-title">Konfirmasi Logout</DialogTitle>
         <DialogContent>
           <DialogContentText id="logout-dialog-description">
-            Apakah Anda yakin ingin keluar dari TerraVue? Anda perlu login
+            Apakah Anda yakin ingin keluar dari Terravue? Anda perlu login
             kembali untuk mengakses platform.
           </DialogContentText>
         </DialogContent>

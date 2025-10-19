@@ -15,7 +15,7 @@ healthRouter.get('/v1/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
-    service: 'TerraVue API',
+    service: 'Terravue API',
     version: '1.0.0',
     environment: process.env.NODE_ENV || 'development',
   })

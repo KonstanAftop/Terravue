@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react'
 import App from '../App'
 
 describe('App', () => {
-  it('should render TerraVue title', () => {
+  it('should render Terravue title', () => {
     render(<App />)
     
-    expect(screen.getByText('TerraVue')).toBeInTheDocument()
+    expect(screen.getByText('Terravue')).toBeInTheDocument()
   })
   
   it('should show setup complete message', () => {

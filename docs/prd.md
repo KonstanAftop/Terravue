@@ -1,4 +1,4 @@
-# TerraVue - Indonesian Carbon Market Platform Product Requirements Document (PRD)
+# Terravue - Indonesian Carbon Market Platform Product Requirements Document (PRD)
 
 ## Goals and Background Context
 
@@ -12,15 +12,15 @@
 
 ### Background Context
 
-TerraVue addresses Indonesia's fragmented carbon market by providing a comprehensive digital platform that combines land management, geospatial verification, and carbon trading in one integrated solution. The platform serves both landowners seeking to monetize their forest carbon and institutional buyers requiring verified, transparent carbon credits.
+Terravue addresses Indonesia's fragmented carbon market by providing a comprehensive digital platform that combines land management, geospatial verification, and carbon trading in one integrated solution. The platform serves both landowners seeking to monetize their forest carbon and institutional buyers requiring verified, transparent carbon credits.
 
-Unlike general financial platforms, TerraVue focuses exclusively on carbon markets with specialized features including interactive global mapping, satellite-based verification, real-time carbon pricing, and comprehensive ESG reporting capabilities designed specifically for the Indonesian carbon market ecosystem.
+Unlike general financial platforms, Terravue focuses exclusively on carbon markets with specialized features including interactive global mapping, satellite-based verification, real-time carbon pricing, and comprehensive ESG reporting capabilities designed specifically for the Indonesian carbon market ecosystem.
 
 ### Change Log
 
 | Date | Version | Description | Author |
 |------|---------|-------------|---------|
-| 2024-10-10 | 1.0 | Initial PRD creation aligned with TerraVue navigation structure | PM Agent |
+| 2024-10-10 | 1.0 | Initial PRD creation aligned with Terravue navigation structure | PM Agent |
 
 ## Requirements
 
@@ -62,7 +62,7 @@ Unlike general financial platforms, TerraVue focuses exclusively on carbon marke
 **FR25:** Documentation and FAQ sections must be accessible to all users  
 
 #### Navigation & Authentication
-**FR26:** The platform must provide sidebar navigation with TerraVue branding and all main sections  
+**FR26:** The platform must provide sidebar navigation with Terravue branding and all main sections  
 **FR27:** The system must support secure user authentication and logout functionality  
 
 ### Non-Functional Requirements
@@ -81,7 +81,7 @@ Unlike general financial platforms, TerraVue focuses exclusively on carbon marke
 ## User Interface Design Goals
 
 ### Overall UX Vision
-TerraVue MVP will provide a clean, intuitive interface that prioritizes core carbon market functionality while maintaining the professional feel of financial trading platforms. The design emphasizes simplicity and clear information hierarchy to ensure users can quickly understand carbon pricing, manage their land assets, and execute transactions without confusion.
+Terravue MVP will provide a clean, intuitive interface that prioritizes core carbon market functionality while maintaining the professional feel of financial trading platforms. The design emphasizes simplicity and clear information hierarchy to ensure users can quickly understand carbon pricing, manage their land assets, and execute transactions without confusion.
 
 ### Key Interaction Paradigms
 - **Dashboard-first approach**: Users land on a comprehensive dashboard showing key metrics and actions
@@ -114,7 +114,7 @@ MVP will implement WCAG AA compliance focusing on:
 - Alt text for all map and chart visualizations
 
 ### Branding
-**TerraVue MVP Branding Guidelines:**
+**Terravue MVP Branding Guidelines:**
 - Clean, modern design with earth-tone color palette (greens, browns, blues)
 - Professional typography suitable for financial data display
 - Consistent iconography emphasizing sustainability and technology
@@ -192,7 +192,7 @@ MVP will implement WCAG AA compliance focusing on:
 
 ## Epic List
 
-Based on the TerraVue MVP requirements, I've structured the development into 4 sequential epics that each deliver significant value:
+Based on the Terravue MVP requirements, I've structured the development into 4 sequential epics that each deliver significant value:
 
 **Epic 1: Foundation & Authentication**  
 Establish core project infrastructure, user authentication, and basic dashboard functionality to create a deployable foundation with initial user value.
@@ -229,13 +229,13 @@ Add the interactive world map, market analytics, and user activity tracking to c
 
 ## Epic 1: Foundation & Authentication
 
-**Epic Goal:** Establish the core TerraVue platform infrastructure with user authentication, basic navigation, and a functional dashboard that displays carbon market data and user summaries, creating a deployable foundation that delivers immediate value to users.
+**Epic Goal:** Establish the core Terravue platform infrastructure with user authentication, basic navigation, and a functional dashboard that displays carbon market data and user summaries, creating a deployable foundation that delivers immediate value to users.
 
 ### Story 1.1: Project Setup and Infrastructure
 
 As a developer,
 I want to establish the core project structure and deployment pipeline,
-so that the team can develop and deploy TerraVue efficiently.
+so that the team can develop and deploy Terravue efficiently.
 
 #### Acceptance Criteria
 1. Monorepo structure created with frontend (React/TypeScript) and backend (Node.js/Express) folders
@@ -248,7 +248,7 @@ so that the team can develop and deploy TerraVue efficiently.
 
 ### Story 1.2: User Authentication System
 
-As a potential TerraVue user,
+As a potential Terravue user,
 I want to register and login securely with role-based access,
 so that I can access platform features appropriate to my user type.
 
@@ -263,12 +263,12 @@ so that I can access platform features appropriate to my user type.
 
 ### Story 1.3: Core Navigation and Layout
 
-As a TerraVue user,
+As a Terravue user,
 I want to navigate between platform sections easily,
 so that I can access all available features efficiently.
 
 #### Acceptance Criteria
-1. Sidebar navigation displays TerraVue logo and all main sections as specified in prompt.md
+1. Sidebar navigation displays Terravue logo and all main sections as specified in prompt.md
 2. Navigation sections include: Dashboard, Kelola Lahan, Peta Dunia, Market Karbon, Profil & Aktivitas
 3. Active navigation state clearly indicates current page location
 4. Responsive design maintains navigation usability on mobile devices
@@ -278,7 +278,7 @@ so that I can access all available features efficiently.
 
 ### Story 1.4: Dashboard Implementation
 
-As a TerraVue user,
+As a Terravue user,
 I want to see a comprehensive dashboard with key information and metrics,
 so that I can quickly understand market status and my account activity.
 
@@ -415,7 +415,7 @@ so that I can acquire verified credits for my sustainability goals.
 
 ### Story 3.4: Market Analytics and Pricing
 
-As a TerraVue user,
+As a Terravue user,
 I want to see market analytics and pricing trends,
 so that I can make informed trading decisions.
 
@@ -431,11 +431,11 @@ so that I can make informed trading decisions.
 
 ## Epic 4: Global Mapping & Analytics
 
-**Epic Goal:** Complete the MVP with interactive world mapping, comprehensive analytics, and user activity tracking that provides market transparency, builds trust, and delivers the full TerraVue experience as outlined in the platform specification.
+**Epic Goal:** Complete the MVP with interactive world mapping, comprehensive analytics, and user activity tracking that provides market transparency, builds trust, and delivers the full Terravue experience as outlined in the platform specification.
 
 ### Story 4.1: Interactive Global Map
 
-As a TerraVue user,
+As a Terravue user,
 I want to explore verified carbon projects on an interactive world map,
 so that I can understand the global distribution and impact of carbon initiatives.
 
@@ -451,7 +451,7 @@ so that I can understand the global distribution and impact of carbon initiative
 
 ### Story 4.2: User Profile and Activity Management
 
-As a TerraVue user,
+As a Terravue user,
 I want to manage my profile and view my platform activity,
 so that I can track my engagement and update my account information.
 
@@ -483,7 +483,7 @@ so that I can demonstrate my sustainability commitments to stakeholders.
 
 ### Story 4.4: Notifications and Communication System
 
-As a TerraVue user,
+As a Terravue user,
 I want to receive relevant notifications and updates about platform activity,
 so that I can stay informed about important events and opportunities.
 
@@ -501,17 +501,17 @@ so that I can stay informed about important events and opportunities.
 
 ### Architect Prompt
 
-**Ready for Architecture Phase:** This PRD provides comprehensive requirements for TerraVue MVP with dummy data only. Please review the technical assumptions, epic structure, and detailed user stories to create the technical architecture document. Focus on the monorepo structure, React/TypeScript frontend, Node.js/Express backend with in-memory data storage, mock data generators, and simulated integrations for all external services. The architecture should be completely self-contained, runnable with simple npm commands, and support the 4-epic development sequence without any databases, external dependencies, or containerization.
+**Ready for Architecture Phase:** This PRD provides comprehensive requirements for Terravue MVP with dummy data only. Please review the technical assumptions, epic structure, and detailed user stories to create the technical architecture document. Focus on the monorepo structure, React/TypeScript frontend, Node.js/Express backend with in-memory data storage, mock data generators, and simulated integrations for all external services. The architecture should be completely self-contained, runnable with simple npm commands, and support the 4-epic development sequence without any databases, external dependencies, or containerization.
 
 ### UX Expert Prompt
 
-**Ready for Design Phase:** The PRD defines TerraVue's complete user experience requirements including navigation structure, core screens, and interaction paradigms. Please create the design system and wireframes based on the specified earth-tone branding, stock-trading interface patterns, and mobile-responsive requirements. Focus on the 6 main navigation sections (Dashboard, Kelola Lahan, Peta Dunia, Market Karbon, Profil & Aktivitas) with emphasis on clarity and trust-building for financial transactions.
+**Ready for Design Phase:** The PRD defines Terravue's complete user experience requirements including navigation structure, core screens, and interaction paradigms. Please create the design system and wireframes based on the specified earth-tone branding, stock-trading interface patterns, and mobile-responsive requirements. Focus on the 6 main navigation sections (Dashboard, Kelola Lahan, Peta Dunia, Market Karbon, Profil & Aktivitas) with emphasis on clarity and trust-building for financial transactions.
 
 ---
 
 ## Summary
 
-**TerraVue MVP PRD Complete**
+**Terravue MVP PRD Complete**
 
 This PRD defines a comprehensive MVP for Indonesia's premier carbon market platform, structured around 4 sequential epics delivering:
 

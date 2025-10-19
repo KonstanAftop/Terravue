@@ -51,9 +51,9 @@ describe('Sidebar', () => {
     mockLogout.mockClear()
   })
 
-  it('renders TerraVue logo and branding', () => {
+  it('renders Terravue logo and branding', () => {
     renderSidebar()
-    expect(screen.getByText(/TerraVue/i)).toBeInTheDocument()
+    expect(screen.getByText(/Terravue/i)).toBeInTheDocument()
     expect(screen.getByText(/Carbon Market Platform/i)).toBeInTheDocument()
   })
 

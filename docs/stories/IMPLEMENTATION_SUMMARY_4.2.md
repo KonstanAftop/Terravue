@@ -1,7 +1,7 @@
 # Story 4.2 Implementation Summary
 
 ## Overview
-Successfully implemented comprehensive user profile and activity management system for TerraVue platform.
+Successfully implemented comprehensive user profile and activity management system for Terravue platform.
 
 ## Implementation Date
 October 11, 2025
@@ -78,7 +78,7 @@ Claude Sonnet 4.5
 ## How to Use
 
 ### Access Profile Page
-1. Log in to TerraVue
+1. Log in to Terravue
 2. Navigate to "Profil & Aktivitas" from the sidebar
 3. Explore the 6 tabs for different functionality
 

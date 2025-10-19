@@ -38,7 +38,7 @@
 **FR25:** Documentation and FAQ sections must be accessible to all users  
 
 ### Navigation & Authentication
-**FR26:** The platform must provide sidebar navigation with TerraVue branding and all main sections  
+**FR26:** The platform must provide sidebar navigation with Terravue branding and all main sections  
 **FR27:** The system must support secure user authentication and logout functionality  
 
 ## Non-Functional Requirements
