@@ -51,6 +51,7 @@ interface NavigationItem {
 export const SIDEBAR_WIDTH = 300
 
 const drawerGradient = 'linear-gradient(200deg, #091512 0%, #040807 80%)'
+const LOGO_PLACEHOLDER_SRC = new URL('../../../assets/S__206069779.jpg', import.meta.url).href
 
 export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   const navigate = useNavigate()
@@ -59,6 +60,8 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const { user, logout } = useAuthStore()
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
+  const [sidebarLogoErrored, setSidebarLogoErrored] = useState(false)
+  const [topbarLogoErrored, setTopbarLogoErrored] = useState(false)
 
   const navigationItems: NavigationItem[] = [
     { label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
@@ -157,15 +160,48 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
     >
       <Stack
         spacing={1}
-        sx={(theme) => ({ px: 3, pt: 4, pb: 3, borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.1)}` })}
+        alignItems="center"
+        sx={(theme) => ({
+          px: 3,
+          pt: 4,
+          pb: 3,
+          borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.1)}`,
+          textAlign: 'center',
+        })}
       >
-        <Typography variant="overline" sx={{ letterSpacing: 3, opacity: 0.6 }}>
-          TERRAVUE
-        </Typography>
-        <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: '-0.02em' }}>
-          Climate Operations
-        </Typography>
-        <Typography variant="caption" sx={{ opacity: 0.55 }}>
+        {sidebarLogoErrored ? (
+          <Box
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 44,
+              px: 2.5,
+              borderRadius: 2,
+              border: `1px dashed ${alpha('#ffffff', 0.4)}`,
+              color: alpha('#ffffff', 0.85),
+              fontWeight: 600,
+              letterSpacing: 1,
+              textTransform: 'uppercase',
+              fontSize: 12,
+            }}
+          >
+            Your Logo
+          </Box>
+        ) : (
+          <Box
+            component="img"
+            src={LOGO_PLACEHOLDER_SRC}
+            alt="Terravue logo"
+            onError={() => setSidebarLogoErrored(true)}
+            sx={{
+              height: 44,
+              width: 'auto',
+              filter: 'drop-shadow(0 10px 22px rgba(0,0,0,0.45))',
+            }}
+          />
+        )}
+        <Typography variant="caption" sx={{ opacity: 0.7 }}>
           Monitor · Verify · Trade
         </Typography>
       </Stack>
@@ -238,9 +274,23 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-              Terravue
-            </Typography>
+            {topbarLogoErrored ? (
+              <Typography variant="h6" component="div" sx={{ fontWeight: 700, letterSpacing: 1 }}>
+                Your Logo
+              </Typography>
+            ) : (
+              <Box
+                component="img"
+                src={LOGO_PLACEHOLDER_SRC}
+                alt="Terravue logo"
+                onError={() => setTopbarLogoErrored(true)}
+                sx={{
+                  height: 32,
+                  width: 'auto',
+                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.25))',
+                }}
+              />
+            )}
           </Toolbar>
         </AppBar>
       )}
@@ -256,6 +306,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             width: SIDEBAR_WIDTH,
             boxSizing: 'border-box',
             background: drawerGradient,
+            borderRadius: 0,
           },
         }}
       >
@@ -275,6 +326,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             background: drawerGradient,
             color: '#E9F5F1',
             borderRight: `1px solid ${alpha(theme.palette.common.white, 0.05)}`,
+            borderRadius: 0,
           },
         }}
       >

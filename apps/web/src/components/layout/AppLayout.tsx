@@ -38,9 +38,12 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           position: "relative",
           flexGrow: 1,
           minHeight: "100vh",
-          ml: { xs: 0, sm: `${SIDEBAR_WIDTH}px` },
+          ml: 0,
+          pl: { xs: 2, sm: 0 },
+          pr: { xs: 2, md: 3, lg: 4 },
           px: { xs: 2, md: 3, lg: 4 },
           py: { xs: 8, md: 10 },
+
           background: backgroundGradient,
           color: theme.palette.text.primary,
         }}
