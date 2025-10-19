@@ -238,7 +238,6 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
                 variant="contained"
                 startIcon={loading ? <CircularProgress size={20} /> : <Send />}
                 disabled={loading}
-                sx={{ backgroundColor: '#2e7d32' }}
               >
                 {loading ? 'Submitting...' : 'Submit Land'}
               </Button>

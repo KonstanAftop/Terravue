@@ -1,3 +1,4 @@
+import { alpha, useTheme } from '@mui/material/styles'
 import { Paper, Typography, Box } from '@mui/material'
 import { Line } from 'react-chartjs-2'
 import {
@@ -20,6 +21,7 @@ interface PriceChartWidgetProps {
 }
 
 export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
+  const theme = useTheme()
   const chartData = {
     labels: marketData.map((d) => {
       const date = new Date(d.timestamp)
@@ -29,8 +31,8 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
       {
         label: 'Carbon Price (IDR)',
         data: marketData.map((d) => d.averagePrice),
-        borderColor: '#2e7d32',
-        backgroundColor: 'rgba(46, 125, 50, 0.1)',
+        borderColor: theme.palette.primary.main,
+        backgroundColor: alpha(theme.palette.primary.main, 0.18),
         fill: true,
         tension: 0.4,
       },

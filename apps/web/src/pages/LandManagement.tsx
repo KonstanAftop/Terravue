@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Box, Typography, Button, CircularProgress, Pagination, Paper, Toolbar, Chip, Stack } from '@mui/material'
+import { alpha, Box, Typography, Button, CircularProgress, Pagination, Paper, Toolbar, Chip, Stack } from '@mui/material'
 import { Add, GetApp, Delete } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
 import { useLandStore } from '../stores/landStore'
@@ -78,12 +78,12 @@ export const LandManagementPage = () => {
         {selectedLands.length > 0 && (
           <Paper
             elevation={0}
-            sx={{
+            sx={(theme) => ({
               p: 2.5,
               borderRadius: 3,
-              border: '1px solid rgba(20,98,74,0.12)',
-              backgroundColor: 'rgba(20,98,74,0.04)',
-            }}
+              border: `1px solid ${alpha(theme.palette.primary.main, 0.32)}`,
+              backgroundColor: alpha(theme.palette.primary.main, 0.12),
+            })}
           >
             <Toolbar sx={{ px: 0, minHeight: 'auto' }}>
               <Chip

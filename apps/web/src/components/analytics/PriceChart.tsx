@@ -8,6 +8,7 @@ import {
   ToggleButton,
   CircularProgress,
 } from '@mui/material'
+import { alpha, useTheme } from '@mui/material/styles'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -52,6 +53,8 @@ const PriceChart: React.FC<PriceChartProps> = ({
   onPeriodChange,
   showIndicators = true,
 }) => {
+  const theme = useTheme()
+
   const chartData = useMemo(() => {
     if (!priceHistory || priceHistory.length === 0) {
       return null
@@ -64,8 +67,8 @@ const PriceChart: React.FC<PriceChartProps> = ({
       {
         label: 'Carbon Credit Price',
         data: prices,
-        borderColor: '#2E7D32',
-        backgroundColor: 'rgba(46, 125, 50, 0.1)',
+        borderColor: theme.palette.primary.main,
+        backgroundColor: alpha(theme.palette.primary.main, 0.2),
         fill: true,
         tension: 0.4,
         borderWidth: 2,
@@ -81,7 +84,7 @@ const PriceChart: React.FC<PriceChartProps> = ({
         datasets.push({
           label: 'MA7',
           data: trends.ma7,
-          borderColor: '#FF9800',
+          borderColor: theme.palette.warning.main,
           backgroundColor: 'transparent',
           borderWidth: 2,
           pointRadius: 0,
@@ -94,7 +97,7 @@ const PriceChart: React.FC<PriceChartProps> = ({
         datasets.push({
           label: 'MA30',
           data: trends.ma30,
-          borderColor: '#F44336',
+          borderColor: theme.palette.error.main,
           backgroundColor: 'transparent',
           borderWidth: 2,
           pointRadius: 0,
@@ -108,7 +111,7 @@ const PriceChart: React.FC<PriceChartProps> = ({
           {
             label: 'Bollinger Upper',
             data: trends.bollingerBands.upper,
-            borderColor: 'rgba(156, 39, 176, 0.3)',
+            borderColor: alpha(theme.palette.secondary.main, 0.6),
             backgroundColor: 'transparent',
             borderWidth: 1,
             pointRadius: 0,
@@ -117,7 +120,7 @@ const PriceChart: React.FC<PriceChartProps> = ({
           {
             label: 'Bollinger Lower',
             data: trends.bollingerBands.lower,
-            borderColor: 'rgba(156, 39, 176, 0.3)',
+            borderColor: alpha(theme.palette.secondary.main, 0.6),
             backgroundColor: 'transparent',
             borderWidth: 1,
             pointRadius: 0,
@@ -131,58 +134,66 @@ const PriceChart: React.FC<PriceChartProps> = ({
       labels,
       datasets,
     }
-  }, [priceHistory, trends, showIndicators])
+  }, [priceHistory, showIndicators, theme, trends])
 
-  const chartOptions: ChartOptions<'line'> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    plugins: {
-      legend: {
-        position: 'top',
-        labels: {
-          usePointStyle: true,
-          padding: 15,
+  const chartOptions: ChartOptions<'line'> = useMemo(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: {
+            usePointStyle: true,
+            padding: 15,
+            color: theme.palette.text.secondary,
+          },
         },
-      },
-      title: {
-        display: false,
-      },
-      tooltip: {
-        callbacks: {
-          label: (context) => {
-            let label = context.dataset.label || ''
-            if (label) {
-              label += ': '
-            }
-            if (context.parsed.y !== null) {
-              label += formatCurrency(context.parsed.y)
-            }
-            return label
+        title: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: (context) => {
+              let label = context.dataset.label || ''
+              if (label) {
+                label += ': '
+              }
+              if (context.parsed.y !== null) {
+                label += formatCurrency(context.parsed.y)
+              }
+              return label
+            },
           },
         },
       },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
+      scales: {
+        x: {
+          ticks: {
+            color: theme.palette.text.secondary,
+          },
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          beginAtZero: false,
+          ticks: {
+            color: theme.palette.text.secondary,
+            callback: (value) => formatCurrency(value as number),
+          },
+          grid: {
+            color: alpha(theme.palette.common.white, 0.08),
+          },
         },
       },
-      y: {
-        beginAtZero: false,
-        ticks: {
-          callback: (value) => formatCurrency(value as number),
-        },
-        grid: {
-          color: 'rgba(0, 0, 0, 0.05)',
-        },
-      },
-    },
-  }
+    }),
+    [theme],
+  )
 
   if (!chartData) {
     return (

@@ -17,6 +17,7 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material'
+import { alpha, useTheme } from '@mui/material/styles'
 import { CheckCircle, Payment, AccountBalance, CreditCard } from '@mui/icons-material'
 
 interface TransactionConfirmationProps {
@@ -58,6 +59,7 @@ export const TransactionConfirmation = ({
   quantity,
   onConfirm,
 }: TransactionConfirmationProps) => {
+  const theme = useTheme()
   const [paymentMethod, setPaymentMethod] = useState('ewallet')
   const [paymentProvider, setPaymentProvider] = useState('')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -118,7 +120,14 @@ export const TransactionConfirmation = ({
           <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
             Carbon Credit Details
           </Typography>
-          <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+          <Box
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
+              backgroundColor: alpha(theme.palette.primary.main, 0.12),
+            }}
+          >
             <Typography variant="body2">
               <strong>Land:</strong> {creditData.landParcel?.name || 'N/A'}
             </Typography>
@@ -148,10 +157,18 @@ export const TransactionConfirmation = ({
                     mb: 1,
                     p: 2,
                     border: '1px solid',
-                    borderColor: paymentMethod === method.value ? 'primary.main' : 'grey.300',
-                    borderRadius: 1,
+                    borderColor: paymentMethod === method.value ? 'primary.main' : alpha(theme.palette.divider, 0.6),
+                    borderRadius: 2,
                     cursor: 'pointer',
-                    '&:hover': { borderColor: 'primary.light' },
+                    transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                    '&:hover': {
+                      borderColor: 'primary.light',
+                      boxShadow: `0 12px 28px ${alpha(theme.palette.primary.main, 0.18)}`,
+                    },
+                    boxShadow:
+                      paymentMethod === method.value
+                        ? `0 16px 32px ${alpha(theme.palette.primary.main, 0.24)}`
+                        : 'none',
                   }}
                   onClick={() => setPaymentMethod(method.value)}
                 >
@@ -200,7 +217,14 @@ export const TransactionConfirmation = ({
           <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
             Cost Breakdown
           </Typography>
-          <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+          <Box
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
+              backgroundColor: alpha(theme.palette.primary.main, 0.12),
+            }}
+          >
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
               <Typography variant="body2">Subtotal</Typography>
               <Typography variant="body2">IDR {subtotal.toLocaleString('en-US')}</Typography>
@@ -238,12 +262,7 @@ export const TransactionConfirmation = ({
         <Button onClick={onClose} disabled={isProcessing}>
           Cancel
         </Button>
-        <Button
-          onClick={handleConfirm}
-          variant="contained"
-          disabled={isProcessing}
-          sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
-        >
+        <Button onClick={handleConfirm} variant="contained" disabled={isProcessing}>
           {isProcessing ? <CircularProgress size={24} /> : `Pay IDR ${totalAmount.toLocaleString('en-US')}`}
         </Button>
       </DialogActions>

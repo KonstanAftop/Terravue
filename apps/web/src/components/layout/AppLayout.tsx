@@ -1,5 +1,6 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import { Sidebar, SIDEBAR_WIDTH } from "./Sidebar";
 
 interface AppLayoutProps {
@@ -10,6 +11,20 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const backgroundGradient = useMemo(() => {
+    const surface = theme.palette.background.paper;
+    const base = theme.palette.background.default;
+    const tail = alpha(theme.palette.primary.dark || theme.palette.primary.main, 0.65);
+
+    return `linear-gradient(180deg, ${base} 0%, ${alpha(surface, 0.96)} 48%, ${tail} 100%)`;
+  }, [theme]);
+
+  const overlayGradient = useMemo(() => {
+    const primary = alpha(theme.palette.primary.main, 0.28);
+    const secondary = alpha(theme.palette.secondary.main, 0.22);
+
+    return `radial-gradient(circle at 18% 12%, ${primary}, transparent 55%), radial-gradient(circle at 82% 8%, ${secondary}, transparent 58%)`;
+  }, [theme]);
 
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 
@@ -26,7 +41,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           ml: { xs: 0, sm: `${SIDEBAR_WIDTH}px` },
           px: { xs: 2, md: 3, lg: 4 },
           py: { xs: 8, md: 10 },
-          background: "linear-gradient(180deg, rgba(242,245,247,0.92) 0%, #f5f7fa 50%, #eef3f3 100%)",
+          background: backgroundGradient,
+          color: theme.palette.text.primary,
         }}
       >
         <Box
@@ -34,8 +50,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background:
-              "radial-gradient(circle at 25% 20%, rgba(50,102,90,0.08), transparent 40%), radial-gradient(circle at 80% 0%, rgba(27,73,145,0.08), transparent 45%)",
+            background: overlayGradient,
           }}
         />
 

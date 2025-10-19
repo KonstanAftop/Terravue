@@ -1,17 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  Box,
-  Typography,
-  Paper,
-  Button,
-  CircularProgress,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Chip,
-} from '@mui/material'
+import { Box, Typography, Paper, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Chip } from '@mui/material'
 import {
   Login,
   Landscape,
@@ -68,7 +56,6 @@ const getActivityColor = (type: string) => {
 export const ActivityTimeline = () => {
   const [activities, setActivities] = useState<UserActivity[]>([])
   const [loading, setLoading] = useState(true)
-  const [initializing, setInitializing] = useState(false)
 
   useEffect(() => {
     fetchActivities()
@@ -79,7 +66,6 @@ export const ActivityTimeline = () => {
     try {
       const response = await api.get('/activity')
       const timeline = response.data.data.timeline
-      // Flatten the timeline object into an array
       const allActivities: UserActivity[] = []
       Object.values(timeline).forEach((dayActivities: any) => {
         allActivities.push(...dayActivities)
@@ -89,17 +75,6 @@ export const ActivityTimeline = () => {
       console.error('Failed to fetch activities:', error)
     }
     setLoading(false)
-  }
-
-  const handleInitializeSampleData = async () => {
-    setInitializing(true)
-    try {
-      await api.post('/activity/initialize')
-      await fetchActivities()
-    } catch (error) {
-      console.error('Failed to initialize sample data:', error)
-    }
-    setInitializing(false)
   }
 
   if (loading) {
@@ -116,28 +91,17 @@ export const ActivityTimeline = () => {
         <Typography variant="h6" color="text.secondary" gutterBottom>
           No activities yet
         </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Your platform activities will appear here
+        <Typography variant="body2" color="text.secondary">
+          Your platform activities will appear here once events start flowing.
         </Typography>
-        <Button
-          variant="outlined"
-          onClick={handleInitializeSampleData}
-          disabled={initializing}
-          sx={{ mt: 2 }}
-        >
-          {initializing ? 'Loading...' : 'Load Sample Data'}
-        </Button>
       </Box>
     )
   }
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-        <Typography variant="h6">Activity Timeline</Typography>
-        <Button size="small" onClick={fetchActivities}>
-          Refresh
-        </Button>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h6">Recent Activity</Typography>
       </Box>
       <List>
         {activities.map((activity, index) => (
