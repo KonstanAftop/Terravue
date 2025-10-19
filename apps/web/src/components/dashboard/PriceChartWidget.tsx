@@ -67,10 +67,16 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
 
   return (
     <Paper sx={{ p: 3 }}>
-      <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+      <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, opacity: 0.85 }}>
         Carbon Price Trend (7 Days)
       </Typography>
-      <Box sx={{ height: 300, mt: 2 }}>
+      <Box
+        sx={{
+          height: 180,
+          mt: 1.5,
+          width: '100%',
+        }}
+      >
         {marketData.length > 0 ? (
           <Line data={chartData} options={options} />
         ) : (

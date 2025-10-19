@@ -94,7 +94,18 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   }
 
   const renderNavigation = () => (
-    <List sx={{ flexGrow: 1, overflowY: 'auto', px: 2.5, py: 3 }}>
+    <List
+      sx={{
+        flexGrow: 1,
+        overflowY: 'auto',
+        px: 2,
+        py: 2,
+        gap: 1,
+        '&::-webkit-scrollbar': {
+          width: 0,
+        },
+      }}
+    >
       {navigationItems.filter(isItemVisible).map((item) => {
         const isActive =
           item.path === '/dashboard'
@@ -102,7 +113,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             : location.pathname.startsWith(item.path)
 
         return (
-          <ListItem key={item.path} disablePadding sx={{ mb: 0.75 }}>
+          <ListItem key={item.path} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               onClick={() => handleNavigate(item.path)}
               sx={(theme) => {
@@ -111,8 +122,8 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                 const hoverColor = alpha(theme.palette.primary.main, 0.16)
                 return {
                   borderRadius: 3,
-                  px: 2.2,
-                  py: 1.4,
+                  px: 1.8,
+                  py: 1,
                   color: alpha(theme.palette.common.white, isActive ? 0.95 : 0.78),
                   backgroundColor: isActive ? primaryTint : 'transparent',
                   border: `1px solid ${isActive ? borderColor : 'transparent'}`,
@@ -138,7 +149,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                 primary={item.label}
                 primaryTypographyProps={{
                   fontWeight: isActive ? 600 : 500,
-                  fontSize: 15,
+                  fontSize: 14,
                 }}
               />
             </ListItemButton>
@@ -162,9 +173,9 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         spacing={1}
         alignItems="center"
         sx={(theme) => ({
-          px: 3,
-          pt: 4,
-          pb: 3,
+          px: 2.5,
+          pt: 3,
+          pb: 2.5,
           borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.1)}`,
           textAlign: 'center',
         })}
@@ -208,14 +219,14 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
 
       {renderNavigation()}
 
-      <Box sx={{ px: 3, pb: 4, pt: 2 }}>
+      <Box sx={{ px: 2.5, pb: 3, pt: 1.5 }}>
         {user && (
           <Stack
             spacing={0.5}
             sx={{
-              px: 2,
-              py: 2.5,
-              mb: 2,
+              px: 1.8,
+              py: 2,
+              mb: 1.5,
               borderRadius: 3,
                   backgroundColor: alpha(theme.palette.primary.main, 0.08),
                   border: `1px solid ${alpha(theme.palette.primary.main, 0.22)}`,
@@ -241,6 +252,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             borderColor: alpha(theme.palette.error.main, 0.55),
             color: alpha(theme.palette.error.light, 0.92),
             fontWeight: 600,
+            py: 1.1,
             '&:hover': {
               borderColor: theme.palette.error.main,
               backgroundColor: alpha(theme.palette.error.main, 0.16),

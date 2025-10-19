@@ -3,6 +3,8 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { Sidebar, SIDEBAR_WIDTH } from "./Sidebar";
 
+const COMPACT_SCALE = 0.78;
+
 interface AppLayoutProps {
   children: ReactNode;
 }
@@ -41,9 +43,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           ml: 0,
           pl: { xs: 2, sm: 0 },
           pr: { xs: 2, md: 3, lg: 4 },
-          px: { xs: 2, md: 3, lg: 4 },
-          py: { xs: 8, md: 10 },
-
+          px: { xs: 1.5, md: 2.5, lg: 3 },
+          py: { xs: 6, md: 8 },
+          overflowX: "hidden",
           background: backgroundGradient,
           color: theme.palette.text.primary,
         }}
@@ -63,8 +65,11 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           sx={{
             position: "relative",
             zIndex: 1,
-            width: "100%",
-            maxWidth: { xs: "100%", xl: "min(1280px, 100%)" },
+            width: `calc(100% / ${COMPACT_SCALE})`,
+            maxWidth: `calc(1280px / ${COMPACT_SCALE})`,
+            transform: `scale(${COMPACT_SCALE})`,
+            transformOrigin: "top left",
+            minHeight: `calc(100vh / ${COMPACT_SCALE})`,
           }}
         >
           {children}
