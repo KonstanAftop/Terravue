@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
 /* Normalize minimal globals; MUI theme controls most styling */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -11,6 +13,10 @@
 
 html, body, #root {
   height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
