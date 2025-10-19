@@ -55,7 +55,10 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
       sx={{
         height: isGridView ? '100%' : 'auto',
         display: 'flex',
-        flexDirection: isGridView ? 'column' : 'row',
+        flexDirection: {
+          xs: 'column',
+          sm: isGridView ? 'column' : 'row',
+        },
         transition: 'transform 0.2s, box-shadow 0.2s',
         '&:hover': {
           transform: 'translateY(-4px)',
@@ -67,9 +70,18 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         // Navigate to credit detail (will implement later)
       }}
     >
-      <CardContent sx={{ flex: 1 }}>
+      <CardContent sx={{ flex: 1, width: '100%' }}>
         {/* Header with verification badge */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: 1,
+            flexWrap: 'wrap',
+            mb: 1,
+          }}
+        >
           <Typography variant="h6" sx={{ fontWeight: 600, color: '#2e7d32' }}>
             {credit.landParcel?.name || 'Lahan Terdaftar'}
           </Typography>
@@ -94,7 +106,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         )}
 
         {/* Land details */}
-        <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Terrain sx={{ fontSize: 16, color: 'text.secondary' }} />
             <Typography variant="caption" color="text.secondary">
@@ -109,7 +121,14 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         </Box>
 
         {/* Price and quantity */}
-        <Box sx={{ bgcolor: 'success.50', p: 1.5, borderRadius: 1, mb: 1 }}>
+        <Box
+          sx={{
+            bgcolor: 'success.50',
+            p: { xs: 1.25, sm: 1.5 },
+            borderRadius: 1.5,
+            mb: 1.5,
+          }}
+        >
           <Typography variant="caption" color="text.secondary" display="block">
             Price per Credit
           </Typography>
@@ -147,7 +166,18 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         )}
       </CardContent>
 
-      <CardActions sx={{ justifyContent: 'space-between', p: 2, flexDirection: isGridView ? 'column' : 'row', gap: 1 }}>
+      <CardActions
+        sx={{
+          justifyContent: 'space-between',
+          p: 2,
+          gap: 1.5,
+          flexDirection: {
+            xs: 'column',
+            sm: isGridView ? 'column' : 'row',
+          },
+          alignItems: { xs: 'stretch', sm: 'center' },
+        }}
+      >
         <TextField
           type="number"
           size="small"
@@ -158,12 +188,16 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
             inputProps: { min: 1, max: credit.quantity },
             endAdornment: <InputAdornment position="end">credits</InputAdornment>,
           }}
-          sx={{ width: isGridView ? '100%' : 150 }}
+          sx={{ width: { xs: '100%', sm: isGridView ? '100%' : 180 } }}
         />
         <Button
           variant="contained"
           startIcon={<ShoppingCart />}
-          sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' }, width: isGridView ? '100%' : 'auto' }}
+          sx={{
+            backgroundColor: '#2e7d32',
+            '&:hover': { backgroundColor: '#1b5e20' },
+            width: { xs: '100%', sm: isGridView ? '100%' : 'auto' },
+          }}
           onClick={handleBuy}
         >
           Buy

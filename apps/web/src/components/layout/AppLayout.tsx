@@ -23,8 +23,11 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           position: "relative",
           flexGrow: 1,
           minHeight: "100vh",
-          ml: { xs: 0, sm: `${SIDEBAR_WIDTH}px` },
-          px: { xs: 2, md: 3, lg: 4 },
+          // Let the permanent Drawer occupy space in the flex layout
+          // and avoid extra margin that creates a visible gap.
+          ml: 0,
+          pl: { xs: 2, md: 2, lg: 3 },
+          pr: { xs: 2, md: 3, lg: 4 },
           py: { xs: 8, md: 10 },
           background: "linear-gradient(180deg, rgba(242,245,247,0.92) 0%, #f5f7fa 50%, #eef3f3 100%)",
         }}
@@ -47,6 +50,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             zIndex: 1,
             width: "100%",
             maxWidth: { xs: "100%", xl: "min(1280px, 100%)" },
+            mx: { xl: "auto" },
           }}
         >
           {children}
