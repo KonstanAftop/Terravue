@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { User } from '@terravue/shared'
 import { inMemoryStore } from '../repositories/inMemoryStore.js'
 import { generateToken } from '../utils/jwt.js'
