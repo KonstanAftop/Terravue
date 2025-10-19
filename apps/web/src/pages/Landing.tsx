@@ -243,21 +243,14 @@ export const LandingPage = () => {
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
             <Stack direction="row" spacing={1.5} alignItems="center">
               <Box
+                component="img"
+                src="/assets/logo.png"
+                alt="Terravue"
                 sx={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 2.5,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: `linear-gradient(135deg, ${palette.midnight} 0%, ${palette.pine} 100%)`,
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
+                  width: { xs: 32, md: 40 },
+                  height: 'auto',
                 }}
-              >
-                T
-              </Box>
+              />
               <Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 800, letterSpacing: '-0.01em' }}>
                   Terravue
@@ -365,10 +358,10 @@ export const LandingPage = () => {
               position: 'absolute',
               inset: 0,
               backgroundImage:
-                'linear-gradient(180deg, rgba(26,82,54,0.65) 0%, rgba(26,82,54,0.1) 55%, rgba(4,18,12,0.6) 100%), url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80")',
+                'linear-gradient(180deg, rgba(26,82,54,0.72) 0%, rgba(26,82,54,0.15) 60%, rgba(4,18,12,0.75) 100%), url("/assets/bg-forest.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              opacity: 0.55,
+              opacity: 0.65,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
             }}
@@ -414,12 +407,19 @@ export const LandingPage = () => {
                       letterSpacing: '0.12em',
                     }}
                   />
-                  <Typography variant="h2" sx={{ fontWeight: 800, letterSpacing: '-0.02em' }}>
-                    The operating system for high-integrity climate markets
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      fontWeight: 800,
+                      letterSpacing: '-0.02em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Unlocking Indonesia's carbon potential
                   </Typography>
                   <Typography variant="h6" sx={{ color: 'rgba(245,251,247,0.82)', fontWeight: 400 }}>
-                    Terravue unifies land intelligence, verification, and trading so trusted carbon projects can scale
-                    with measurable impact.
+                    Empowering land stewards, investors, and regulators with transparent MRV, responsible financing, and
+                    verifiable climate outcomes.
                   </Typography>
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} pt={1}>
                     <Button
@@ -462,32 +462,26 @@ export const LandingPage = () => {
                 </Stack>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Box
+                <Stack
+                  spacing={3}
+                  alignItems={{ xs: 'flex-start', md: 'center' }}
                   sx={{
-                    position: 'relative',
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                    background: 'linear-gradient(135deg, rgba(180,147,255,0.08) 0%, rgba(10,92,54,0.28) 100%)',
-                    p: { xs: 2.5, md: 3 },
-                    boxShadow: '0 40px 80px rgba(6,25,21,0.45)',
+                    textAlign: { xs: 'left', md: 'center' },
+                    px: { xs: 0, md: 4 },
+                    ...revealStyles(heroReveal.visible, 0.2),
                   }}
                 >
                   <Box
                     component="img"
-                    src="/carbon-monitoring-satellite-earth.jpg"
-                    alt="Earth observation dashboard"
-                    sx={{ width: '100%', borderRadius: 3, objectFit: 'cover' }}
-                  />
-                  <Box
+                    src="/assets/logo-nobg.PNG"
+                    alt="Terravue mark"
                     sx={{
-                      position: 'absolute',
-                      inset: 0,
-                      borderRadius: 3,
-                      border: '1px solid rgba(255,255,255,0.15)',
-                      pointerEvents: 'none',
+                      width: { xs: 240, sm: 300, md: 360 },
+                      height: 'auto',
+                      filter: 'drop-shadow(0 28px 48px rgba(4,18,12,0.5))',
                     }}
                   />
-                </Box>
+                </Stack>
               </Grid>
             </Grid>
           </Container>
