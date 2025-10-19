@@ -1,6 +1,6 @@
 # Epic List
 
-Based on the TerraVue MVP requirements, I've structured the development into 4 sequential epics that each deliver significant value:
+Based on the Terravue MVP requirements, I've structured the development into 4 sequential epics that each deliver significant value:
 
 **Epic 1: Foundation & Authentication**  
 Establish core project infrastructure, user authentication, and basic dashboard functionality to create a deployable foundation with initial user value.

@@ -1,7 +1,7 @@
 # User Interface Design Goals
 
 ## Overall UX Vision
-TerraVue MVP will provide a clean, intuitive interface that prioritizes core carbon market functionality while maintaining the professional feel of financial trading platforms. The design emphasizes simplicity and clear information hierarchy to ensure users can quickly understand carbon pricing, manage their land assets, and execute transactions without confusion.
+Terravue MVP will provide a clean, intuitive interface that prioritizes core carbon market functionality while maintaining the professional feel of financial trading platforms. The design emphasizes simplicity and clear information hierarchy to ensure users can quickly understand carbon pricing, manage their land assets, and execute transactions without confusion.
 
 ## Key Interaction Paradigms
 - **Dashboard-first approach**: Users land on a comprehensive dashboard showing key metrics and actions
@@ -34,7 +34,7 @@ MVP will implement WCAG AA compliance focusing on:
 - Alt text for all map and chart visualizations
 
 ## Branding
-**TerraVue MVP Branding Guidelines:**
+**Terravue MVP Branding Guidelines:**
 - Clean, modern design with earth-tone color palette (greens, browns, blues)
 - Professional typography suitable for financial data display
 - Consistent iconography emphasizing sustainability and technology

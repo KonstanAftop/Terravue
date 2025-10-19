@@ -27,22 +27,22 @@ export const RecentActivityWidget = ({ activities }: RecentActivityWidgetProps) 
     const diffDays = Math.floor(diffMs / 86400000)
 
     if (diffMins < 60) {
-      return `${diffMins} menit yang lalu`
+      return `${diffMins} minute${diffMins === 1 ? '' : 's'} ago`
     } else if (diffHours < 24) {
-      return `${diffHours} jam yang lalu`
+      return `${diffHours} hour${diffHours === 1 ? '' : 's'} ago`
     } else {
-      return `${diffDays} hari yang lalu`
+      return `${diffDays} day${diffDays === 1 ? '' : 's'} ago`
     }
   }
 
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-        Aktivitas Terbaru
+        Recent Activity
       </Typography>
       {activities.length === 0 ? (
         <Typography variant="body2" color="text.secondary">
-          Belum ada aktivitas
+          No activity yet
         </Typography>
       ) : (
         <List>
@@ -54,7 +54,7 @@ export const RecentActivityWidget = ({ activities }: RecentActivityWidgetProps) 
                 secondary={formatDate(activity.timestamp)}
               />
               <Chip
-                label={activity.type === 'transaction' ? 'Transaksi' : 'Lahan'}
+                label={activity.type === 'transaction' ? 'Transaction' : 'Land'}
                 size="small"
                 sx={{
                   backgroundColor: activity.type === 'transaction' ? '#e8f5e9' : '#e3f2fd',

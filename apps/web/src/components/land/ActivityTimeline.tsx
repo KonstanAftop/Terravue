@@ -26,32 +26,32 @@ const activityConfig = {
   created: {
     icon: Add,
     color: 'primary' as const,
-    label: 'Dibuat',
+    label: 'Created',
   },
   updated: {
     icon: Edit,
     color: 'info' as const,
-    label: 'Diperbarui',
+    label: 'Updated',
   },
   verification_started: {
     icon: VerifiedUser,
     color: 'warning' as const,
-    label: 'Verifikasi Dimulai',
+    label: 'Verification Started',
   },
   verification_completed: {
     icon: CheckCircle,
     color: 'success' as const,
-    label: 'Verifikasi Selesai',
+    label: 'Verification Completed',
   },
   documents_uploaded: {
     icon: UploadFile,
     color: 'secondary' as const,
-    label: 'Dokumen Diunggah',
+    label: 'Documents Uploaded',
   },
   status_changed: {
     icon: ChangeCircle,
     color: 'info' as const,
-    label: 'Status Berubah',
+    label: 'Status Updated',
   },
 }
 
@@ -60,10 +60,10 @@ export const ActivityTimeline = ({ activities }: ActivityTimelineProps) => {
     return (
       <Paper sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-          Riwayat Aktivitas
+          Activity History
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
-          Belum ada aktivitas
+          No activity yet
         </Typography>
       </Paper>
     )
@@ -72,7 +72,7 @@ export const ActivityTimeline = ({ activities }: ActivityTimelineProps) => {
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-        Riwayat Aktivitas
+        Activity History
       </Typography>
 
       <Timeline sx={{ p: 0, m: 0 }}>
@@ -88,7 +88,7 @@ export const ActivityTimeline = ({ activities }: ActivityTimelineProps) => {
                 variant="caption"
                 color="text.secondary"
               >
-                {new Date(activity.createdAt).toLocaleDateString('id-ID', {
+                {new Date(activity.createdAt).toLocaleDateString('en-US', {
                   day: '2-digit',
                   month: 'short',
                   hour: '2-digit',
@@ -119,7 +119,7 @@ export const ActivityTimeline = ({ activities }: ActivityTimelineProps) => {
                 
                 {activity.userName && (
                   <Typography variant="caption" color="text.secondary">
-                    oleh {activity.userName}
+                    by {activity.userName}
                   </Typography>
                 )}
                 

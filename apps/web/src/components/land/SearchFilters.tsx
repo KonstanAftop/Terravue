@@ -60,8 +60,8 @@ export const SearchFilters = ({ onSearch }: SearchFiltersProps) => {
           <TextField
             fullWidth
             size="small"
-            label="Cari Lahan"
-            placeholder="Nama atau jenis lahan..."
+            label="Search Land"
+            placeholder="Land name or type..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             InputProps={{
@@ -80,44 +80,44 @@ export const SearchFilters = ({ onSearch }: SearchFiltersProps) => {
                 setTimeout(handleSearch, 0)
               }}
             >
-              <MenuItem value="">Semua</MenuItem>
-              <MenuItem value="pending">Menunggu</MenuItem>
-              <MenuItem value="verified">Terverifikasi</MenuItem>
-              <MenuItem value="rejected">Ditolak</MenuItem>
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="pending">Pending</MenuItem>
+              <MenuItem value="verified">Verified</MenuItem>
+              <MenuItem value="rejected">Rejected</MenuItem>
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6} md={2}>
           <FormControl fullWidth size="small">
-            <InputLabel>Urutkan</InputLabel>
+            <InputLabel>Sort By</InputLabel>
             <Select
               value={sortBy}
-              label="Urutkan"
+              label="Sort By"
               onChange={(e) => {
                 setSortBy(e.target.value)
                 setTimeout(handleSearch, 0)
               }}
             >
-              <MenuItem value="createdAt">Tanggal Daftar</MenuItem>
-              <MenuItem value="name">Nama</MenuItem>
-              <MenuItem value="area">Luas</MenuItem>
+              <MenuItem value="createdAt">Date Added</MenuItem>
+              <MenuItem value="name">Name</MenuItem>
+              <MenuItem value="area">Area</MenuItem>
               <MenuItem value="verificationStatus">Status</MenuItem>
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6} md={2}>
           <FormControl fullWidth size="small">
-            <InputLabel>Urutan</InputLabel>
+            <InputLabel>Order</InputLabel>
             <Select
               value={sortOrder}
-              label="Urutan"
+              label="Order"
               onChange={(e) => {
                 setSortOrder(e.target.value as 'asc' | 'desc')
                 setTimeout(handleSearch, 0)
               }}
             >
-              <MenuItem value="desc">Terbaru</MenuItem>
-              <MenuItem value="asc">Terlama</MenuItem>
+              <MenuItem value="desc">Newest</MenuItem>
+              <MenuItem value="asc">Oldest</MenuItem>
             </Select>
           </FormControl>
         </Grid>

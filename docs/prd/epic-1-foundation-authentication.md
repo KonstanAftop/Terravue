@@ -1,12 +1,12 @@
 # Epic 1: Foundation & Authentication
 
-**Epic Goal:** Establish the core TerraVue platform infrastructure with user authentication, basic navigation, and a functional dashboard that displays carbon market data and user summaries, creating a deployable foundation that delivers immediate value to users.
+**Epic Goal:** Establish the core Terravue platform infrastructure with user authentication, basic navigation, and a functional dashboard that displays carbon market data and user summaries, creating a deployable foundation that delivers immediate value to users.
 
 ## Story 1.1: Project Setup and Infrastructure
 
 As a developer,
 I want to establish the core project structure and deployment pipeline,
-so that the team can develop and deploy TerraVue efficiently.
+so that the team can develop and deploy Terravue efficiently.
 
 ### Acceptance Criteria
 1. Monorepo structure created with frontend (React/TypeScript) and backend (Node.js/Express) folders
@@ -19,7 +19,7 @@ so that the team can develop and deploy TerraVue efficiently.
 
 ## Story 1.2: User Authentication System
 
-As a potential TerraVue user,
+As a potential Terravue user,
 I want to register and login securely with role-based access,
 so that I can access platform features appropriate to my user type.
 
@@ -34,12 +34,12 @@ so that I can access platform features appropriate to my user type.
 
 ## Story 1.3: Core Navigation and Layout
 
-As a TerraVue user,
+As a Terravue user,
 I want to navigate between platform sections easily,
 so that I can access all available features efficiently.
 
 ### Acceptance Criteria
-1. Sidebar navigation displays TerraVue logo and all main sections as specified in prompt.md
+1. Sidebar navigation displays Terravue logo and all main sections as specified in prompt.md
 2. Navigation sections include: Dashboard, Kelola Lahan, Peta Dunia, Market Karbon, Profil & Aktivitas
 3. Active navigation state clearly indicates current page location
 4. Responsive design maintains navigation usability on mobile devices
@@ -49,7 +49,7 @@ so that I can access all available features efficiently.
 
 ## Story 1.4: Dashboard Implementation
 
-As a TerraVue user,
+As a Terravue user,
 I want to see a comprehensive dashboard with key information and metrics,
 so that I can quickly understand market status and my account activity.
 

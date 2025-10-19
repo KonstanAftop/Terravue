@@ -9,25 +9,25 @@ export const QuickActionsWidget = () => {
 
   const landownerActions = [
     {
-      label: 'Tambah Lahan',
+      label: 'Add Land',
       icon: <Add />,
       color: '#2e7d32',
       onClick: () => navigate('/land-management'),
     },
     {
-      label: 'Kelola Lahan',
+      label: 'Manage Land',
       icon: <Landscape />,
       color: '#558b2f',
       onClick: () => navigate('/land-management'),
     },
     {
-      label: 'Lihat Market',
+      label: 'View Marketplace',
       icon: <ShowChart />,
       color: '#1565c0',
       onClick: () => navigate('/carbon-market'),
     },
     {
-      label: 'Profil Saya',
+      label: 'My Profile',
       icon: <Person />,
       color: '#5d4037',
       onClick: () => navigate('/profile'),
@@ -36,19 +36,19 @@ export const QuickActionsWidget = () => {
 
   const buyerActions = [
     {
-      label: 'Jelajahi Market',
+      label: 'Explore Marketplace',
       icon: <ShowChart />,
       color: '#1565c0',
       onClick: () => navigate('/carbon-market'),
     },
     {
-      label: 'Peta Global',
+      label: 'Global Map',
       icon: <Public />,
       color: '#0277bd',
       onClick: () => navigate('/global-map'),
     },
     {
-      label: 'Profil Saya',
+      label: 'My Profile',
       icon: <Person />,
       color: '#5d4037',
       onClick: () => navigate('/profile'),
@@ -60,7 +60,7 @@ export const QuickActionsWidget = () => {
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-        Aksi Cepat
+        Quick Actions
       </Typography>
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {actions.map((action, index) => (

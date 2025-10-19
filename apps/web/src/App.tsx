@@ -15,6 +15,8 @@ import { ProfilePage } from './pages/Profile'
 import MarketAnalytics from './pages/MarketAnalytics'
 import { InteractiveMapPage } from './pages/InteractiveMap'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { PublicRoute } from './components/auth/PublicRoute'
+import { LandingPage } from './pages/Landing'
 
 function App() {
   return (
@@ -22,7 +24,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
@@ -119,8 +128,15 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <LandingPage />
+              </PublicRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

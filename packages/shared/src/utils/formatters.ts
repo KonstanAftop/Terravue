@@ -1,5 +1,5 @@
 export const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('id-ID', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0,
@@ -7,7 +7,7 @@ export const formatCurrency = (amount: number): string => {
 }
 
 export const formatDate = (date: Date): string => {
-  return new Intl.DateTimeFormat('id-ID', {
+  return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -15,7 +15,7 @@ export const formatDate = (date: Date): string => {
 }
 
 export const formatNumber = (num: number): string => {
-  return new Intl.NumberFormat('id-ID').format(num)
+  return new Intl.NumberFormat('en-US').format(num)
 }
 
 export const generateId = (prefix?: string): string => {

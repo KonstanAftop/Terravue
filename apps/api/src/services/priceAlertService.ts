@@ -218,9 +218,9 @@ export class PriceAlertService {
 📧 EMAIL NOTIFICATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 To: User ${alert.userId}
-Subject: TerraVue Price Alert Triggered
+Subject: Terravue Price Alert Triggered
 
-Dear TerraVue User,
+Dear Terravue User,
 
 Your price alert has been triggered!
 
@@ -231,10 +231,10 @@ Alert Details:
 - Triggered At: ${alert.triggeredAt?.toLocaleString()}
 ${alert.region ? `- Region: ${alert.region}` : ''}
 
-Visit TerraVue to take action on this price movement.
+Visit Terravue to take action on this price movement.
 
 Best regards,
-TerraVue Team
+Terravue Team
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     `)
   }

@@ -16,6 +16,7 @@ import {
   Alert,
 } from '@mui/material'
 import { Add, Refresh } from '@mui/icons-material'
+import { PageHeader } from '../components/layout/PageHeader'
 import { AppLayout } from '../components/layout/AppLayout'
 import { useCreditListingStore } from '../stores/creditListingStore'
 import { CarbonCredit } from '@terravue/shared'
@@ -44,13 +45,13 @@ export const MyListingsPage = () => {
   const getStatusLabel = (status: CarbonCredit['status']) => {
     switch (status) {
       case 'available':
-        return 'Tersedia'
+        return 'Available'
       case 'reserved':
-        return 'Dipesan'
+        return 'Reserved'
       case 'sold':
-        return 'Terjual'
+        return 'Sold'
       default:
-        return 'Kadaluarsa'
+        return 'Expired'
     }
   }
 
@@ -75,10 +76,10 @@ export const MyListingsPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <Box>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Listing Kredit Karbon Saya
+              My Carbon Credit Listings
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Kelola listing kredit karbon yang telah Anda buat
+              Manage the carbon credit listings you have created
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -96,7 +97,7 @@ export const MyListingsPage = () => {
               variant="contained"
               sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
             >
-              Buat Listing Baru
+              Create Listing
             </Button>
           </Box>
         </Box>
@@ -110,10 +111,10 @@ export const MyListingsPage = () => {
         {myListings.length === 0 ? (
           <Paper sx={{ p: 6, textAlign: 'center' }}>
             <Typography variant="h6" color="text.secondary" gutterBottom>
-              Belum Ada Listing
+              No Listings Yet
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              Anda belum membuat listing kredit karbon. Mulai dengan membuat listing pertama Anda.
+              You have not created any carbon credit listings yet. Start by creating your first listing.
             </Typography>
             <Button
               variant="contained"
@@ -121,7 +122,7 @@ export const MyListingsPage = () => {
               onClick={() => navigate('/create-listing')}
               sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
             >
-              Buat Listing Pertama
+              Create Your First Listing
             </Button>
           </Paper>
         ) : (
@@ -130,13 +131,13 @@ export const MyListingsPage = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>ID Listing</TableCell>
-                  <TableCell>ID Lahan</TableCell>
-                  <TableCell align="right">Jumlah</TableCell>
-                  <TableCell align="right">Harga/Kredit</TableCell>
-                  <TableCell align="right">Total Nilai</TableCell>
+                  <TableCell>Land ID</TableCell>
+                  <TableCell align="right">Quantity</TableCell>
+                  <TableCell align="right">Price/Credit</TableCell>
+                  <TableCell align="right">Total Value</TableCell>
                   <TableCell>Status</TableCell>
-                  <TableCell>Berlaku Hingga</TableCell>
-                  <TableCell align="right">Dibuat</TableCell>
+                  <TableCell>Valid Until</TableCell>
+                  <TableCell align="right">Created</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -167,17 +168,17 @@ export const MyListingsPage = () => {
                       </TableCell>
                       <TableCell align="right">
                         <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                          {listing.quantity.toLocaleString('id-ID')}
+                          {listing.quantity.toLocaleString('en-US')}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
                         <Typography variant="body2">
-                          Rp {listing.pricePerCredit.toLocaleString('id-ID')}
+                          Rp {listing.pricePerCredit.toLocaleString('en-US')}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
                         <Typography variant="body2" sx={{ fontWeight: 600, color: 'success.main' }}>
-                          Rp {totalValue.toLocaleString('id-ID')}
+                          Rp {totalValue.toLocaleString('en-US')}
                         </Typography>
                       </TableCell>
                       <TableCell>
@@ -189,12 +190,12 @@ export const MyListingsPage = () => {
                       </TableCell>
                       <TableCell>
                         <Typography variant="body2" color={expired ? 'error.main' : 'text.primary'}>
-                          {new Date(listing.validUntil).toLocaleDateString('id-ID')}
+                          {new Date(listing.validUntil).toLocaleDateString('en-US')}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
                         <Typography variant="caption" color="text.secondary">
-                          {new Date(listing.createdAt).toLocaleDateString('id-ID')}
+                          {new Date(listing.createdAt).toLocaleDateString('en-US')}
                         </Typography>
                       </TableCell>
                     </TableRow>

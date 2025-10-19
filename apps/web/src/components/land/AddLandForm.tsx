@@ -48,16 +48,16 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
     try {
       // Validate required fields
       if (!name || !landType || !area || coordinates.length < 3) {
-        throw new Error('Mohon lengkapi semua field yang diperlukan')
+        throw new Error('Please complete all required fields')
       }
 
       const areaNum = parseFloat(area)
       if (isNaN(areaNum) || areaNum <= 0) {
-        throw new Error('Luas lahan harus berupa angka positif')
+        throw new Error('Land area must be a positive number')
       }
 
       if (areaNum < 0.1) {
-        throw new Error('Luas lahan minimal 0.1 hektar')
+        throw new Error('Minimum land area is 0.1 hectares')
       }
 
       // Create land
@@ -76,7 +76,7 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
         setTimeout(() => onSuccess(newLand.id), 1500)
       }
     } catch (err: any) {
-      setError(err.message || 'Gagal mendaftarkan lahan')
+      setError(err.message || 'Failed to register land')
     } finally {
       setLoading(false)
     }
@@ -103,10 +103,10 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
     return (
       <Paper sx={{ p: 4, textAlign: 'center' }}>
         <Typography variant="h5" color="success.main" gutterBottom>
-          ✓ Lahan Berhasil Didaftarkan!
+          Land Registered Successfully!
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Lahan Anda telah terdaftar dan menunggu verifikasi.
+          Your land has been registered and is awaiting verification.
         </Typography>
       </Paper>
     )
@@ -115,7 +115,7 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
-        Daftarkan Lahan Baru
+        Register New Land
       </Typography>
 
       {error && (
@@ -130,8 +130,8 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Nama Lahan *"
-              placeholder="Contoh: Kebun Raya Bogor"
+              label="Land Name *"
+              placeholder="Example: Bogor Botanic Gardens"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -141,8 +141,8 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
           {/* Land Type */}
           <Grid item xs={12} md={6}>
             <FormControl fullWidth required>
-              <InputLabel>Jenis Lahan *</InputLabel>
-              <Select value={landType} label="Jenis Lahan *" onChange={(e) => setLandType(e.target.value)}>
+              <InputLabel>Land Type *</InputLabel>
+              <Select value={landType} label="Land Type *" onChange={(e) => setLandType(e.target.value)}>
                 {LAND_TYPES.map((type) => (
                   <MenuItem key={type.value} value={type.value}>
                     {type.label}
@@ -161,20 +161,20 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              label="Luas Lahan *"
+              label="Land Area *"
               type="number"
               placeholder="0.0"
               value={area}
               onChange={(e) => setArea(e.target.value)}
               InputProps={{
-                endAdornment: <InputAdornment position="end">hektar</InputAdornment>,
+                endAdornment: <InputAdornment position="end">ha</InputAdornment>,
               }}
               required
               inputProps={{ min: 0.1, step: 0.1 }}
             />
             {estimatedCarbon > 0 && (
               <Typography variant="caption" color="success.main" sx={{ mt: 0.5, display: 'block' }}>
-                Est. potensi karbon: ~{estimatedCarbon.toLocaleString('id-ID')} kredit/tahun
+                Est. carbon potential: ~{estimatedCarbon.toLocaleString('en-US')} credits/year
               </Typography>
             )}
           </Grid>
@@ -182,7 +182,7 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
           {/* Coordinates */}
           <Grid item xs={12}>
             <Typography variant="subtitle2" gutterBottom>
-              Koordinat Lahan * (minimal 3 titik)
+              Land Coordinates * (minimum 3 points)
             </Typography>
             {coordinates.map((coord, index) => (
               <Grid container spacing={1} key={index} sx={{ mb: 1 }}>
@@ -211,17 +211,17 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
                 <Grid item xs={2}>
                   {index > 0 && (
                     <Button size="small" color="error" onClick={() => removeCoordinate(index)} fullWidth>
-                      Hapus
+                      Remove
                     </Button>
                   )}
                 </Grid>
               </Grid>
             ))}
             <Button size="small" onClick={addCoordinate} variant="outlined">
-              + Tambah Koordinat
+              + Add Coordinate
             </Button>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
-              Wilayah Indonesia: Lat -11° hingga 6°, Lng 95° hingga 141°
+              Indonesia region: Lat -11 deg to 6 deg, Lon 95 deg to 141 deg
             </Typography>
           </Grid>
 
@@ -230,7 +230,7 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 2 }}>
               {onCancel && (
                 <Button variant="outlined" onClick={onCancel}>
-                  Batal
+                  Cancel
                 </Button>
               )}
               <Button
@@ -240,7 +240,7 @@ export const AddLandForm = ({ onSuccess, onCancel }: AddLandFormProps) => {
                 disabled={loading}
                 sx={{ backgroundColor: '#2e7d32' }}
               >
-                {loading ? 'Mendaftar...' : 'Daftarkan Lahan'}
+                {loading ? 'Submitting...' : 'Submit Land'}
               </Button>
             </Box>
           </Grid>

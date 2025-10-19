@@ -1,4 +1,4 @@
-# TerraVue - Carbon Credit Trading Platform 🌱
+# Terravue - Carbon Credit Trading Platform 🌱
 
 **Status: ✅ MVP COMPLETE (100%)**
 
@@ -6,7 +6,7 @@ A comprehensive full-stack platform for trading carbon credits from Indonesian f
 
 ## 🌱 Project Overview
 
-TerraVue connects Indonesian landowners with carbon credit buyers, facilitating transparent trading of verified carbon credits while promoting forest conservation and sustainability.
+Terravue connects Indonesian landowners with carbon credit buyers, facilitating transparent trading of verified carbon credits while promoting forest conservation and sustainability.
 
 ### ✨ Key Features
 - 🔐 User authentication with role-based access
@@ -171,7 +171,7 @@ curl http://localhost:8000/api/v1/health
 - ✅ Data export functionality (JSON/CSV)
 - ✅ Account verification status tracking
 
-## 🎮 How to Use TerraVue
+## 🎮 How to Use Terravue
 
 ### For Landowners:
 1. **Login** with `john@example.com`
@@ -195,7 +195,7 @@ curl http://localhost:8000/api/v1/health
 #### Frontend (`apps/web/.env.local`)
 ```env
 VITE_API_BASE_URL=http://localhost:8000/api/v1
-VITE_APP_NAME=TerraVue
+VITE_APP_NAME=Terravue
 VITE_ENABLE_MOCK_DATA=true
 ```
 
@@ -290,7 +290,7 @@ Mock data is generated using:
 
 ## 🎨 Design System
 
-TerraVue uses an earth-tone color palette emphasizing sustainability:
+Terravue uses an earth-tone color palette emphasizing sustainability:
 - **Primary**: Forest Green (#2E7D32)
 - **Secondary**: Brown (#6D4C41)
 - **Info**: Ocean Blue (#0288D1)
@@ -377,6 +377,6 @@ Built with modern web technologies and best practices:
 
 Built with ♻️ for a sustainable future 🌱
 
-**TerraVue - Connecting conservation with commerce**
+**Terravue - Connecting conservation with commerce**
 
 

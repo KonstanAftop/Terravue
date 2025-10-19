@@ -9,30 +9,35 @@ interface VerifiedLandSelectorProps {
   error?: string
 }
 
-export const VerifiedLandSelector = ({ lands, selectedLandId, onChange, error }: VerifiedLandSelectorProps) => {
-  const verifiedLands = lands.filter(land => land.verificationStatus === 'verified')
+export const VerifiedLandSelector = ({
+  lands,
+  selectedLandId,
+  onChange,
+  error,
+}: VerifiedLandSelectorProps) => {
+  const verifiedLands = lands.filter((land) => land.verificationStatus === 'verified')
 
   if (verifiedLands.length === 0) {
     return (
       <Alert severity="warning" sx={{ mb: 2 }}>
-        Anda belum memiliki lahan yang terverifikasi. Hanya lahan terverifikasi yang dapat didaftarkan untuk kredit karbon.
+        You do not have any verified land parcels yet. Only verified parcels can be listed for carbon credits.
       </Alert>
     )
   }
 
-  const selectedLand = verifiedLands.find(l => l.id === selectedLandId)
+  const selectedLand = verifiedLands.find((land) => land.id === selectedLandId)
 
   return (
     <Box>
       <TextField
         select
         fullWidth
-        label="Pilih Lahan Terverifikasi"
+        label="Select Verified Land"
         value={selectedLandId}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         required
         error={!!error}
-        helperText={error || 'Pilih lahan yang ingin Anda daftarkan kredit karbonnya'}
+        helperText={error || 'Choose the land parcel you want to list credits from'}
         margin="normal"
       >
         {verifiedLands.map((land) => (
@@ -44,7 +49,7 @@ export const VerifiedLandSelector = ({ lands, selectedLandId, onChange, error }:
                   {land.name}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  {land.area.toFixed(2)} ha • {land.carbonPotential} kredit/tahun
+                  {land.area.toFixed(2)} ha • {land.carbonPotential} credits/year
                 </Typography>
               </Box>
             </Box>
@@ -55,18 +60,18 @@ export const VerifiedLandSelector = ({ lands, selectedLandId, onChange, error }:
       {selectedLand && (
         <Box sx={{ mt: 2, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
           <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
-            Detail Lahan Terpilih
+            Selected Land Details
           </Typography>
-          
+
           <Box sx={{ display: 'flex', gap: 3, mt: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Terrain sx={{ fontSize: 18, color: 'text.secondary' }} />
               <Box>
                 <Typography variant="caption" color="text.secondary" display="block">
-                  Luas Area
+                  Area
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  {selectedLand.area.toFixed(2)} hektar
+                  {selectedLand.area.toFixed(2)} hectares
                 </Typography>
               </Box>
             </Box>
@@ -75,32 +80,21 @@ export const VerifiedLandSelector = ({ lands, selectedLandId, onChange, error }:
               <Park sx={{ fontSize: 18, color: 'text.secondary' }} />
               <Box>
                 <Typography variant="caption" color="text.secondary" display="block">
-                  Potensi Karbon
+                  Carbon Potential
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600, color: 'success.main' }}>
-                  {selectedLand.carbonPotential} kredit/tahun
+                  {selectedLand.carbonPotential} credits/year
                 </Typography>
               </Box>
             </Box>
           </Box>
 
           <Box sx={{ mt: 2 }}>
-            <Chip
-              label="Terverifikasi"
-              color="success"
-              size="small"
-              icon={<CheckCircle />}
-              sx={{ mr: 1 }}
-            />
-            <Chip
-              label={selectedLand.landType}
-              size="small"
-              variant="outlined"
-            />
+            <Chip label="Verified" color="success" size="small" icon={<CheckCircle />} sx={{ mr: 1 }} />
+            <Chip label={selectedLand.landType} size="small" variant="outlined" />
           </Box>
         </Box>
       )}
     </Box>
   )
 }
-

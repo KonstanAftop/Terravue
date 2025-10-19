@@ -1,8 +1,8 @@
-# TerraVue Fullstack Architecture Document
+# Terravue Fullstack Architecture Document
 
 ## Introduction
 
-This document outlines the complete fullstack architecture for TerraVue, including backend systems, frontend implementation, and their integration. It serves as the single source of truth for AI-driven development, ensuring consistency across the entire technology stack.
+This document outlines the complete fullstack architecture for Terravue, including backend systems, frontend implementation, and their integration. It serves as the single source of truth for AI-driven development, ensuring consistency across the entire technology stack.
 
 This unified approach combines what would traditionally be separate backend and frontend architecture documents, streamlining the development process for modern fullstack applications where these concerns are increasingly intertwined.
 
@@ -16,13 +16,13 @@ Based on the PRD requirements for a dummy-data-only MVP with native local develo
 
 | Date | Version | Description | Author |
 |------|---------|-------------|---------|
-| 2024-10-10 | 1.0 | Initial architecture creation for TerraVue MVP | Architect Agent |
+| 2024-10-10 | 1.0 | Initial architecture creation for Terravue MVP | Architect Agent |
 
 ## High Level Architecture
 
 ### Technical Summary
 
-TerraVue MVP employs a **monorepo fullstack architecture** with React/TypeScript frontend and Node.js/Express backend, utilizing **in-memory data storage** for rapid prototyping without database dependencies. The frontend implements a **dashboard-first, map-centric design** with stock-trading-style interfaces, while the backend provides **RESTful APIs with mock data generators** for realistic carbon market simulation. The architecture supports **native local development** with simple npm commands, **zero external dependencies**, and **complete self-containment** for immediate development startup. All integrations (satellite imagery, payments, notifications) are **fully simulated** to demonstrate complete functionality while maintaining development simplicity.
+Terravue MVP employs a **monorepo fullstack architecture** with React/TypeScript frontend and Node.js/Express backend, utilizing **in-memory data storage** for rapid prototyping without database dependencies. The frontend implements a **dashboard-first, map-centric design** with stock-trading-style interfaces, while the backend provides **RESTful APIs with mock data generators** for realistic carbon market simulation. The architecture supports **native local development** with simple npm commands, **zero external dependencies**, and **complete self-containment** for immediate development startup. All integrations (satellite imagery, payments, notifications) are **fully simulated** to demonstrate complete functionality while maintaining development simplicity.
 
 ### Platform and Infrastructure Choice
 
@@ -271,7 +271,7 @@ interface MarketData {
 ```yaml
 openapi: 3.0.0
 info:
-  title: TerraVue Carbon Market API
+  title: Terravue Carbon Market API
   version: 1.0.0
   description: RESTful API for Indonesian carbon market platform with in-memory data storage
 servers:
@@ -928,7 +928,7 @@ graph TB
 
 **No external APIs required for MVP.**
 
-Based on the PRD requirements for dummy-data-only local development, TerraVue MVP is designed to be completely self-contained without any external API dependencies. All integrations that would typically require external services are fully simulated:
+Based on the PRD requirements for dummy-data-only local development, Terravue MVP is designed to be completely self-contained without any external API dependencies. All integrations that would typically require external services are fully simulated:
 
 ### Simulated External Services
 
@@ -1444,7 +1444,7 @@ npm run reset-data
 ```bash
 # Frontend (.env.local)
 VITE_API_BASE_URL=http://localhost:8000/api/v1
-VITE_APP_NAME=TerraVue
+VITE_APP_NAME=Terravue
 VITE_ENABLE_MOCK_DATA=true
 
 # Backend (.env)
@@ -1575,9 +1575,9 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
 
 ## Summary
 
-**TerraVue Fullstack Architecture Complete**
+**Terravue Fullstack Architecture Complete**
 
-This architecture document provides comprehensive guidance for building TerraVue MVP as a dummy-data-only local development platform. The architecture emphasizes:
+This architecture document provides comprehensive guidance for building Terravue MVP as a dummy-data-only local development platform. The architecture emphasizes:
 
 ### **Key Architectural Decisions:**
 - **Monorepo structure** with npm workspaces for unified development
@@ -1585,7 +1585,7 @@ This architecture document provides comprehensive guidance for building TerraVue
 - **Mock service pattern** for complete external service simulation
 - **Repository pattern** enabling easy future database integration
 - **TypeScript throughout** for type safety across the full stack
-- **Component-based architecture** aligned with TerraVue's six main navigation sections
+- **Component-based architecture** aligned with Terravue's six main navigation sections
 
 ### **Technology Stack Highlights:**
 - **Frontend:** React 18+ with TypeScript, Material-UI, Zustand, Vite
@@ -1609,7 +1609,7 @@ The architecture provides everything needed for AI agents to begin development:
 - Development setup instructions
 - Coding standards and error handling patterns
 
-This architecture enables rapid development of a fully functional carbon market platform that demonstrates all TerraVue features while maintaining the simplicity needed for MVP validation and investor demonstrations.
+This architecture enables rapid development of a fully functional carbon market platform that demonstrates all Terravue features while maintaining the simplicity needed for MVP validation and investor demonstrations.
 
 ---
 

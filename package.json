@@ -1,7 +1,7 @@
 {
   "name": "terravue",
   "version": "1.0.0",
-  "description": "TerraVue - Carbon Credit Trading Platform",
+  "description": "Terravue - Carbon Credit Trading Platform",
   "private": true,
   "workspaces": [
     "apps/*",

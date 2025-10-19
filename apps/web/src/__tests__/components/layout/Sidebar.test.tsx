@@ -51,25 +51,25 @@ describe('Sidebar', () => {
     mockLogout.mockClear()
   })
 
-  it('renders TerraVue logo and branding', () => {
+  it('renders Terravue logo and branding', () => {
     renderSidebar()
-    expect(screen.getByText(/TerraVue/i)).toBeInTheDocument()
+    expect(screen.getByText(/Terravue/i)).toBeInTheDocument()
     expect(screen.getByText(/Carbon Market Platform/i)).toBeInTheDocument()
   })
 
   it('renders all navigation items', () => {
     renderSidebar()
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
-    expect(screen.getByText('Kelola Lahan')).toBeInTheDocument()
-    expect(screen.getByText('Peta Dunia')).toBeInTheDocument()
-    expect(screen.getByText('Market Karbon')).toBeInTheDocument()
-    expect(screen.getByText('Profil & Aktivitas')).toBeInTheDocument()
+    expect(screen.getByText('Land Management')).toBeInTheDocument()
+    expect(screen.getByText('Global Map')).toBeInTheDocument()
+    expect(screen.getByText('Carbon Market')).toBeInTheDocument()
+    expect(screen.getByText('Profile & Activity')).toBeInTheDocument()
   })
 
   it('displays user information', () => {
     renderSidebar()
     expect(screen.getByText('Test User')).toBeInTheDocument()
-    expect(screen.getByText('Pemilik Lahan')).toBeInTheDocument()
+    expect(screen.getByText('Landowner')).toBeInTheDocument()
   })
 
   it('navigates to correct page when navigation item is clicked', () => {
@@ -87,7 +87,7 @@ describe('Sidebar', () => {
     if (logoutButton) {
       fireEvent.click(logoutButton)
       await waitFor(() => {
-        expect(screen.getByText('Konfirmasi Logout')).toBeInTheDocument()
+        expect(screen.getByText('Confirm Logout')).toBeInTheDocument()
       })
     }
   })
@@ -98,7 +98,7 @@ describe('Sidebar', () => {
     if (logoutButton) {
       fireEvent.click(logoutButton)
       await waitFor(() => {
-        expect(screen.getByText('Konfirmasi Logout')).toBeInTheDocument()
+        expect(screen.getByText('Confirm Logout')).toBeInTheDocument()
       })
       
       const confirmButton = screen.getByRole('button', { name: /logout/i })
@@ -117,10 +117,10 @@ describe('Sidebar', () => {
     if (logoutButton) {
       fireEvent.click(logoutButton)
       await waitFor(() => {
-        expect(screen.getByText('Konfirmasi Logout')).toBeInTheDocument()
+        expect(screen.getByText('Confirm Logout')).toBeInTheDocument()
       })
       
-      const cancelButton = screen.getByRole('button', { name: /batal/i })
+      const cancelButton = screen.getByRole('button', { name: /cancel/i })
       fireEvent.click(cancelButton)
       
       await waitFor(() => {
@@ -131,18 +131,18 @@ describe('Sidebar', () => {
 })
 
 describe('Sidebar - Role-based visibility', () => {
-  it('shows Kelola Lahan for landowner', () => {
+  it('shows Land Management for landowner', () => {
     renderSidebar()
-    expect(screen.getByText('Kelola Lahan')).toBeInTheDocument()
+    expect(screen.getByText('Land Management')).toBeInTheDocument()
   })
 
   it('shows all common navigation items', () => {
     renderSidebar()
     // These should be visible for all user types
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
-    expect(screen.getByText('Peta Dunia')).toBeInTheDocument()
-    expect(screen.getByText('Market Karbon')).toBeInTheDocument()
-    expect(screen.getByText('Profil & Aktivitas')).toBeInTheDocument()
+    expect(screen.getByText('Global Map')).toBeInTheDocument()
+    expect(screen.getByText('Carbon Market')).toBeInTheDocument()
+    expect(screen.getByText('Profile & Activity')).toBeInTheDocument()
   })
 })
 

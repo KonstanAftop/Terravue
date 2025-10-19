@@ -18,27 +18,27 @@ export const UserSummaryWidget = ({ userSummary }: UserSummaryWidgetProps) => {
   const stats = [
     {
       icon: <Landscape sx={{ fontSize: 40, color: '#2e7d32' }} />,
-      label: 'Total Lahan',
+      label: 'Total Land Parcels',
       value: userSummary.totalLands,
-      subValue: `${userSummary.verifiedLands} terverifikasi`,
+      subValue: `${userSummary.verifiedLands} verified`,
     },
     {
       icon: <CheckCircle sx={{ fontSize: 40, color: '#1565c0' }} />,
-      label: 'Kredit Karbon',
+      label: 'Carbon Credits',
       value: userSummary.totalCredits,
-      subValue: `${userSummary.availableCredits} tersedia`,
+      subValue: `${userSummary.availableCredits} available`,
     },
     {
       icon: <Receipt sx={{ fontSize: 40, color: '#558b2f' }} />,
-      label: 'Transaksi',
+      label: 'Transactions',
       value: userSummary.totalTransactions,
-      subValue: 'transaksi selesai',
+      subValue: 'completed transactions',
     },
     {
       icon: <ShowChart sx={{ fontSize: 40, color: '#f57c00' }} />,
-      label: 'Total Pendapatan',
-      value: `IDR ${(userSummary.totalRevenue / 1000000).toFixed(1)}jt`,
-      subValue: 'dari penjualan kredit',
+      label: 'Total Revenue',
+      value: `IDR ${(userSummary.totalRevenue / 1000000).toFixed(1)}M`,
+      subValue: 'from credit sales',
     },
   ]
 

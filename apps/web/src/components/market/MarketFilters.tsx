@@ -51,11 +51,11 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
   }
 
   const landTypes = [
-    { value: 'primary-forest', label: 'Hutan Primer' },
-    { value: 'secondary-forest', label: 'Hutan Sekunder' },
-    { value: 'plantation-forest', label: 'Hutan Tanaman' },
-    { value: 'agroforestry', label: 'Agroforestri' },
-    { value: 'degraded-land', label: 'Lahan Terdegradasi' },
+    { value: 'primary-forest', label: 'Primary Forest' },
+    { value: 'secondary-forest', label: 'Secondary Forest' },
+    { value: 'plantation-forest', label: 'Plantation Forest' },
+    { value: 'agroforestry', label: 'Agroforestry' },
+    { value: 'degraded-land', label: 'Degraded Land' },
   ]
 
   return (
@@ -70,7 +70,7 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
       {/* Price Range Filter */}
       <Box sx={{ mb: 3 }}>
         <Typography variant="subtitle2" gutterBottom>
-          Rentang Harga (per kredit)
+          Price Range (per credit)
         </Typography>
         <Slider
           value={priceRange}
@@ -79,14 +79,14 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
           valueLabelDisplay="auto"
           min={availableFilters?.priceRange?.min || 0}
           max={availableFilters?.priceRange?.max || 1000000}
-          valueLabelFormat={(value) => `Rp ${value.toLocaleString('id-ID')}`}
+          valueLabelFormat={(value) => `IDR ${value.toLocaleString('en-US')}`}
         />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           <Typography variant="caption" color="text.secondary">
-            Rp {priceRange[0].toLocaleString('id-ID')}
+            IDR {priceRange[0].toLocaleString('en-US')}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            Rp {priceRange[1].toLocaleString('id-ID')}
+            IDR {priceRange[1].toLocaleString('en-US')}
           </Typography>
         </Box>
       </Box>
@@ -95,13 +95,13 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
       <TextField
         select
         fullWidth
-        label="Jenis Lahan"
+        label="Land Type"
         value={localFilters.landType || ''}
         onChange={(e) => setLocalFilters({ ...localFilters, landType: e.target.value })}
         margin="normal"
         size="small"
       >
-        <MenuItem value="">Semua Jenis</MenuItem>
+        <MenuItem value="">All Types</MenuItem>
         {landTypes.map((type) => (
           <MenuItem key={type.value} value={type.value}>
             {type.label}
@@ -112,7 +112,7 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
       {/* Minimum Quantity Filter */}
       <TextField
         fullWidth
-        label="Jumlah Minimum (kredit)"
+        label="Minimum Quantity (credits)"
         type="number"
         value={localFilters.minQuantity || ''}
         onChange={(e) => setLocalFilters({ ...localFilters, minQuantity: parseInt(e.target.value) || undefined })}
@@ -128,7 +128,7 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
           onClick={handleApply}
           sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
         >
-          Terapkan
+          Apply
         </Button>
         <Button
           variant="outlined"
@@ -143,7 +143,7 @@ export const MarketFilters = ({ filters, availableFilters, onFilterChange, onCle
       {availableFilters && (
         <Box sx={{ mt: 2, p: 1, bgcolor: 'grey.50', borderRadius: 1 }}>
           <Typography variant="caption" color="text.secondary">
-            {availableFilters.totalListings} listing tersedia
+            {availableFilters.totalListings} listings available
           </Typography>
         </Box>
       )}

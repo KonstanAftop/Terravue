@@ -19,14 +19,14 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
 
   const formatLandType = (type: string) => {
     const types: Record<string, string> = {
-      'primary-forest': 'Hutan Primer',
-      'secondary-forest': 'Hutan Sekunder',
-      'plantation-forest': 'Hutan Tanaman',
-      'agroforestry': 'Agroforestri',
-      'degraded-land': 'Lahan Terdegradasi',
-      'palm-oil': 'Sawit',
-      'rubber': 'Karet',
-      'coffee': 'Kopi',
+      'primary-forest': 'Primary Forest',
+      'secondary-forest': 'Secondary Forest',
+      'plantation-forest': 'Plantation Forest',
+      'agroforestry': 'Agroforestry',
+      'degraded-land': 'Degraded Land',
+      'palm-oil': 'Palm Oil',
+      'rubber': 'Rubber',
+      'coffee': 'Coffee',
     }
     return types[type] || type
   }
@@ -46,7 +46,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
       paymentProvider,
     })
     // Optionally refresh the marketplace or show success message
-    alert('Transaksi berhasil dibuat! Silakan cek status di halaman Transaksi.')
+    alert('Transaction created successfully! Please check the status on the Transactions page.')
   }
 
   return (
@@ -55,7 +55,10 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
       sx={{
         height: isGridView ? '100%' : 'auto',
         display: 'flex',
-        flexDirection: isGridView ? 'column' : 'row',
+        flexDirection: {
+          xs: 'column',
+          sm: isGridView ? 'column' : 'row',
+        },
         transition: 'transform 0.2s, box-shadow 0.2s',
         '&:hover': {
           transform: 'translateY(-4px)',
@@ -67,16 +70,25 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         // Navigate to credit detail (will implement later)
       }}
     >
-      <CardContent sx={{ flex: 1 }}>
+      <CardContent sx={{ flex: 1, width: '100%' }}>
         {/* Header with verification badge */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: 1,
+            flexWrap: 'wrap',
+            mb: 1,
+          }}
+        >
           <Typography variant="h6" sx={{ fontWeight: 600, color: '#2e7d32' }}>
             {credit.landParcel?.name || 'Lahan Terdaftar'}
           </Typography>
           {credit.landParcel?.verificationStatus === 'verified' && (
             <Chip
               icon={<CheckCircle />}
-              label="Terverifikasi"
+              label="Verified"
               color="success"
               size="small"
             />
@@ -94,7 +106,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         )}
 
         {/* Land details */}
-        <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Terrain sx={{ fontSize: 16, color: 'text.secondary' }} />
             <Typography variant="caption" color="text.secondary">
@@ -109,22 +121,29 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         </Box>
 
         {/* Price and quantity */}
-        <Box sx={{ bgcolor: 'success.50', p: 1.5, borderRadius: 1, mb: 1 }}>
+        <Box
+          sx={{
+            bgcolor: 'success.50',
+            p: { xs: 1.25, sm: 1.5 },
+            borderRadius: 1.5,
+            mb: 1.5,
+          }}
+        >
           <Typography variant="caption" color="text.secondary" display="block">
-            Harga per Kredit
+            Price per Credit
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: 'success.main' }}>
-            Rp {credit.pricePerCredit?.toLocaleString('id-ID') || 0}
+            IDR {credit.pricePerCredit?.toLocaleString('en-US') || 0}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            {credit.quantity?.toLocaleString('id-ID') || 0} kredit tersedia
+            {credit.quantity?.toLocaleString('en-US') || 0} credits available
           </Typography>
         </Box>
 
         {/* Seller info */}
         {credit.seller && (
           <Typography variant="caption" color="text.secondary">
-            Dijual oleh: {credit.seller.name}
+            Seller: {credit.seller.name}
           </Typography>
         )}
 
@@ -147,26 +166,41 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         )}
       </CardContent>
 
-      <CardActions sx={{ justifyContent: 'space-between', p: 2, flexDirection: isGridView ? 'column' : 'row', gap: 1 }}>
+      <CardActions
+        sx={{
+          justifyContent: 'space-between',
+          p: 2,
+          gap: 1.5,
+          flexDirection: {
+            xs: 'column',
+            sm: isGridView ? 'column' : 'row',
+          },
+          alignItems: { xs: 'stretch', sm: 'center' },
+        }}
+      >
         <TextField
           type="number"
           size="small"
-          label="Jumlah"
+          label="Quantity"
           value={quantity}
           onChange={(e) => setQuantity(Math.max(1, Math.min(credit.quantity, parseInt(e.target.value) || 1)))}
           InputProps={{
             inputProps: { min: 1, max: credit.quantity },
-            endAdornment: <InputAdornment position="end">kredit</InputAdornment>,
+            endAdornment: <InputAdornment position="end">credits</InputAdornment>,
           }}
-          sx={{ width: isGridView ? '100%' : 150 }}
+          sx={{ width: { xs: '100%', sm: isGridView ? '100%' : 180 } }}
         />
         <Button
           variant="contained"
           startIcon={<ShoppingCart />}
-          sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' }, width: isGridView ? '100%' : 'auto' }}
+          sx={{
+            backgroundColor: '#2e7d32',
+            '&:hover': { backgroundColor: '#1b5e20' },
+            width: { xs: '100%', sm: isGridView ? '100%' : 'auto' },
+          }}
           onClick={handleBuy}
         >
-          Beli
+          Buy
         </Button>
       </CardActions>
     </Card>

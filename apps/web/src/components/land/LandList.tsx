@@ -52,11 +52,11 @@ export const LandList = ({
   const getStatusLabel = (status: string) => {
     switch (status) {
       case 'verified':
-        return 'Terverifikasi'
+        return 'Verified'
       case 'pending':
-        return 'Menunggu'
+        return 'Pending'
       case 'rejected':
-        return 'Ditolak'
+        return 'Rejected'
       default:
         return status
     }
@@ -78,17 +78,17 @@ export const LandList = ({
             </TableCell>
             <TableCell>
               <Typography variant="subtitle2" fontWeight={600}>
-                Nama Lahan
+                Land Name
               </Typography>
             </TableCell>
             <TableCell>
               <Typography variant="subtitle2" fontWeight={600}>
-                Luas (Ha)
+                Area (ha)
               </Typography>
             </TableCell>
             <TableCell>
               <Typography variant="subtitle2" fontWeight={600}>
-                Jenis Lahan
+                Land Type
               </Typography>
             </TableCell>
             <TableCell>
@@ -98,17 +98,17 @@ export const LandList = ({
             </TableCell>
             <TableCell>
               <Typography variant="subtitle2" fontWeight={600}>
-                Potensi Karbon
+                Carbon Potential
               </Typography>
             </TableCell>
             <TableCell>
               <Typography variant="subtitle2" fontWeight={600}>
-                Tanggal Daftar
+                Date Added
               </Typography>
             </TableCell>
             <TableCell align="center">
               <Typography variant="subtitle2" fontWeight={600}>
-                Aksi
+                Actions
               </Typography>
             </TableCell>
           </TableRow>
@@ -118,7 +118,7 @@ export const LandList = ({
             <TableRow>
               <TableCell colSpan={8} align="center" sx={{ py: 4 }}>
                 <Typography color="text.secondary">
-                  Belum ada lahan terdaftar
+                  No land parcels registered yet
                 </Typography>
               </TableCell>
             </TableRow>
@@ -145,9 +145,9 @@ export const LandList = ({
                     size="small"
                   />
                 </TableCell>
-                <TableCell>{land.carbonPotential.toLocaleString('id-ID')} kredit/tahun</TableCell>
+                <TableCell>{land.carbonPotential.toLocaleString('en-US')} credits/year</TableCell>
                 <TableCell>
-                  {new Date(land.createdAt).toLocaleDateString('id-ID')}
+                  {new Date(land.createdAt).toLocaleDateString('en-US')}
                 </TableCell>
                 <TableCell>
                   <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
@@ -155,7 +155,7 @@ export const LandList = ({
                       <IconButton
                         size="small"
                         onClick={() => onViewDetails(land.id)}
-                        title="Lihat Detail"
+                        title="View Details"
                       >
                         <Visibility fontSize="small" />
                       </IconButton>
@@ -173,7 +173,7 @@ export const LandList = ({
                       <IconButton
                         size="small"
                         onClick={() => onDelete(land.id)}
-                        title="Hapus"
+                        title="Delete"
                         color="error"
                       >
                         <Delete fontSize="small" />

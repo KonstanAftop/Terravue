@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Typography, Box, Grid, CircularProgress } from '@mui/material'
+import { Box, Grid, CircularProgress, Stack } from '@mui/material'
 import { AppLayout } from '../components/layout/AppLayout'
 import { useAuthStore } from '../stores/authStore'
 import { useDashboardStore } from '../stores/dashboardStore'
@@ -8,6 +8,7 @@ import { UserSummaryWidget } from '../components/dashboard/UserSummaryWidget'
 import { RecentActivityWidget } from '../components/dashboard/RecentActivityWidget'
 import { QuickActionsWidget } from '../components/dashboard/QuickActionsWidget'
 import { PriceChartWidget } from '../components/dashboard/PriceChartWidget'
+import { PageHeader } from '../components/layout/PageHeader'
 
 export const DashboardPage = () => {
   const { user } = useAuthStore()
@@ -35,42 +36,33 @@ export const DashboardPage = () => {
 
   return (
     <AppLayout>
-      <Box>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-          Dashboard
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          Selamat datang, {user?.fullName}! 
-          ({user?.userType === 'landowner' ? 'Pemilik Lahan' : 'Pembeli'})
-        </Typography>
+      <PageHeader
+        eyebrow="Overview"
+        title="Dashboard"
+        subtitle={`Welcome back, ${user?.fullName ?? 'team member'} (${user?.userType === 'landowner' ? 'Landowner' : 'Buyer'})`}
+      />
 
-        <Grid container spacing={3} sx={{ mt: 1 }}>
-          {/* Carbon Price Widget */}
+      <Stack spacing={4}>
+        <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
             <CarbonPriceWidget marketSummary={dashboardData?.marketSummary || null} />
           </Grid>
-
-          {/* Price Chart */}
           <Grid item xs={12} md={8}>
             <PriceChartWidget marketData={marketData} />
           </Grid>
+        </Grid>
 
-          {/* User Summary */}
-          <Grid item xs={12}>
-            <UserSummaryWidget userSummary={dashboardData?.userSummary || null} />
-          </Grid>
+        <UserSummaryWidget userSummary={dashboardData?.userSummary || null} />
 
-          {/* Quick Actions */}
+        <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <QuickActionsWidget />
           </Grid>
-
-          {/* Recent Activity */}
           <Grid item xs={12} md={6}>
             <RecentActivityWidget activities={dashboardData?.recentActivity || []} />
           </Grid>
         </Grid>
-      </Box>
+      </Stack>
     </AppLayout>
   )
 }

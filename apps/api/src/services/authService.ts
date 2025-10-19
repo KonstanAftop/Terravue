@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { User } from '@terravue/shared'
 import { inMemoryStore } from '../repositories/inMemoryStore.js'
 import { generateToken } from '../utils/jwt.js'
@@ -136,9 +136,9 @@ export class AuthService {
     console.log(`
 === MOCK EMAIL: EMAIL VERIFICATION ===
 To: ${email}
-Subject: Verify your TerraVue account
+Subject: Verify your Terravue account
 Content: 
-  Welcome to TerraVue!
+  Welcome to Terravue!
   
   Please click the link below to verify your email address:
   http://localhost:3000/verify-email?token=mock-verification-token
@@ -148,7 +148,7 @@ Content:
   Thank you for joining our carbon credit trading platform!
   
   Best regards,
-  TerraVue Team
+  Terravue Team
 ======================================
 `)
   }
@@ -157,7 +157,7 @@ Content:
     console.log(`
 === MOCK EMAIL: PASSWORD RESET ===
 To: ${email}
-Subject: Reset your TerraVue password
+Subject: Reset your Terravue password
 Content:
   We received a request to reset your password.
   
@@ -169,7 +169,7 @@ Content:
   If you didn't request this, please ignore this email.
   
   Best regards,
-  TerraVue Team
+  Terravue Team
 ===================================
 `)
   }

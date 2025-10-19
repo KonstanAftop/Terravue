@@ -14,10 +14,10 @@ export const SatelliteImageViewer = ({ images, landName }: SatelliteImageViewerP
     return (
       <Paper sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-          Citra Satelit
+          Satellite Imagery
         </Typography>
         <Alert severity="info">
-          Citra satelit akan tersedia setelah verifikasi dimulai
+          Satellite imagery will be available once verification begins.
         </Alert>
       </Paper>
     )
@@ -27,7 +27,7 @@ export const SatelliteImageViewer = ({ images, landName }: SatelliteImageViewerP
     <Paper sx={{ p: 3 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h6" sx={{ fontWeight: 600 }}>
-          Citra Satelit
+          Satellite Imagery
         </Typography>
         
         {images.length > 1 && (
@@ -85,13 +85,13 @@ export const SatelliteImageViewer = ({ images, landName }: SatelliteImageViewerP
             <Box sx={{ textAlign: 'center', color: 'white', p: 2 }}>
               <Satellite sx={{ fontSize: 60, opacity: 0.7, mb: 1 }} />
               <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                Simulasi Citra Satelit
+                Satellite Imagery Preview
               </Typography>
               <Typography variant="caption" sx={{ opacity: 0.7 }}>
                 {landName}
               </Typography>
               <Typography variant="caption" display="block" sx={{ mt: 1, opacity: 0.6 }}>
-                {selectedImage === 0 ? 'Mode RGB' : 'Mode Infrared'}
+                {selectedImage === 0 ? 'RGB Mode' : 'Infrared Mode'}
               </Typography>
             </Box>
           </Box>
@@ -99,8 +99,7 @@ export const SatelliteImageViewer = ({ images, landName }: SatelliteImageViewerP
       </Box>
 
       <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-        ℹ️ Ini adalah simulasi citra satelit. Pada aplikasi produksi, ini akan menampilkan citra
-        satelit sesungguhnya dari penyedia seperti Sentinel atau Landsat.
+        Note: This is a simulated satellite view. In production it will display live imagery from providers such as Sentinel or Landsat.
       </Typography>
     </Paper>
   )

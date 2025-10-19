@@ -16,12 +16,12 @@ export const PricingGuidance = ({ marketStats, landType }: PricingGuidanceProps)
   if (!marketStats || marketStats.totalListings === 0) {
     return (
       <Paper sx={{ p: 2, mb: 2 }}>
-        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-          Panduan Harga
-        </Typography>
-        <Alert severity="info">
-          Belum ada data pasar yang tersedia. Anda dapat menetapkan harga berdasarkan estimasi Anda.
-        </Alert>
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+        Pricing Guidance
+      </Typography>
+      <Alert severity="info">
+          No marketplace data is available yet. You can set a price based on your own estimates.
+      </Alert>
       </Paper>
     )
   }
@@ -46,31 +46,31 @@ export const PricingGuidance = ({ marketStats, landType }: PricingGuidanceProps)
   return (
     <Paper sx={{ p: 2, mb: 2 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-        Panduan Harga
+        Pricing Guidance
       </Typography>
 
       <Box sx={{ mb: 2 }}>
         <Typography variant="body2" color="text.secondary" gutterBottom>
-          Berdasarkan {marketStats.totalListings} listing aktif di pasar
+          Based on {marketStats.totalListings} active marketplace listings
         </Typography>
       </Box>
 
       <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
         <Box sx={{ flex: 1, minWidth: 150 }}>
           <Typography variant="caption" color="text.secondary">
-            Harga Rata-rata Pasar
+            Average Market Price
           </Typography>
           <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }}>
-            Rp {marketStats.averagePrice.toLocaleString('id-ID')}
+            IDR {marketStats.averagePrice.toLocaleString('en-US')}
           </Typography>
         </Box>
         
         <Box sx={{ flex: 1, minWidth: 150 }}>
           <Typography variant="caption" color="text.secondary">
-            Rentang Harga Pasar
+            Market Price Range
           </Typography>
           <Typography variant="body2" sx={{ fontWeight: 600 }}>
-            Rp {marketStats.minPrice.toLocaleString('id-ID')} - Rp {marketStats.maxPrice.toLocaleString('id-ID')}
+            IDR {marketStats.minPrice.toLocaleString('en-US')} - IDR {marketStats.maxPrice.toLocaleString('en-US')}
           </Typography>
         </Box>
       </Box>
@@ -81,24 +81,23 @@ export const PricingGuidance = ({ marketStats, landType }: PricingGuidanceProps)
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
           <TrendingUp sx={{ color: 'success.main' }} />
           <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-            Rekomendasi Harga
-            {landType && ' (disesuaikan dengan jenis lahan)'}
+            Price Recommendation
+            {landType && ' (adjusted for land type)'}
           </Typography>
         </Box>
         
         <Typography variant="h5" color="success.main" sx={{ fontWeight: 700, mb: 1 }}>
-          Rp {adjustedAvg.toLocaleString('id-ID')}/kredit
+          IDR {adjustedAvg.toLocaleString('en-US')}/credit
         </Typography>
         
         <Typography variant="caption" color="text.secondary">
-          Rentang kompetitif: Rp {adjustedMin.toLocaleString('id-ID')} - Rp {adjustedMax.toLocaleString('id-ID')}
+          Competitive range: IDR {adjustedMin.toLocaleString('en-US')} - IDR {adjustedMax.toLocaleString('en-US')}
         </Typography>
       </Box>
 
       <Alert severity="info" icon={<Info />}>
         <Typography variant="caption">
-          <strong>Tips:</strong> Harga di tengah rentang biasanya paling menarik pembeli. 
-          Harga lebih rendah = penjualan lebih cepat, harga lebih tinggi = margin lebih besar.
+          <strong>Tip:</strong> Mid-range prices usually attract buyers fastest. Lower pricing moves credits faster; higher pricing improves margins.
         </Typography>
       </Alert>
 
@@ -106,7 +105,7 @@ export const PricingGuidance = ({ marketStats, landType }: PricingGuidanceProps)
         <Box sx={{ mt: 2 }}>
           <Chip
             icon={multiplier > 1.0 ? <TrendingUp /> : <TrendingDown />}
-            label={`${landType}: ${multiplier > 1.0 ? 'Premium' : 'Standar'} ${Math.round((multiplier - 1) * 100)}%`}
+            label={`${landType}: ${multiplier > 1.0 ? 'Premium' : 'Standard'} ${Math.round((multiplier - 1) * 100)}%`}
             color={multiplier > 1.0 ? 'success' : 'default'}
             size="small"
           />
