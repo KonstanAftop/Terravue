@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Box, CircularProgress } from '@mui/material'
 import { useAuth } from '../../hooks/useAuth'
 
 interface PublicRouteProps {
-  children: React.ReactNode
+  children: ReactNode
   redirectTo?: string
 }
 
@@ -31,4 +32,3 @@ export const PublicRoute = ({ children, redirectTo = '/dashboard' }: PublicRoute
 
   return <>{children}</>
 }
-

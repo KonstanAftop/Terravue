@@ -1,38 +1,57 @@
-import { useState, ReactNode } from 'react'
-import { Box } from '@mui/material'
-import { Sidebar } from './Sidebar'
+import { ReactNode, useState } from "react";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Sidebar, SIDEBAR_WIDTH } from "./Sidebar";
 
 interface AppLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+  const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar 
-        mobileOpen={mobileOpen} 
-        onDrawerToggle={handleDrawerToggle} 
-      />
+    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+      <Sidebar mobileOpen={mobileOpen} onDrawerToggle={handleDrawerToggle} />
+
       <Box
         component="main"
         sx={{
+          position: "relative",
           flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - 280px)` },
-          ml: { sm: '280px' },
-          backgroundColor: '#f5f5f5',
-          minHeight: '100vh',
+          minHeight: "100vh",
+          ml: { xs: 0, sm: `${SIDEBAR_WIDTH}px` },
+          px: { xs: 2, md: 3, lg: 4 },
+          py: { xs: 8, md: 10 },
+          background: "linear-gradient(180deg, rgba(242,245,247,0.92) 0%, #f5f7fa 50%, #eef3f3 100%)",
         }}
       >
-        {children}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background:
+              "radial-gradient(circle at 25% 20%, rgba(50,102,90,0.08), transparent 40%), radial-gradient(circle at 80% 0%, rgba(27,73,145,0.08), transparent 45%)",
+          }}
+        />
+
+        {isMobile && <Box sx={{ height: 64 }} />}
+
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: { xs: "100%", xl: "min(1280px, 100%)" },
+          }}
+        >
+          {children}
+        </Box>
       </Box>
     </Box>
-  )
-}
-
+  );
+};

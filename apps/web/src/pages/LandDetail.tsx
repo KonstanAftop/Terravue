@@ -1,15 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import {
-  Box,
-  Grid,
-  Typography,
-  Button,
-  CircularProgress,
-  Alert,
-  Breadcrumbs,
-  Link,
-} from '@mui/material'
+import { Box, Grid, Typography, Button, CircularProgress, Alert, Breadcrumbs, Link, Stack } from '@mui/material'
 import { ArrowBack, Refresh } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
 import { useLandDetailStore } from '../stores/landDetailStore'
@@ -18,6 +9,7 @@ import { VerificationProgressIndicator } from '../components/land/VerificationPr
 import { ActivityTimeline } from '../components/land/ActivityTimeline'
 import { SatelliteImageViewer } from '../components/land/SatelliteImageViewer'
 import { EditLandForm } from '../components/land/EditLandForm'
+import { PageHeader } from '../components/layout/PageHeader'
 
 export const LandDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -97,45 +89,37 @@ export const LandDetailPage = () => {
 
   return (
     <AppLayout>
+      <PageHeader
+        eyebrow="Land Portfolio"
+        title={land.name}
+        subtitle="Detailed insight into verification milestones, monitoring data, and activity timeline."
+        actions={
+          <Stack direction="row" spacing={1.5}>
+            <Button variant="outlined" startIcon={<ArrowBack />} onClick={() => navigate('/land-management')}>
+              Back to list
+            </Button>
+            <Button variant="contained" startIcon={<Refresh />} onClick={handleRefresh} disabled={loading}>
+              {loading ? 'Refreshing...' : 'Refresh data'}
+            </Button>
+          </Stack>
+        }
+      />
+
+      <Breadcrumbs sx={{ mb: 3 }}>
+        <Link
+          component="button"
+          variant="body2"
+          onClick={() => navigate('/land-management')}
+          sx={{ cursor: 'pointer', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+        >
+          Land Management
+        </Link>
+        <Typography variant="body2" color="text.primary">
+          {land.name}
+        </Typography>
+      </Breadcrumbs>
+
       <Box>
-        {/* Header with Breadcrumbs */}
-        <Box sx={{ mb: 3 }}>
-          <Breadcrumbs sx={{ mb: 2 }}>
-            <Link
-              component="button"
-              variant="body2"
-              onClick={() => navigate('/land-management')}
-              sx={{ cursor: 'pointer', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
-            >
-              Land Management
-            </Link>
-            <Typography variant="body2" color="text.primary">
-              {land.name}
-            </Typography>
-          </Breadcrumbs>
-
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Button
-              startIcon={<ArrowBack />}
-              onClick={() => navigate('/land-management')}
-              variant="outlined"
-              size="small"
-            >
-              Back
-            </Button>
-            
-            <Button
-              startIcon={<Refresh />}
-              onClick={handleRefresh}
-              variant="outlined"
-              size="small"
-              disabled={loading}
-            >
-              {loading ? 'Loading...' : 'Refresh'}
-            </Button>
-          </Box>
-        </Box>
-
         {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             {error}

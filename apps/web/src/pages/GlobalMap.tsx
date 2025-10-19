@@ -39,6 +39,7 @@ import {
   Landscape,
 } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
+import { PageHeader } from '../components/layout/PageHeader'
 import { LandParcel } from '@terravue/shared'
 import { formatCurrency, formatNumber } from '@terravue/shared'
 import { calculatePolygonArea } from '../utils/mapUtils'
@@ -172,6 +173,11 @@ export const GlobalMapPage = () => {
 
   return (
     <AppLayout>
+      <PageHeader
+        eyebrow="Global Monitoring"
+        title="Global Project Atlas"
+        subtitle="Explore verified and pending carbon projects across regions with rich geospatial context."
+      />
       <Box sx={{ height: 'calc(100vh - 100px)', position: 'relative' }}>
         {/* Top Control Bar */}
         <Paper

@@ -1,21 +1,13 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  Box,
-  Typography,
-  Button,
-  CircularProgress,
-  Pagination,
-  Paper,
-  Toolbar,
-  Chip,
-} from '@mui/material'
+import { Box, Typography, Button, CircularProgress, Pagination, Paper, Toolbar, Chip, Stack } from '@mui/material'
 import { Add, GetApp, Delete } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
 import { useLandStore } from '../stores/landStore'
 import { LandList } from '../components/land/LandList'
 import { SearchFilters } from '../components/land/SearchFilters'
 import { exportService } from '../services/exportService'
+import { PageHeader } from '../components/layout/PageHeader'
 
 export const LandManagementPage = () => {
   const navigate = useNavigate()
@@ -69,75 +61,60 @@ export const LandManagementPage = () => {
 
   return (
     <AppLayout>
-      <Box>
-        {/* Header */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-          <div>
-            <Typography variant="h4" sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Land Management
-            </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              Manage your land portfolio and monitor verification status
-            </Typography>
-          </div>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => navigate('/land-management/add')}
-            sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
-          >
+      <PageHeader
+        eyebrow="Portfolio"
+        title="Land Management"
+        subtitle="Manage your registered parcels and track verification progress."
+        actions={
+          <Button variant="contained" startIcon={<Add />} onClick={() => navigate('/land-management/add')}>
             Add Land
           </Button>
-        </Box>
+        }
+      />
 
-        {/* Search and Filters */}
+      <Stack spacing={3.5}>
         <SearchFilters onSearch={handleSearch} />
 
-        {/* Bulk Actions Toolbar */}
         {selectedLands.length > 0 && (
-          <Paper sx={{ p: 2, mb: 2, backgroundColor: '#e8f5e9' }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 2.5,
+              borderRadius: 3,
+              border: '1px solid rgba(20,98,74,0.12)',
+              backgroundColor: 'rgba(20,98,74,0.04)',
+            }}
+          >
             <Toolbar sx={{ px: 0, minHeight: 'auto' }}>
               <Chip
                 label={`${selectedLands.length} land parcel${selectedLands.length === 1 ? '' : 's'} selected`}
                 color="primary"
                 sx={{ mr: 2 }}
               />
-              <Button
-                size="small"
-                startIcon={<GetApp />}
-                onClick={handleExport}
-                sx={{ mr: 1 }}
-              >
+              <Button size="small" startIcon={<GetApp />} onClick={handleExport} sx={{ mr: 1 }}>
                 Export Selected
               </Button>
-              <Button
-                size="small"
-                startIcon={<Delete />}
-                color="error"
-                onClick={clearSelection}
-              >
+              <Button size="small" startIcon={<Delete />} color="error" onClick={clearSelection}>
                 Clear Selection
               </Button>
             </Toolbar>
           </Paper>
         )}
 
-        {/* Summary */}
-        <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          justifyContent="space-between"
+          spacing={1.5}
+        >
           <Typography variant="body2" color="text.secondary">
             Showing {lands.length} of {total} land parcels
           </Typography>
-          <Button
-            size="small"
-            startIcon={<GetApp />}
-            onClick={handleExportAll}
-            variant="outlined"
-          >
+          <Button size="small" variant="outlined" startIcon={<GetApp />} onClick={handleExportAll}>
             Export All
           </Button>
-        </Box>
+        </Stack>
 
-        {/* Land List */}
         <LandList
           lands={lands}
           selectedLands={selectedLands}
@@ -147,19 +124,12 @@ export const LandManagementPage = () => {
           onViewDetails={(id) => navigate(`/land-management/${id}`)}
         />
 
-        {/* Pagination */}
         {totalPages > 1 && (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Pagination
-              count={totalPages}
-              page={page}
-              onChange={handlePageChange}
-              color="primary"
-              size="large"
-            />
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+            <Pagination count={totalPages} page={page} onChange={handlePageChange} color="primary" size="large" />
           </Box>
         )}
-      </Box>
+      </Stack>
     </AppLayout>
   )
 }

@@ -13,6 +13,8 @@ import {
   MenuItem,
   CircularProgress,
   Alert,
+  Paper,
+  Stack,
 } from '@mui/material'
 import {
   Add,
@@ -24,6 +26,7 @@ import {
   ShowChart,
 } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
+import { PageHeader } from '../components/layout/PageHeader'
 import { useAuth } from '../hooks/useAuth'
 import { useMarketStore } from '../stores/marketStore'
 import { CreditListingCard } from '../components/market/CreditListingCard'
@@ -67,60 +70,49 @@ export const CarbonMarketPage = () => {
 
   return (
     <AppLayout>
-      <Box>
-        {/* Header */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-          <Box>
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Carbon Marketplace
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {total} carbon credit listings available
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            {/* Market Analytics Button - Available for all users */}
-            <Button
-              startIcon={<ShowChart />}
-              onClick={() => navigate('/market-analytics')}
-              variant="outlined"
-              color="primary"
-            >
+      <PageHeader
+        eyebrow="Marketplace"
+        title="Carbon Marketplace"
+        subtitle={`${total} carbon credit listings available right now.`}
+        actions={
+          <Stack direction="row" spacing={1.5}>
+            <Button variant="outlined" startIcon={<ShowChart />} onClick={() => navigate('/market-analytics')}>
               Market Analytics
             </Button>
-            
-            {/* Landowner specific buttons */}
             {isLandowner && (
               <>
-                <Button
-                  startIcon={<ListAlt />}
-                  onClick={() => navigate('/my-listings')}
-                  variant="outlined"
-                >
+                <Button variant="outlined" startIcon={<ListAlt />} onClick={() => navigate('/my-listings')}>
                   My Listings
                 </Button>
-                <Button
-                  startIcon={<Add />}
-                  onClick={() => navigate('/create-listing')}
-                  variant="contained"
-                  sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
-                >
+                <Button variant="contained" startIcon={<Add />} onClick={() => navigate('/create-listing')}>
                   Create Listing
                 </Button>
               </>
             )}
-          </Box>
-        </Box>
+          </Stack>
+        }
+      />
 
-        {/* Search and Controls */}
-        <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
+      <Stack spacing={3.5}>
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2.5, md: 3 },
+            borderRadius: 3,
+            border: '1px solid rgba(20,98,74,0.12)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 2,
+            alignItems: 'center',
+          }}
+        >
           <TextField
             placeholder="Search carbon credits..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
             size="small"
-            sx={{ flex: 1, minWidth: 300 }}
+            sx={{ flex: 1, minWidth: 280 }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -142,7 +134,7 @@ export const CarbonMarketPage = () => {
             size="small"
             value={sortBy}
             onChange={(e) => handleSortChange(e.target.value)}
-            sx={{ minWidth: 150 }}
+            sx={{ minWidth: 160 }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -169,17 +161,15 @@ export const CarbonMarketPage = () => {
               <ViewList />
             </ToggleButton>
           </ToggleButtonGroup>
-        </Box>
+        </Paper>
 
         {error && (
-          <Alert severity="error" onClose={clearError} sx={{ mb: 2 }}>
+          <Alert severity="error" onClose={clearError}>
             {error}
           </Alert>
         )}
 
-        {/* Main Content: Filters + Listings */}
         <Grid container spacing={3}>
-          {/* Filters Sidebar */}
           <Grid item xs={12} md={3}>
             <MarketFilters
               filters={filters}
@@ -189,7 +179,6 @@ export const CarbonMarketPage = () => {
             />
           </Grid>
 
-          {/* Listings Grid/List */}
           <Grid item xs={12} md={9}>
             {loading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
@@ -201,13 +190,19 @@ export const CarbonMarketPage = () => {
                   No listings found
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Try adjusting your filters or search keywords
+                  Try adjusting your filters or search keywords.
                 </Typography>
               </Box>
             ) : (
-              <Grid container spacing={2}>
+              <Grid container spacing={2.5}>
                 {credits.map((credit) => (
-                  <Grid item xs={12} sm={viewMode === 'grid' ? 6 : 12} lg={viewMode === 'grid' ? 4 : 12} key={credit.id}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={viewMode === 'grid' ? 6 : 12}
+                    lg={viewMode === 'grid' ? 4 : 12}
+                    key={credit.id}
+                  >
                     <CreditListingCard credit={credit} viewMode={viewMode} />
                   </Grid>
                 ))}
@@ -215,7 +210,7 @@ export const CarbonMarketPage = () => {
             )}
           </Grid>
         </Grid>
-      </Box>
+      </Stack>
     </AppLayout>
   )
 }

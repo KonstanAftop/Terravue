@@ -30,6 +30,7 @@ import {
   Download,
 } from '@mui/icons-material'
 import { AppLayout } from '../components/layout/AppLayout'
+import { PageHeader } from '../components/layout/PageHeader'
 import { GeoCoordinate } from '@terravue/shared'
 import {
   calculatePolygonArea,
@@ -192,6 +193,11 @@ export const InteractiveMapPage = () => {
 
   return (
     <AppLayout>
+      <PageHeader
+        eyebrow="Project Design"
+        title="Interactive Boundary Builder"
+        subtitle="Draw and validate land boundaries with live area calculations before submitting a new project."
+      />
       <Box sx={{ height: 'calc(100vh - 100px)', position: 'relative' }}>
         {/* Control Panel */}
         <Paper
