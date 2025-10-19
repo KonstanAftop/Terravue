@@ -75,7 +75,7 @@ export const MyListingsPage = () => {
         {/* Header */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <Box>
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: 'primary.main' }}>
               My Carbon Credit Listings
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -83,19 +83,13 @@ export const MyListingsPage = () => {
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button
-              startIcon={<Refresh />}
-              onClick={fetchMyListings}
-              variant="outlined"
-              disabled={loading}
-            >
+            <Button startIcon={<Refresh />} onClick={fetchMyListings} variant="outlined" disabled={loading}>
               Refresh
             </Button>
             <Button
               startIcon={<Add />}
               onClick={() => navigate('/create-listing')}
               variant="contained"
-              sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
             >
               Create Listing
             </Button>
@@ -120,7 +114,6 @@ export const MyListingsPage = () => {
               variant="contained"
               startIcon={<Add />}
               onClick={() => navigate('/create-listing')}
-              sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
             >
               Create Your First Listing
             </Button>

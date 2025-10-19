@@ -22,6 +22,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 import {
   Dashboard as DashboardIcon,
   Landscape as LandscapeIcon,
@@ -50,6 +51,7 @@ interface NavigationItem {
 export const SIDEBAR_WIDTH = 300
 
 const drawerGradient = 'linear-gradient(200deg, #091512 0%, #040807 80%)'
+const LOGO_PLACEHOLDER_SRC = new URL('../../../assets/S__206069779.jpg', import.meta.url).href
 
 export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   const navigate = useNavigate()
@@ -58,6 +60,8 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const { user, logout } = useAuthStore()
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
+  const [sidebarLogoErrored, setSidebarLogoErrored] = useState(false)
+  const [topbarLogoErrored, setTopbarLogoErrored] = useState(false)
 
   const navigationItems: NavigationItem[] = [
     { label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
@@ -90,7 +94,18 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
   }
 
   const renderNavigation = () => (
-    <List sx={{ flexGrow: 1, overflowY: 'auto', px: 2.5, py: 3 }}>
+    <List
+      sx={{
+        flexGrow: 1,
+        overflowY: 'auto',
+        px: 2,
+        py: 2,
+        gap: 1,
+        '&::-webkit-scrollbar': {
+          width: 0,
+        },
+      }}
+    >
       {navigationItems.filter(isItemVisible).map((item) => {
         const isActive =
           item.path === '/dashboard'
@@ -98,24 +113,41 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             : location.pathname.startsWith(item.path)
 
         return (
-          <ListItem key={item.path} disablePadding sx={{ mb: 0.75 }}>
+          <ListItem key={item.path} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               onClick={() => handleNavigate(item.path)}
-              sx={{
-                borderRadius: 3,
-                px: 2.2,
-                py: 1.4,
-                color: 'rgba(233,245,241,0.85)',
-                background: isActive
-                  ? 'linear-gradient(135deg, rgba(233,245,241,0.18) 0%, rgba(233,245,241,0.06) 100%)'
-                  : 'transparent',
-                border: isActive ? '1px solid rgba(233,245,241,0.28)' : '1px solid transparent',
-                boxShadow: isActive ? '0 14px 36px rgba(7,25,20,0.35)' : 'none',
-                transition: 'all 0.25s ease',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, rgba(233,245,241,0.12) 0%, rgba(233,245,241,0.04) 100%)',
-                  border: '1px solid rgba(233,245,241,0.16)',
-                },
+              sx={(theme) => {
+                const primaryTint = alpha(theme.palette.primary.main, 0.2)
+                const borderColor = alpha(theme.palette.primary.main, isActive ? 0.55 : 0.18)
+                const hoverColor = alpha(theme.palette.primary.main, 0.16)
+                return {
+                  position: 'relative',
+                  borderRadius: 3,
+                  px: 1.8,
+                  py: 1,
+                  color: alpha(theme.palette.common.white, isActive ? 0.95 : 0.78),
+                  backgroundColor: isActive ? primaryTint : 'transparent',
+                  border: `1px solid ${isActive ? borderColor : 'transparent'}`,
+                  boxShadow: isActive ? `0 20px 38px ${alpha(theme.palette.common.black, 0.38)}` : 'none',
+                  transition: 'all 0.25s ease',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    inset: '8px auto 8px 8px',
+                    width: 2,
+                    borderRadius: 999,
+                    backgroundColor: isActive ? alpha(theme.palette.primary.light, 0.85) : 'transparent',
+                    transition: 'background-color 0.25s ease, transform 0.25s ease',
+                  },
+                  '&:hover': {
+                    backgroundColor: hoverColor,
+                    border: `1px solid ${alpha(theme.palette.primary.main, 0.32)}`,
+                    '&::before': {
+                      backgroundColor: alpha(theme.palette.primary.main, 0.6),
+                      transform: 'scaleY(1.1)',
+                    },
+                  },
+                }
               }}
             >
               <ListItemIcon
@@ -123,15 +155,20 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                   minWidth: 36,
                   color: 'inherit',
                   opacity: isActive ? 1 : 0.75,
+                  '& svg': {
+                    transform: 'scale(0.92)',
+                  },
                 }}
               >
                 {item.icon}
               </ListItemIcon>
               <ListItemText
                 primary={item.label}
+                sx={{ ml: 1.25 }}
                 primaryTypographyProps={{
                   fontWeight: isActive ? 600 : 500,
-                  fontSize: 15,
+                  fontSize: 14,
+                  letterSpacing: 0.2,
                 }}
               />
             </ListItemButton>
@@ -151,34 +188,70 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         color: '#E9F5F1',
       }}
     >
-      <Stack spacing={1} sx={{ px: 3, pt: 4, pb: 3, borderBottom: '1px solid rgba(233,245,241,0.1)' }}>
-        <Typography variant="overline" sx={{ letterSpacing: 3, opacity: 0.6 }}>
-          TERRAVUE
-        </Typography>
-        <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: '-0.02em' }}>
-          Climate Operations
-        </Typography>
-        <Typography variant="caption" sx={{ opacity: 0.55 }}>
+      <Stack
+        spacing={1}
+        alignItems="center"
+        sx={(theme) => ({
+          px: 2.5,
+          pt: 3,
+          pb: 2.5,
+          borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.1)}`,
+          textAlign: 'center',
+        })}
+      >
+        {sidebarLogoErrored ? (
+          <Box
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 44,
+              px: 2.5,
+              borderRadius: 2,
+              border: `1px dashed ${alpha('#ffffff', 0.4)}`,
+              color: alpha('#ffffff', 0.85),
+              fontWeight: 600,
+              letterSpacing: 1,
+              textTransform: 'uppercase',
+              fontSize: 12,
+            }}
+          >
+            Your Logo
+          </Box>
+        ) : (
+          <Box
+            component="img"
+            src={LOGO_PLACEHOLDER_SRC}
+            alt="Terravue logo"
+            onError={() => setSidebarLogoErrored(true)}
+            sx={{
+              height: 44,
+              width: 'auto',
+              filter: 'drop-shadow(0 10px 22px rgba(0,0,0,0.45))',
+            }}
+          />
+        )}
+        <Typography variant="caption" sx={{ opacity: 0.7 }}>
           Monitor · Verify · Trade
         </Typography>
       </Stack>
 
       {renderNavigation()}
 
-      <Box sx={{ px: 3, pb: 4, pt: 2 }}>
+      <Box sx={{ px: 2.5, pb: 3, pt: 1.5 }}>
         {user && (
           <Stack
             spacing={0.5}
             sx={{
-              px: 2,
-              py: 2.5,
-              mb: 2,
+              px: 1.8,
+              py: 2,
+              mb: 1.5,
               borderRadius: 3,
-              backgroundColor: 'rgba(233,245,241,0.05)',
-              border: '1px solid rgba(233,245,241,0.12)',
-            }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 600, color: '#ffffff' }}>
+                  backgroundColor: alpha(theme.palette.primary.main, 0.08),
+                  border: `1px solid ${alpha(theme.palette.primary.main, 0.22)}`,
+                }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600, color: '#ffffff' }}>
               {user.fullName}
             </Typography>
             <Typography variant="caption" sx={{ opacity: 0.65 }}>
@@ -193,16 +266,17 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
           color="error"
           onClick={handleLogoutClick}
           startIcon={<LogoutIcon />}
-          sx={{
+          sx={(theme) => ({
             borderRadius: 3,
-            borderColor: 'rgba(244,67,54,0.45)',
-            color: 'rgba(255,205,205,0.92)',
+            borderColor: alpha(theme.palette.error.main, 0.55),
+            color: alpha(theme.palette.error.light, 0.92),
             fontWeight: 600,
+            py: 1.1,
             '&:hover': {
-              borderColor: 'rgba(244,67,54,0.7)',
-              backgroundColor: 'rgba(244,67,54,0.12)',
+              borderColor: theme.palette.error.main,
+              backgroundColor: alpha(theme.palette.error.main, 0.16),
             },
-          }}
+          })}
         >
           Logout
         </Button>
@@ -217,8 +291,8 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
           position="fixed"
           elevation={0}
           sx={{
-            backgroundColor: 'rgba(9,21,18,0.92)',
-            borderBottom: '1px solid rgba(233,245,241,0.08)',
+            backgroundColor: alpha(theme.palette.background.default, 0.92),
+            borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.08)}`,
           }}
         >
           <Toolbar>
@@ -231,9 +305,23 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-              Terravue
-            </Typography>
+            {topbarLogoErrored ? (
+              <Typography variant="h6" component="div" sx={{ fontWeight: 700, letterSpacing: 1 }}>
+                Your Logo
+              </Typography>
+            ) : (
+              <Box
+                component="img"
+                src={LOGO_PLACEHOLDER_SRC}
+                alt="Terravue logo"
+                onError={() => setTopbarLogoErrored(true)}
+                sx={{
+                  height: 32,
+                  width: 'auto',
+                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.25))',
+                }}
+              />
+            )}
           </Toolbar>
         </AppBar>
       )}
@@ -245,10 +333,11 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
+          '& .MuiDrawer-paper': {
             width: SIDEBAR_WIDTH,
             boxSizing: 'border-box',
             background: drawerGradient,
+            borderRadius: 0,
           },
         }}
       >
@@ -267,7 +356,8 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             boxSizing: 'border-box',
             background: drawerGradient,
             color: '#E9F5F1',
-            borderRight: '1px solid rgba(233,245,241,0.05)',
+            borderRight: `1px solid ${alpha(theme.palette.common.white, 0.05)}`,
+            borderRadius: 0,
           },
         }}
       >

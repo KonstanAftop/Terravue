@@ -1,3 +1,4 @@
+import { alpha } from '@mui/material/styles'
 import { Paper, Typography, List, ListItem, ListItemText, Box, Chip } from '@mui/material'
 import { Receipt, Landscape } from '@mui/icons-material'
 import { RecentActivity } from '../../services/dashboardService'
@@ -10,9 +11,9 @@ export const RecentActivityWidget = ({ activities }: RecentActivityWidgetProps) 
   const getIcon = (type: string) => {
     switch (type) {
       case 'transaction':
-        return <Receipt sx={{ color: '#2e7d32' }} />
+        return <Receipt color="primary" />
       case 'land':
-        return <Landscape sx={{ color: '#1565c0' }} />
+        return <Landscape color="info" />
       default:
         return null
     }
@@ -56,9 +57,17 @@ export const RecentActivityWidget = ({ activities }: RecentActivityWidgetProps) 
               <Chip
                 label={activity.type === 'transaction' ? 'Transaction' : 'Land'}
                 size="small"
-                sx={{
-                  backgroundColor: activity.type === 'transaction' ? '#e8f5e9' : '#e3f2fd',
-                  color: activity.type === 'transaction' ? '#2e7d32' : '#1565c0',
+                sx={(theme) => {
+                  const paletteColor =
+                    activity.type === 'transaction'
+                      ? theme.palette.primary.main
+                      : theme.palette.info.main
+                  return {
+                    backgroundColor: alpha(paletteColor, 0.18),
+                    color: paletteColor,
+                    border: `1px solid ${alpha(paletteColor, 0.35)}`,
+                    fontWeight: 600,
+                  }
                 }}
               />
             </ListItem>

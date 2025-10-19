@@ -1,6 +1,9 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import { Sidebar, SIDEBAR_WIDTH } from "./Sidebar";
+
+const COMPACT_SCALE = 0.78;
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -10,6 +13,20 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const backgroundGradient = useMemo(() => {
+    const surface = theme.palette.background.paper;
+    const base = theme.palette.background.default;
+    const tail = alpha(theme.palette.primary.dark || theme.palette.primary.main, 0.65);
+
+    return `linear-gradient(180deg, ${base} 0%, ${alpha(surface, 0.96)} 48%, ${tail} 100%)`;
+  }, [theme]);
+
+  const overlayGradient = useMemo(() => {
+    const primary = alpha(theme.palette.primary.main, 0.28);
+    const secondary = alpha(theme.palette.secondary.main, 0.22);
+
+    return `radial-gradient(circle at 18% 12%, ${primary}, transparent 55%), radial-gradient(circle at 82% 8%, ${secondary}, transparent 58%)`;
+  }, [theme]);
 
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 
@@ -23,13 +40,14 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           position: "relative",
           flexGrow: 1,
           minHeight: "100vh",
-          // Let the permanent Drawer occupy space in the flex layout
-          // and avoid extra margin that creates a visible gap.
           ml: 0,
-          pl: { xs: 2, md: 2, lg: 3 },
+          pl: { xs: 2, sm: 0 },
           pr: { xs: 2, md: 3, lg: 4 },
-          py: { xs: 8, md: 10 },
-          background: "linear-gradient(180deg, rgba(242,245,247,0.92) 0%, #f5f7fa 50%, #eef3f3 100%)",
+          px: { xs: 1.5, md: 2.5, lg: 3 },
+          py: { xs: 6, md: 8 },
+          overflowX: "hidden",
+          background: backgroundGradient,
+          color: theme.palette.text.primary,
         }}
       >
         <Box
@@ -37,8 +55,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background:
-              "radial-gradient(circle at 25% 20%, rgba(50,102,90,0.08), transparent 40%), radial-gradient(circle at 80% 0%, rgba(27,73,145,0.08), transparent 45%)",
+            background: overlayGradient,
           }}
         />
 
@@ -48,9 +65,11 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           sx={{
             position: "relative",
             zIndex: 1,
-            width: "100%",
-            maxWidth: { xs: "100%", xl: "min(1280px, 100%)" },
-            mx: { xl: "auto" },
+            width: `calc(100% / ${COMPACT_SCALE})`,
+            maxWidth: `calc(1280px / ${COMPACT_SCALE})`,
+            transform: `scale(${COMPACT_SCALE})`,
+            transformOrigin: "top left",
+            minHeight: `calc(100vh / ${COMPACT_SCALE})`,
           }}
         >
           {children}

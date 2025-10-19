@@ -1,3 +1,4 @@
+import { alpha, useTheme } from '@mui/material/styles'
 import { Paper, Typography, Box } from '@mui/material'
 import { Line } from 'react-chartjs-2'
 import {
@@ -20,6 +21,8 @@ interface PriceChartWidgetProps {
 }
 
 export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
+  const theme = useTheme()
+
   const chartData = {
     labels: marketData.map((d) => {
       const date = new Date(d.timestamp)
@@ -29,13 +32,29 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
       {
         label: 'Carbon Price (IDR)',
         data: marketData.map((d) => d.averagePrice),
-        borderColor: '#2e7d32',
-        backgroundColor: 'rgba(46, 125, 50, 0.1)',
+        borderColor: theme.palette.primary.main,
+        borderWidth: 2.6,
+        backgroundColor: (context: any) => {
+          const chart = context.chart
+          const { ctx, chartArea } = chart
+          if (!chartArea) {
+            return alpha(theme.palette.primary.main, 0.12)
+          }
+          const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom)
+          gradient.addColorStop(0, alpha(theme.palette.primary.main, 0.25))
+          gradient.addColorStop(1, alpha(theme.palette.primary.main, 0))
+          return gradient
+        },
         fill: true,
-        tension: 0.4,
+        tension: 0.45,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#ffffff',
       },
     ],
   }
+
+  const gridColor = alpha(theme.palette.common.white, 0.08)
 
   const options = {
     responsive: true,
@@ -45,6 +64,9 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
         display: false,
       },
       tooltip: {
+        backgroundColor: alpha('#0b3d2d', 0.92),
+        borderColor: alpha('#ffffff', 0.12),
+        borderWidth: 1,
         callbacks: {
           label: function (context: any) {
             return `IDR ${context.parsed.y.toLocaleString('en-US')}`
@@ -53,8 +75,31 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
       },
     },
     scales: {
-      y: {
+      x: {
+        grid: {
+          display: false,
+        },
         ticks: {
+          color: alpha(theme.palette.text.primary, 0.6),
+          font: {
+            weight: 500,
+            size: 11,
+          },
+        },
+      },
+      y: {
+        grid: {
+          color: gridColor,
+          drawTicks: false,
+          borderDash: [4, 4],
+        },
+        ticks: {
+          padding: 6,
+          color: alpha(theme.palette.text.primary, 0.55),
+          font: {
+            weight: 500,
+            size: 11,
+          },
           callback: function (value: any) {
             return `${(value / 1000).toFixed(0)}k`
           },
@@ -64,11 +109,28 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
   }
 
   return (
-    <Paper sx={{ p: 3 }}>
-      <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+    <Paper
+      sx={{
+        p: 3,
+        borderRadius: 4,
+        boxShadow: '0 18px 40px rgba(21, 101, 192, 0.18)',
+        transition: 'transform 160ms ease, box-shadow 160ms ease',
+        '&:hover': {
+          transform: 'translateY(-3px)',
+          boxShadow: '0 22px 50px rgba(21, 101, 192, 0.22)',
+        },
+      }}
+    >
+      <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, opacity: 0.85 }}>
         Carbon Price Trend (7 Days)
       </Typography>
-      <Box sx={{ height: 300, mt: 2 }}>
+      <Box
+        sx={{
+          height: 180,
+          mt: 1.5,
+          width: '100%',
+        }}
+      >
         {marketData.length > 0 ? (
           <Line data={chartData} options={options} />
         ) : (

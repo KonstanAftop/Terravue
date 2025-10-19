@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { theme } from './theme'
+import { appTheme, landingTheme } from './theme'
 import { LoginPage } from './pages/Login'
 import { DashboardPage } from './pages/Dashboard'
 import { LandManagementPage } from './pages/LandManagement'
@@ -21,9 +21,19 @@ import { LandingPage } from './pages/Landing'
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Routes>
+      <ThemedRoutes />
+    </BrowserRouter>
+  )
+}
+
+const ThemedRoutes = () => {
+  const location = useLocation()
+  const isLandingPage = location.pathname === '/'
+
+  return (
+    <ThemeProvider theme={isLandingPage ? landingTheme : appTheme}>
+      <CssBaseline />
+      <Routes>
           <Route
             path="/login"
             element={
@@ -137,9 +147,8 @@ function App() {
             }
           />
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+      </Routes>
+    </ThemeProvider>
   )
 }
 

@@ -21,29 +21,39 @@ export const CarbonPriceWidget = ({ marketSummary }: CarbonPriceWidgetProps) => 
     <Paper
       sx={{
         p: 3,
-        background: 'linear-gradient(135deg, #2e7d32 0%, #4caf50 100%)',
+        background: 'linear-gradient(135deg, #1b5e20 0%, #4caf50 100%)',
         color: 'white',
+        borderRadius: 4,
+        boxShadow: '0 18px 40px rgba(27, 94, 32, 0.35)',
+        transition: 'transform 180ms ease, box-shadow 180ms ease',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: '0 22px 48px rgba(27, 94, 32, 0.45)',
+        },
       }}
     >
-      <Typography variant="subtitle2" sx={{ opacity: 0.9, mb: 1 }}>
+      <Typography
+        variant="overline"
+        sx={{ opacity: 0.85, letterSpacing: 3, display: 'block', mb: 1.5 }}
+      >
         Current Carbon Price
       </Typography>
-      <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
+      <Typography variant="h2" sx={{ fontWeight: 800, mb: 0.5, lineHeight: 1.1 }}>
         IDR {marketSummary.currentPrice.toLocaleString('en-US')}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
         {isPositive ? (
-          <TrendingUp sx={{ fontSize: 20 }} />
+          <TrendingUp sx={{ fontSize: 22, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.25))' }} />
         ) : (
-          <TrendingDown sx={{ fontSize: 20 }} />
+          <TrendingDown sx={{ fontSize: 22, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.25))' }} />
         )}
-        <Typography variant="body2">
+        <Typography variant="body1" sx={{ fontWeight: 600 }}>
           {isPositive ? '+' : ''}
           {marketSummary.priceChange24h.toFixed(2)}% since yesterday
-      </Typography>
+        </Typography>
       </Box>
-      <Typography variant="caption" sx={{ opacity: 0.8, mt: 2, display: 'block' }}>
-        24h volume: {marketSummary.volume24h.toLocaleString('en-US')} credits
+      <Typography variant="caption" sx={{ opacity: 0.85, display: 'block' }}>
+        24h volume · {marketSummary.volume24h.toLocaleString('en-US')} credits
       </Typography>
     </Paper>
   )

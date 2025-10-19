@@ -1,3 +1,4 @@
+import { alpha } from '@mui/material/styles'
 import { Paper, Typography, Grid, Button } from '@mui/material'
 import { Add, Landscape, ShowChart, Person, Public } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
@@ -7,50 +8,57 @@ export const QuickActionsWidget = () => {
   const navigate = useNavigate()
   const { user } = useAuthStore()
 
-  const landownerActions = [
+  type PaletteKey = 'primary' | 'secondary' | 'success' | 'info'
+
+  const landownerActions: Array<{
+    label: string
+    icon: JSX.Element
+    palette: PaletteKey
+    onClick: () => void
+  }> = [
     {
       label: 'Add Land',
       icon: <Add />,
-      color: '#2e7d32',
+      palette: 'primary',
       onClick: () => navigate('/land-management'),
     },
     {
       label: 'Manage Land',
       icon: <Landscape />,
-      color: '#558b2f',
+      palette: 'secondary',
       onClick: () => navigate('/land-management'),
     },
     {
       label: 'View Marketplace',
       icon: <ShowChart />,
-      color: '#1565c0',
+      palette: 'info',
       onClick: () => navigate('/carbon-market'),
     },
     {
       label: 'My Profile',
       icon: <Person />,
-      color: '#5d4037',
+      palette: 'secondary',
       onClick: () => navigate('/profile'),
     },
   ]
 
-  const buyerActions = [
+  const buyerActions: typeof landownerActions = [
     {
       label: 'Explore Marketplace',
       icon: <ShowChart />,
-      color: '#1565c0',
+      palette: 'info',
       onClick: () => navigate('/carbon-market'),
     },
     {
       label: 'Global Map',
       icon: <Public />,
-      color: '#0277bd',
+      palette: 'secondary',
       onClick: () => navigate('/global-map'),
     },
     {
       label: 'My Profile',
       icon: <Person />,
-      color: '#5d4037',
+      palette: 'primary',
       onClick: () => navigate('/profile'),
     },
   ]
@@ -69,16 +77,21 @@ export const QuickActionsWidget = () => {
               variant="outlined"
               fullWidth
               onClick={action.onClick}
-              sx={{
-                height: 100,
-                flexDirection: 'column',
-                gap: 1,
-                borderColor: action.color,
-                color: action.color,
-                '&:hover': {
-                  borderColor: action.color,
-                  backgroundColor: `${action.color}10`,
-                },
+              sx={(theme) => {
+                const paletteColor = theme.palette[action.palette].main
+                return {
+                  height: 100,
+                  flexDirection: 'column',
+                  gap: 1,
+                  borderColor: alpha(paletteColor, 0.65),
+                  color: paletteColor,
+                  boxShadow: `inset 0 0 0 1px ${alpha(paletteColor, 0.15)}`,
+                  '&:hover': {
+                    borderColor: paletteColor,
+                    backgroundColor: alpha(paletteColor, 0.12),
+                    boxShadow: `0 18px 32px ${alpha(paletteColor, 0.22)}`,
+                  },
+                }
               }}
             >
               {action.icon}
