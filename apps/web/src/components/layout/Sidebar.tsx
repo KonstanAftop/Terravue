@@ -121,6 +121,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                 const borderColor = alpha(theme.palette.primary.main, isActive ? 0.55 : 0.18)
                 const hoverColor = alpha(theme.palette.primary.main, 0.16)
                 return {
+                  position: 'relative',
                   borderRadius: 3,
                   px: 1.8,
                   py: 1,
@@ -129,9 +130,22 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                   border: `1px solid ${isActive ? borderColor : 'transparent'}`,
                   boxShadow: isActive ? `0 20px 38px ${alpha(theme.palette.common.black, 0.38)}` : 'none',
                   transition: 'all 0.25s ease',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    inset: '8px auto 8px 8px',
+                    width: 2,
+                    borderRadius: 999,
+                    backgroundColor: isActive ? alpha(theme.palette.primary.light, 0.85) : 'transparent',
+                    transition: 'background-color 0.25s ease, transform 0.25s ease',
+                  },
                   '&:hover': {
                     backgroundColor: hoverColor,
                     border: `1px solid ${alpha(theme.palette.primary.main, 0.32)}`,
+                    '&::before': {
+                      backgroundColor: alpha(theme.palette.primary.main, 0.6),
+                      transform: 'scaleY(1.1)',
+                    },
                   },
                 }
               }}
@@ -141,15 +155,20 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
                   minWidth: 36,
                   color: 'inherit',
                   opacity: isActive ? 1 : 0.75,
+                  '& svg': {
+                    transform: 'scale(0.92)',
+                  },
                 }}
               >
                 {item.icon}
               </ListItemIcon>
               <ListItemText
                 primary={item.label}
+                sx={{ ml: 1.25 }}
                 primaryTypographyProps={{
                   fontWeight: isActive ? 600 : 500,
                   fontSize: 14,
+                  letterSpacing: 0.2,
                 }}
               />
             </ListItemButton>
