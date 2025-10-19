@@ -23,11 +23,11 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
   const chartData = {
     labels: marketData.map((d) => {
       const date = new Date(d.timestamp)
-      return date.toLocaleDateString('id-ID', { month: 'short', day: 'numeric' })
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     }),
     datasets: [
       {
-        label: 'Harga Karbon (IDR)',
+        label: 'Carbon Price (IDR)',
         data: marketData.map((d) => d.averagePrice),
         borderColor: '#2e7d32',
         backgroundColor: 'rgba(46, 125, 50, 0.1)',
@@ -47,7 +47,7 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
       tooltip: {
         callbacks: {
           label: function (context: any) {
-            return `IDR ${context.parsed.y.toLocaleString('id-ID')}`
+            return `IDR ${context.parsed.y.toLocaleString('en-US')}`
           },
         },
       },
@@ -66,7 +66,7 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-        Tren Harga Karbon (7 Hari)
+        Carbon Price Trend (7 Days)
       </Typography>
       <Box sx={{ height: 300, mt: 2 }}>
         {marketData.length > 0 ? (

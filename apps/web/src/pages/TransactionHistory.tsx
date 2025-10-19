@@ -37,7 +37,7 @@ export const TransactionHistoryPage = () => {
       const data = await transactionService.getUserTransactions(type)
       setTransactions(data)
     } catch (err: any) {
-      setError(err.message || 'Gagal memuat riwayat transaksi')
+      setError(err.message || 'Failed to load transaction history')
     } finally {
       setLoading(false)
     }
@@ -62,13 +62,13 @@ export const TransactionHistoryPage = () => {
 
   const getStatusLabel = (status: string) => {
     const labels: Record<string, string> = {
-      initiated: 'Diinisiasi',
-      payment_pending: 'Menunggu Pembayaran',
-      payment_processing: 'Memproses Pembayaran',
-      payment_confirmed: 'Pembayaran Dikonfirmasi',
-      completed: 'Selesai',
-      failed: 'Gagal',
-      refunded: 'Dikembalikan',
+      initiated: 'Initiated',
+      payment_pending: 'Payment Pending',
+      payment_processing: 'Payment Processing',
+      payment_confirmed: 'Payment Confirmed',
+      completed: 'Completed',
+      failed: 'Failed',
+      refunded: 'Refunded',
     }
     return labels[status] || status
   }
@@ -79,10 +79,10 @@ export const TransactionHistoryPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <Box>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Riwayat Transaksi
+              Transaction History
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Kelola dan lihat semua transaksi Anda
+              Review all of your transactions
             </Typography>
           </Box>
           <ToggleButtonGroup
@@ -91,9 +91,9 @@ export const TransactionHistoryPage = () => {
             onChange={(_, newFilter) => newFilter && setFilter(newFilter)}
             size="small"
           >
-            <ToggleButton value="all">Semua</ToggleButton>
-            <ToggleButton value="purchases">Pembelian</ToggleButton>
-            <ToggleButton value="sales">Penjualan</ToggleButton>
+            <ToggleButton value="all">All</ToggleButton>
+            <ToggleButton value="purchases">Purchases</ToggleButton>
+            <ToggleButton value="sales">Sales</ToggleButton>
           </ToggleButtonGroup>
         </Box>
 
@@ -110,10 +110,10 @@ export const TransactionHistoryPage = () => {
         ) : transactions.length === 0 ? (
           <Box sx={{ textAlign: 'center', py: 8 }}>
             <Typography variant="h6" color="text.secondary" gutterBottom>
-              Belum ada transaksi
+              No transactions yet
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Transaksi Anda akan muncul di sini
+              Your transactions will appear here
             </Typography>
           </Box>
         ) : (
@@ -121,12 +121,12 @@ export const TransactionHistoryPage = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>ID Transaksi</TableCell>
-                  <TableCell>Tanggal</TableCell>
-                  <TableCell>Jumlah Kredit</TableCell>
+                  <TableCell>Transaction ID</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Quantity</TableCell>
                   <TableCell>Total</TableCell>
                   <TableCell>Status</TableCell>
-                  <TableCell>Metode</TableCell>
+                  <TableCell>Method</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -139,18 +139,18 @@ export const TransactionHistoryPage = () => {
                     </TableCell>
                     <TableCell>
                       <Typography variant="body2">
-                        {new Date(transaction.createdAt).toLocaleString('id-ID')}
+                        {new Date(transaction.createdAt).toLocaleString('en-US')}
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="body2">{transaction.quantity} kredit</Typography>
+                      <Typography variant="body2">{transaction.quantity} credits</Typography>
                       <Typography variant="caption" color="text.secondary">
-                        @ Rp {transaction.pricePerCredit.toLocaleString('id-ID')}
+                        @ IDR {transaction.pricePerCredit.toLocaleString('en-US')}
                       </Typography>
                     </TableCell>
                     <TableCell>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                        Rp {transaction.totalAmount.toLocaleString('id-ID')}
+                        IDR {transaction.totalAmount.toLocaleString('en-US')}
                       </Typography>
                     </TableCell>
                     <TableCell>

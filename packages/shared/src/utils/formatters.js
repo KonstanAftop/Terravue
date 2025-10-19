@@ -1,19 +1,19 @@
 export const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('id-ID', {
+    return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'IDR',
         minimumFractionDigits: 0,
     }).format(amount);
 };
 export const formatDate = (date) => {
-    return new Intl.DateTimeFormat('id-ID', {
+    return new Intl.DateTimeFormat('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     }).format(date);
 };
 export const formatNumber = (num) => {
-    return new Intl.NumberFormat('id-ID').format(num);
+    return new Intl.NumberFormat('en-US').format(num);
 };
 export const generateId = (prefix) => {
     const timestamp = Date.now();

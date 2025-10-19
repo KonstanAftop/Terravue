@@ -19,14 +19,14 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
 
   const formatLandType = (type: string) => {
     const types: Record<string, string> = {
-      'primary-forest': 'Hutan Primer',
-      'secondary-forest': 'Hutan Sekunder',
-      'plantation-forest': 'Hutan Tanaman',
-      'agroforestry': 'Agroforestri',
-      'degraded-land': 'Lahan Terdegradasi',
-      'palm-oil': 'Sawit',
-      'rubber': 'Karet',
-      'coffee': 'Kopi',
+      'primary-forest': 'Primary Forest',
+      'secondary-forest': 'Secondary Forest',
+      'plantation-forest': 'Plantation Forest',
+      'agroforestry': 'Agroforestry',
+      'degraded-land': 'Degraded Land',
+      'palm-oil': 'Palm Oil',
+      'rubber': 'Rubber',
+      'coffee': 'Coffee',
     }
     return types[type] || type
   }
@@ -46,7 +46,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
       paymentProvider,
     })
     // Optionally refresh the marketplace or show success message
-    alert('Transaksi berhasil dibuat! Silakan cek status di halaman Transaksi.')
+    alert('Transaction created successfully! Please check the status on the Transactions page.')
   }
 
   return (
@@ -76,7 +76,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
           {credit.landParcel?.verificationStatus === 'verified' && (
             <Chip
               icon={<CheckCircle />}
-              label="Terverifikasi"
+              label="Verified"
               color="success"
               size="small"
             />
@@ -111,20 +111,20 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         {/* Price and quantity */}
         <Box sx={{ bgcolor: 'success.50', p: 1.5, borderRadius: 1, mb: 1 }}>
           <Typography variant="caption" color="text.secondary" display="block">
-            Harga per Kredit
+            Price per Credit
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: 'success.main' }}>
-            Rp {credit.pricePerCredit?.toLocaleString('id-ID') || 0}
+            IDR {credit.pricePerCredit?.toLocaleString('en-US') || 0}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            {credit.quantity?.toLocaleString('id-ID') || 0} kredit tersedia
+            {credit.quantity?.toLocaleString('en-US') || 0} credits available
           </Typography>
         </Box>
 
         {/* Seller info */}
         {credit.seller && (
           <Typography variant="caption" color="text.secondary">
-            Dijual oleh: {credit.seller.name}
+            Seller: {credit.seller.name}
           </Typography>
         )}
 
@@ -151,12 +151,12 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
         <TextField
           type="number"
           size="small"
-          label="Jumlah"
+          label="Quantity"
           value={quantity}
           onChange={(e) => setQuantity(Math.max(1, Math.min(credit.quantity, parseInt(e.target.value) || 1)))}
           InputProps={{
             inputProps: { min: 1, max: credit.quantity },
-            endAdornment: <InputAdornment position="end">kredit</InputAdornment>,
+            endAdornment: <InputAdornment position="end">credits</InputAdornment>,
           }}
           sx={{ width: isGridView ? '100%' : 150 }}
         />
@@ -166,7 +166,7 @@ export const CreditListingCard = ({ credit, viewMode = 'grid' }: CreditListingCa
           sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' }, width: isGridView ? '100%' : 'auto' }}
           onClick={handleBuy}
         >
-          Beli
+          Buy
         </Button>
       </CardActions>
     </Card>

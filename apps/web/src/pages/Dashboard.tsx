@@ -40,8 +40,8 @@ export const DashboardPage = () => {
           Dashboard
         </Typography>
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          Selamat datang, {user?.fullName}! 
-          ({user?.userType === 'landowner' ? 'Pemilik Lahan' : 'Pembeli'})
+          Welcome, {user?.fullName}!
+          ({user?.userType === 'landowner' ? 'Landowner' : 'Buyer'})
         </Typography>
 
         <Grid container spacing={3} sx={{ mt: 1 }}>

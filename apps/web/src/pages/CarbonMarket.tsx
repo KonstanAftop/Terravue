@@ -72,10 +72,10 @@ export const CarbonMarketPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <Box>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Pasar Karbon
+              Carbon Marketplace
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {total} listing kredit karbon tersedia
+              {total} carbon credit listings available
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -86,7 +86,7 @@ export const CarbonMarketPage = () => {
               variant="outlined"
               color="primary"
             >
-              Analitik Pasar
+              Market Analytics
             </Button>
             
             {/* Landowner specific buttons */}
@@ -97,7 +97,7 @@ export const CarbonMarketPage = () => {
                   onClick={() => navigate('/my-listings')}
                   variant="outlined"
                 >
-                  Listing Saya
+                  My Listings
                 </Button>
                 <Button
                   startIcon={<Add />}
@@ -105,7 +105,7 @@ export const CarbonMarketPage = () => {
                   variant="contained"
                   sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
                 >
-                  Buat Listing
+                  Create Listing
                 </Button>
               </>
             )}
@@ -115,7 +115,7 @@ export const CarbonMarketPage = () => {
         {/* Search and Controls */}
         <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
           <TextField
-            placeholder="Cari kredit karbon..."
+            placeholder="Search carbon credits..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -151,9 +151,9 @@ export const CarbonMarketPage = () => {
               ),
             }}
           >
-            <MenuItem value="createdAt">Terbaru</MenuItem>
-            <MenuItem value="price">Harga</MenuItem>
-            <MenuItem value="quantity">Jumlah</MenuItem>
+            <MenuItem value="createdAt">Newest</MenuItem>
+            <MenuItem value="price">Price</MenuItem>
+            <MenuItem value="quantity">Quantity</MenuItem>
           </TextField>
 
           <ToggleButtonGroup
@@ -198,10 +198,10 @@ export const CarbonMarketPage = () => {
             ) : credits.length === 0 ? (
               <Box sx={{ textAlign: 'center', py: 8 }}>
                 <Typography variant="h6" color="text.secondary" gutterBottom>
-                  Tidak ada listing yang ditemukan
+                  No listings found
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Coba ubah filter atau kata kunci pencarian Anda
+                  Try adjusting your filters or search keywords
                 </Typography>
               </Box>
             ) : (

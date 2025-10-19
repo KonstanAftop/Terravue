@@ -63,34 +63,34 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
       path: '/dashboard',
     },
     {
-      label: 'Kelola Lahan',
+      label: 'Land Management',
       icon: <LandscapeIcon />,
       path: '/land-management',
       roles: ['landowner'],
     },
     {
-      label: 'Peta Interaktif',
+      label: 'Interactive Map',
       icon: <MapIcon />,
       path: '/interactive-map',
       roles: ['landowner'],
     },
     {
-      label: 'Peta Dunia',
+      label: 'Global Map',
       icon: <PublicIcon />,
       path: '/global-map',
     },
     {
-      label: 'Market Karbon',
+      label: 'Carbon Market',
       icon: <ShowChartIcon />,
       path: '/carbon-market',
     },
     {
-      label: 'Transaksi',
+      label: 'Transactions',
       icon: <ReceiptIcon />,
       path: '/transactions',
     },
     {
-      label: 'Profil & Aktivitas',
+      label: 'Profile & Activity',
       icon: <PersonIcon />,
       path: '/profile',
     },
@@ -194,7 +194,7 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
               {user.fullName}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              {user.userType === 'landowner' ? 'Pemilik Lahan' : 'Pembeli'}
+              {user.userType === 'landowner' ? 'Landowner' : 'Buyer'}
             </Typography>
           </Box>
         )}
@@ -289,16 +289,15 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
         aria-labelledby="logout-dialog-title"
         aria-describedby="logout-dialog-description"
       >
-        <DialogTitle id="logout-dialog-title">Konfirmasi Logout</DialogTitle>
+        <DialogTitle id="logout-dialog-title">Confirm Logout</DialogTitle>
         <DialogContent>
           <DialogContentText id="logout-dialog-description">
-            Apakah Anda yakin ingin keluar dari Terravue? Anda perlu login
-            kembali untuk mengakses platform.
+            Are you sure you want to log out of Terravue? You will need to sign back in to access the platform.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleLogoutCancel} color="primary">
-            Batal
+            Cancel
           </Button>
           <Button onClick={handleLogoutConfirm} color="error" variant="contained" autoFocus>
             Logout

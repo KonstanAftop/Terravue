@@ -33,21 +33,21 @@ const PAYMENT_METHODS = [
     label: 'E-Wallet',
     icon: <Payment />,
     providers: ['GoPay', 'OVO', 'DANA', 'LinkAja', 'ShopeePay'],
-    description: 'Instant, IDR 0-20 juta',
+    description: 'Instant, IDR 0-20M',
   },
   {
     value: 'credit_card',
-    label: 'Kartu Kredit',
+    label: 'Credit Card',
     icon: <CreditCard />,
     providers: ['Visa', 'Mastercard', 'JCB', 'AMEX'],
-    description: 'Instant, IDR 0-50 juta',
+    description: 'Instant, IDR 0-50M',
   },
   {
     value: 'bank_transfer',
-    label: 'Transfer Bank',
+    label: 'Bank Transfer',
     icon: <AccountBalance />,
     providers: ['BCA', 'Mandiri', 'BNI', 'BRI', 'CIMB', 'Permata'],
-    description: '1-3 hari kerja, unlimited',
+    description: '1-3 business days, unlimited',
   },
 ]
 
@@ -92,7 +92,7 @@ export const TransactionConfirmation = ({
       await onConfirm(paymentMethod, paymentProvider || selectedMethod?.providers[0])
       onClose()
     } catch (err: any) {
-      setError(err.message || 'Gagal memproses transaksi')
+      setError(err.message || 'Failed to process transaction')
     } finally {
       setIsProcessing(false)
     }
@@ -103,7 +103,7 @@ export const TransactionConfirmation = ({
       <DialogTitle>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <CheckCircle color="success" />
-          <Typography variant="h6">Konfirmasi Pembelian</Typography>
+          <Typography variant="h6">Confirm Purchase</Typography>
         </Box>
       </DialogTitle>
       <DialogContent dividers>
@@ -116,20 +116,20 @@ export const TransactionConfirmation = ({
         {/* Credit Details */}
         <Box sx={{ mb: 3 }}>
           <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
-            Detail Kredit Karbon
+            Carbon Credit Details
           </Typography>
           <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
             <Typography variant="body2">
-              <strong>Lahan:</strong> {creditData.landParcel?.name || 'N/A'}
+              <strong>Land:</strong> {creditData.landParcel?.name || 'N/A'}
             </Typography>
             <Typography variant="body2">
-              <strong>Jenis Lahan:</strong> {creditData.landParcel?.landType || 'N/A'}
+              <strong>Land Type:</strong> {creditData.landParcel?.landType || 'N/A'}
             </Typography>
             <Typography variant="body2">
-              <strong>Jumlah:</strong> {quantity} kredit
+              <strong>Quantity:</strong> {quantity} credits
             </Typography>
             <Typography variant="body2">
-              <strong>Harga per Kredit:</strong> Rp {creditData.pricePerCredit?.toLocaleString('id-ID')}
+              <strong>Price per Credit:</strong> IDR {creditData.pricePerCredit?.toLocaleString('en-US')}
             </Typography>
           </Box>
         </Box>
@@ -137,7 +137,7 @@ export const TransactionConfirmation = ({
         {/* Payment Method Selection */}
         <Box sx={{ mb: 3 }}>
           <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
-            Metode Pembayaran
+            Payment Method
           </Typography>
           <FormControl component="fieldset" fullWidth>
             <RadioGroup value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
@@ -177,7 +177,7 @@ export const TransactionConfirmation = ({
                       select
                       fullWidth
                       size="small"
-                      label="Pilih Provider"
+                      label="Choose Provider"
                       value={paymentProvider || method.providers[0]}
                       onChange={(e) => setPaymentProvider(e.target.value)}
                       sx={{ mt: 1, ml: 4 }}
@@ -198,24 +198,24 @@ export const TransactionConfirmation = ({
         {/* Cost Breakdown */}
         <Box sx={{ mb: 2 }}>
           <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
-            Rincian Biaya
+            Cost Breakdown
           </Typography>
           <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
               <Typography variant="body2">Subtotal</Typography>
-              <Typography variant="body2">Rp {subtotal.toLocaleString('id-ID')}</Typography>
+              <Typography variant="body2">IDR {subtotal.toLocaleString('en-US')}</Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2">Biaya Platform (2.5%)</Typography>
-              <Typography variant="body2">Rp {platformFee.toLocaleString('id-ID')}</Typography>
+              <Typography variant="body2">Platform Fee (2.5%)</Typography>
+              <Typography variant="body2">IDR {platformFee.toLocaleString('en-US')}</Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2">Biaya Pembayaran</Typography>
-              <Typography variant="body2">Rp {paymentFee.toLocaleString('id-ID')}</Typography>
+              <Typography variant="body2">Payment Fee</Typography>
+              <Typography variant="body2">IDR {paymentFee.toLocaleString('en-US')}</Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2">Pajak (PPN 11%)</Typography>
-              <Typography variant="body2">Rp {tax.toLocaleString('id-ID')}</Typography>
+              <Typography variant="body2">Tax (VAT 11%)</Typography>
+              <Typography variant="body2">IDR {tax.toLocaleString('en-US')}</Typography>
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -223,7 +223,7 @@ export const TransactionConfirmation = ({
                 Total
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, color: 'success.main' }}>
-                Rp {totalAmount.toLocaleString('id-ID')}
+                IDR {totalAmount.toLocaleString('en-US')}
               </Typography>
             </Box>
           </Box>
@@ -231,13 +231,12 @@ export const TransactionConfirmation = ({
 
         {/* Terms */}
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 2 }}>
-          Dengan melanjutkan, Anda menyetujui syarat dan ketentuan Terravue. Kredit karbon akan ditransfer ke
-          portofolio Anda dalam 24 jam setelah pembayaran dikonfirmasi.
+          By continuing, you agree to Terravue&apos;s terms and conditions. Carbon credits will be transferred to your portfolio within 24 hours after payment confirmation.
         </Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} disabled={isProcessing}>
-          Batal
+          Cancel
         </Button>
         <Button
           onClick={handleConfirm}
@@ -245,7 +244,7 @@ export const TransactionConfirmation = ({
           disabled={isProcessing}
           sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
         >
-          {isProcessing ? <CircularProgress size={24} /> : `Bayar Rp ${totalAmount.toLocaleString('id-ID')}`}
+          {isProcessing ? <CircularProgress size={24} /> : `Pay IDR ${totalAmount.toLocaleString('en-US')}`}
         </Button>
       </DialogActions>
     </Dialog>

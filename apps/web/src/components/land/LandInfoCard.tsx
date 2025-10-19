@@ -22,24 +22,24 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
   const getStatusLabel = (status: LandParcel['verificationStatus']) => {
     switch (status) {
       case 'verified':
-        return 'Terverifikasi'
+        return 'Verified'
       case 'rejected':
-        return 'Ditolak'
+        return 'Rejected'
       default:
-        return 'Menunggu Verifikasi'
+        return 'Pending Verification'
     }
   }
 
   const formatLandType = (type: string) => {
     const types: Record<string, string> = {
-      'primary-forest': 'Hutan Primer',
-      'secondary-forest': 'Hutan Sekunder',
-      'plantation-forest': 'Hutan Tanaman',
-      'agroforestry': 'Agroforestri',
-      'degraded-land': 'Lahan Terdegradasi',
-      'palm-oil': 'Perkebunan Sawit',
-      'rubber': 'Perkebunan Karet',
-      'coffee': 'Perkebunan Kopi',
+      'primary-forest': 'Primary Forest',
+      'secondary-forest': 'Secondary Forest',
+      'plantation-forest': 'Plantation Forest',
+      'agroforestry': 'Agroforestry',
+      'degraded-land': 'Degraded Land',
+      'palm-oil': 'Palm Oil Plantation',
+      'rubber': 'Rubber Plantation',
+      'coffee': 'Coffee Plantation',
     }
     return types[type] || type
   }
@@ -78,10 +78,10 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
             <LocationOn sx={{ color: 'primary.main', mt: 0.5 }} />
             <Box>
               <Typography variant="caption" color="text.secondary" display="block">
-                Lokasi
+                Location
               </Typography>
               <Typography variant="body2">
-                {land.address || 'Tidak ada alamat'}
+                {land.address || 'No address provided'}
               </Typography>
             </Box>
           </Box>
@@ -90,10 +90,10 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
             <Terrain sx={{ color: 'primary.main', mt: 0.5 }} />
             <Box>
               <Typography variant="caption" color="text.secondary" display="block">
-                Luas Area
+                Area
               </Typography>
               <Typography variant="body2">
-                {land.area.toFixed(2)} hektar
+                {land.area.toFixed(2)} hectares
               </Typography>
             </Box>
           </Box>
@@ -102,7 +102,7 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
             <Park sx={{ color: 'primary.main', mt: 0.5 }} />
             <Box>
               <Typography variant="caption" color="text.secondary" display="block">
-                Jenis Lahan
+                Land Type
               </Typography>
               <Typography variant="body2">
                 {formatLandType(land.landType)}
@@ -116,10 +116,10 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
             <CalendarToday sx={{ color: 'primary.main', mt: 0.5 }} />
             <Box>
               <Typography variant="caption" color="text.secondary" display="block">
-                Tanggal Pendaftaran
+                Registration Date
               </Typography>
               <Typography variant="body2">
-                {new Date(land.createdAt).toLocaleDateString('id-ID', {
+                {new Date(land.createdAt).toLocaleDateString('en-US', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric',
@@ -130,13 +130,13 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
 
           <Box sx={{ p: 2, bgcolor: 'success.50', borderRadius: 1 }}>
             <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5 }}>
-              Potensi Karbon
+              Carbon Potential
             </Typography>
             <Typography variant="h6" color="success.main" sx={{ fontWeight: 700 }}>
-              {land.carbonPotential?.toLocaleString('id-ID') || 0} kredit/tahun
+              {land.carbonPotential?.toLocaleString('en-US') || 0} credits/year
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Estimasi berdasarkan luas dan jenis lahan
+              Estimate based on area and land type
             </Typography>
           </Box>
         </Grid>
@@ -145,7 +145,7 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
           <Grid item xs={12}>
             <Divider sx={{ my: 1 }} />
             <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1 }}>
-              Deskripsi
+              Description
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {land.description}
@@ -157,7 +157,7 @@ export const LandInfoCard = ({ land, onEdit }: LandInfoCardProps) => {
           <Grid item xs={12}>
             <Divider sx={{ my: 1 }} />
             <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1 }}>
-              Koordinat Batas ({land.coordinates.length} titik)
+              Boundary Coordinates ({land.coordinates.length} point{land.coordinates.length === 1 ? '' : 's'})
             </Typography>
             <Box sx={{ maxHeight: 150, overflow: 'auto', p: 1, bgcolor: 'grey.50', borderRadius: 1 }}>
               {land.coordinates.map((coord, index) => (

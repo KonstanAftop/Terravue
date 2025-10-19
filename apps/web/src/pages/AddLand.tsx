@@ -24,14 +24,14 @@ export const AddLandPage = () => {
           onClick={() => navigate('/land-management')}
           sx={{ mb: 2 }}
         >
-          Kembali ke Daftar Lahan
+          Back to Land List
         </Button>
 
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, color: '#2e7d32' }}>
-          Tambah Lahan Baru
+          Add New Land
         </Typography>
         <Typography variant="subtitle1" color="text.secondary" gutterBottom sx={{ mb: 3 }}>
-          Daftarkan lahan Anda untuk memulai proses verifikasi dan mendapatkan kredit karbon
+          Register your land to start the verification process and earn carbon credits
         </Typography>
 
         <AddLandForm onSuccess={handleSuccess} onCancel={handleCancel} />

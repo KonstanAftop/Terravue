@@ -78,7 +78,7 @@ export const LandDetailPage = () => {
           {error}
         </Alert>
         <Button variant="contained" onClick={() => navigate('/land-management')}>
-          Kembali ke Daftar Lahan
+          Back to Land List
         </Button>
       </AppLayout>
     )
@@ -87,9 +87,9 @@ export const LandDetailPage = () => {
   if (!land) {
     return (
       <AppLayout>
-        <Alert severity="warning">Lahan tidak ditemukan</Alert>
+        <Alert severity="warning">Land parcel not found</Alert>
         <Button variant="contained" onClick={() => navigate('/land-management')} sx={{ mt: 2 }}>
-          Kembali ke Daftar Lahan
+          Back to Land List
         </Button>
       </AppLayout>
     )
@@ -107,7 +107,7 @@ export const LandDetailPage = () => {
               onClick={() => navigate('/land-management')}
               sx={{ cursor: 'pointer', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
             >
-              Kelola Lahan
+              Land Management
             </Link>
             <Typography variant="body2" color="text.primary">
               {land.name}
@@ -121,7 +121,7 @@ export const LandDetailPage = () => {
               variant="outlined"
               size="small"
             >
-              Kembali
+              Back
             </Button>
             
             <Button
@@ -131,7 +131,7 @@ export const LandDetailPage = () => {
               size="small"
               disabled={loading}
             >
-              {loading ? 'Memuat...' : 'Refresh'}
+              {loading ? 'Loading...' : 'Refresh'}
             </Button>
           </Box>
         </Box>

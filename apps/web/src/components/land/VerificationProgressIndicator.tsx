@@ -26,16 +26,16 @@ export const VerificationProgressIndicator = ({ progress }: VerificationProgress
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-        Progress Verifikasi
+        Verification Progress
       </Typography>
 
       <Box sx={{ mb: 3 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            {progress.completionPercentage}% Selesai
+            {progress.completionPercentage}% Complete
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {progress.currentStage === 'completed' ? 'Verifikasi Selesai' : 'Sedang Proses'}
+            {progress.currentStage === 'completed' ? 'Verification Complete' : 'In Progress'}
           </Typography>
         </Box>
         <LinearProgress
@@ -84,7 +84,7 @@ export const VerificationProgressIndicator = ({ progress }: VerificationProgress
               </Box>
 
               <Chip
-                label={isCompleted ? 'Selesai' : isCurrent ? 'Sedang Proses' : 'Menunggu'}
+                label={isCompleted ? 'Completed' : isCurrent ? 'In Progress' : 'Pending'}
                 size="small"
                 color={getStageColor(stageKey, isCompleted)}
                 variant={isCompleted || isCurrent ? 'filled' : 'outlined'}
@@ -97,8 +97,8 @@ export const VerificationProgressIndicator = ({ progress }: VerificationProgress
       {progress.completedAt && (
         <Box sx={{ mt: 2, p: 2, bgcolor: 'success.50', borderRadius: 1 }}>
           <Typography variant="body2" color="success.main" sx={{ fontWeight: 600 }}>
-            ✓ Verifikasi selesai pada{' '}
-            {new Date(progress.completedAt).toLocaleDateString('id-ID', {
+            Verification completed on{' '}
+            {new Date(progress.completedAt).toLocaleDateString('en-US', {
               day: 'numeric',
               month: 'long',
               year: 'numeric',

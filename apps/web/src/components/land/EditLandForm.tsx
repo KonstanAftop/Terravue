@@ -39,7 +39,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
       await onSave(formData)
       onClose()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Gagal memperbarui lahan')
+      setError(err instanceof Error ? err.message : 'Failed to update land')
     } finally {
       setLoading(false)
     }
@@ -61,7 +61,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <form onSubmit={handleSubmit}>
-        <DialogTitle>Edit Informasi Lahan</DialogTitle>
+        <DialogTitle>Edit Land Information</DialogTitle>
         
         <DialogContent>
           {error && (
@@ -71,7 +71,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
           )}
 
           <TextField
-            label="Nama Lahan"
+            label="Land Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             fullWidth
@@ -81,7 +81,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
           />
 
           <TextField
-            label="Alamat"
+            label="Address"
             value={formData.address}
             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             fullWidth
@@ -93,7 +93,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
 
           <TextField
             select
-            label="Jenis Lahan"
+            label="Land Type"
             value={formData.landType}
             onChange={(e) => setFormData({ ...formData, landType: e.target.value })}
             fullWidth
@@ -103,13 +103,13 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
           >
             {LAND_TYPES.map((type) => (
               <MenuItem key={type.value} value={type.value}>
-                {type.label} - {type.carbonFactor} kredit/ha/tahun
+                {type.label} - {type.carbonFactor} credits/ha/year
               </MenuItem>
             ))}
           </TextField>
 
           <TextField
-            label="Deskripsi"
+            label="Description"
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             fullWidth
@@ -117,17 +117,17 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
             multiline
             rows={3}
             disabled={loading}
-            placeholder="Tambahkan deskripsi atau catatan tentang lahan ini..."
+            placeholder="Add a description or notes about this land..."
           />
 
           <Alert severity="info" sx={{ mt: 2 }}>
-            Koordinat dan luas lahan tidak dapat diubah setelah pendaftaran.
+            Coordinates and land area cannot be changed after registration.
           </Alert>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={handleClose} disabled={loading}>
-            Batal
+            Cancel
           </Button>
           <Button
             type="submit"
@@ -135,7 +135,7 @@ export const EditLandForm = ({ open, land, onClose, onSave }: EditLandFormProps)
             disabled={loading}
             startIcon={loading ? <CircularProgress size={16} /> : null}
           >
-            {loading ? 'Menyimpan...' : 'Simpan Perubahan'}
+            {loading ? 'Saving...' : 'Save Changes'}
           </Button>
         </DialogActions>
       </form>

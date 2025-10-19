@@ -26,10 +26,10 @@ export const CarbonPriceWidget = ({ marketSummary }: CarbonPriceWidgetProps) => 
       }}
     >
       <Typography variant="subtitle2" sx={{ opacity: 0.9, mb: 1 }}>
-        Harga Karbon Saat Ini
+        Current Carbon Price
       </Typography>
       <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
-        IDR {marketSummary.currentPrice.toLocaleString('id-ID')}
+        IDR {marketSummary.currentPrice.toLocaleString('en-US')}
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         {isPositive ? (
@@ -39,11 +39,11 @@ export const CarbonPriceWidget = ({ marketSummary }: CarbonPriceWidgetProps) => 
         )}
         <Typography variant="body2">
           {isPositive ? '+' : ''}
-          {marketSummary.priceChange24h.toFixed(2)}% dari kemarin
-        </Typography>
+          {marketSummary.priceChange24h.toFixed(2)}% since yesterday
+      </Typography>
       </Box>
       <Typography variant="caption" sx={{ opacity: 0.8, mt: 2, display: 'block' }}>
-        Volume 24 jam: {marketSummary.volume24h.toLocaleString('id-ID')} kredit
+        24h volume: {marketSummary.volume24h.toLocaleString('en-US')} credits
       </Typography>
     </Paper>
   )

@@ -4,13 +4,13 @@ export const exportService = {
   exportToCSV(lands: LandParcel[], filename: string = 'land-portfolio.csv'): void {
     // Prepare CSV headers
     const headers = [
-      'Nama Lahan',
-      'Luas (Ha)',
-      'Jenis Lahan',
-      'Status Verifikasi',
-      'Potensi Karbon (kredit/tahun)',
-      'Tanggal Daftar',
-      'Terakhir Diperbarui',
+      'Land Name',
+      'Area (ha)',
+      'Land Type',
+      'Verification Status',
+      'Carbon Potential (credits/year)',
+      'Date Added',
+      'Last Updated',
     ]
 
     // Prepare CSV rows
@@ -20,8 +20,8 @@ export const exportService = {
       land.landType,
       this.getStatusLabel(land.verificationStatus),
       land.carbonPotential.toString(),
-      new Date(land.createdAt).toLocaleDateString('id-ID'),
-      new Date(land.updatedAt).toLocaleDateString('id-ID'),
+      new Date(land.createdAt).toLocaleDateString('en-US'),
+      new Date(land.updatedAt).toLocaleDateString('en-US'),
     ])
 
     // Combine headers and rows
@@ -47,11 +47,11 @@ export const exportService = {
   getStatusLabel(status: string): string {
     switch (status) {
       case 'verified':
-        return 'Terverifikasi'
+        return 'Verified'
       case 'pending':
-        return 'Menunggu'
+        return 'Pending'
       case 'rejected':
-        return 'Ditolak'
+        return 'Rejected'
       default:
         return status
     }

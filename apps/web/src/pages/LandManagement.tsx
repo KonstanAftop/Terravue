@@ -74,10 +74,10 @@ export const LandManagementPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
           <div>
             <Typography variant="h4" sx={{ fontWeight: 700, color: '#2e7d32' }}>
-              Kelola Lahan
+              Land Management
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              Kelola portfolio lahan dan pantau status verifikasi
+              Manage your land portfolio and monitor verification status
             </Typography>
           </div>
           <Button
@@ -86,7 +86,7 @@ export const LandManagementPage = () => {
             onClick={() => navigate('/land-management/add')}
             sx={{ backgroundColor: '#2e7d32', '&:hover': { backgroundColor: '#1b5e20' } }}
           >
-            Tambah Lahan
+            Add Land
           </Button>
         </Box>
 
@@ -98,7 +98,7 @@ export const LandManagementPage = () => {
           <Paper sx={{ p: 2, mb: 2, backgroundColor: '#e8f5e9' }}>
             <Toolbar sx={{ px: 0, minHeight: 'auto' }}>
               <Chip
-                label={`${selectedLands.length} lahan dipilih`}
+                label={`${selectedLands.length} land parcel${selectedLands.length === 1 ? '' : 's'} selected`}
                 color="primary"
                 sx={{ mr: 2 }}
               />
@@ -108,7 +108,7 @@ export const LandManagementPage = () => {
                 onClick={handleExport}
                 sx={{ mr: 1 }}
               >
-                Export Pilihan
+                Export Selected
               </Button>
               <Button
                 size="small"
@@ -116,7 +116,7 @@ export const LandManagementPage = () => {
                 color="error"
                 onClick={clearSelection}
               >
-                Batal Pilih
+                Clear Selection
               </Button>
             </Toolbar>
           </Paper>
@@ -125,7 +125,7 @@ export const LandManagementPage = () => {
         {/* Summary */}
         <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="body2" color="text.secondary">
-            Menampilkan {lands.length} dari {total} lahan
+            Showing {lands.length} of {total} land parcels
           </Typography>
           <Button
             size="small"
@@ -133,7 +133,7 @@ export const LandManagementPage = () => {
             onClick={handleExportAll}
             variant="outlined"
           >
-            Export Semua
+            Export All
           </Button>
         </Box>
 
