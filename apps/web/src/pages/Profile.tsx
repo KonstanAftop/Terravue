@@ -105,7 +105,7 @@ export const ProfilePage = () => {
         <Box display="flex" alignItems="center" gap={1} mb={3}>
           <PersonIcon fontSize="large" color="primary" />
           <Typography variant="h4" fontWeight="bold">
-            Profil & Aktivitas
+            Profile & Activities
           </Typography>
         </Box>
 
