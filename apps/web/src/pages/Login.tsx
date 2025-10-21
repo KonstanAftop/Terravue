@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Container, Paper } from '@mui/material'
+import { useMemo, useState } from 'react'
+import { Box, Fade } from '@mui/material'
 import { LoginForm } from '../components/auth/LoginForm'
 import { RegisterForm } from '../components/auth/RegisterForm'
 import { useNavigate } from 'react-router-dom'
@@ -11,23 +11,38 @@ export const LoginPage = () => {
   const handleSuccess = () => {
     navigate('/dashboard')
   }
-  
+
+  const content = useMemo(
+    () =>
+      showRegister ? (
+        <RegisterForm
+          onSuccess={handleSuccess}
+          onSwitchToLogin={() => setShowRegister(false)}
+        />
+      ) : (
+        <LoginForm
+          onSuccess={handleSuccess}
+          onSwitchToRegister={() => setShowRegister(true)}
+        />
+      ),
+    [showRegister],
+  )
+
   return (
-    <Container maxWidth="sm" sx={{ mt: 8 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        {showRegister ? (
-          <RegisterForm
-            onSuccess={handleSuccess}
-            onSwitchToLogin={() => setShowRegister(false)}
-          />
-        ) : (
-          <LoginForm
-            onSuccess={handleSuccess}
-            onSwitchToRegister={() => setShowRegister(true)}
-          />
-        )}
-      </Paper>
-    </Container>
+    <Box sx={{ position: 'relative', minHeight: '100vh' }}>
+      <Fade
+        key={showRegister ? 'register' : 'login'}
+        in
+        timeout={500}
+        appear
+        mountOnEnter
+        unmountOnExit
+      >
+        <Box sx={{ position: 'absolute', inset: 0 }}>
+          {content}
+        </Box>
+      </Fade>
+    </Box>
   )
 }
 
