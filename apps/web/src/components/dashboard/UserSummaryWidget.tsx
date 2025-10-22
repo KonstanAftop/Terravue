@@ -49,7 +49,7 @@ export const UserSummaryWidget = ({ userSummary }: UserSummaryWidgetProps) => {
           <Paper
             sx={{
               p: 2.25,
-              borderRadius: 3,
+              borderRadius: 2,
               boxShadow: '0 12px 28px rgba(22, 36, 39, 0.12)',
               transition: 'transform 150ms ease, box-shadow 150ms ease',
               '&:hover': {

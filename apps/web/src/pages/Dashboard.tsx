@@ -36,33 +36,40 @@ export const DashboardPage = () => {
 
   return (
     <AppLayout>
-      <PageHeader
-        eyebrow="Overview"
-        title="Dashboard"
-        subtitle={`Welcome back, ${user?.fullName ?? 'team member'} (${user?.userType === 'landowner' ? 'Landowner' : 'Buyer'})`}
-      />
+      <Box sx={{ maxWidth: '1400px', mx: 'auto', width: '100%' }}>
+        <PageHeader
+          eyebrow="Overview"
+          title="Dashboard"
+          subtitle={`Welcome back, ${user?.fullName ?? 'team member'} (${user?.userType === 'landowner' ? 'Landowner' : 'Buyer'})`}
+          sx={{ mb: 0 }}
+        />
 
-      <Stack spacing={4}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
-            <CarbonPriceWidget marketSummary={dashboardData?.marketSummary || null} />
+        <Stack spacing={2.5} mt={{ xs: 3, md: 4 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+              <Box sx={{ width: '100%' }}>
+                <CarbonPriceWidget marketSummary={dashboardData?.marketSummary || null} />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+              <Box sx={{ width: '100%' }}>
+                <PriceChartWidget marketData={marketData} />
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <PriceChartWidget marketData={marketData} />
-          </Grid>
-        </Grid>
 
-        <UserSummaryWidget userSummary={dashboardData?.userSummary || null} />
+          <UserSummaryWidget userSummary={dashboardData?.userSummary || null} />
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <QuickActionsWidget />
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <QuickActionsWidget />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <RecentActivityWidget activities={dashboardData?.recentActivity || []} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <RecentActivityWidget activities={dashboardData?.recentActivity || []} />
-          </Grid>
-        </Grid>
-      </Stack>
+        </Stack>
+      </Box>
     </AppLayout>
   )
 }

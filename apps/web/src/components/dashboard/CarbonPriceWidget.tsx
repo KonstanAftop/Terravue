@@ -23,9 +23,10 @@ export const CarbonPriceWidget = ({ marketSummary }: CarbonPriceWidgetProps) => 
         p: 3,
         background: 'linear-gradient(135deg, #1b5e20 0%, #4caf50 100%)',
         color: 'white',
-        borderRadius: 4,
+        borderRadius: 2,
         boxShadow: '0 18px 40px rgba(27, 94, 32, 0.35)',
         transition: 'transform 180ms ease, box-shadow 180ms ease',
+        minHeight: '260px',
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: '0 22px 48px rgba(27, 94, 32, 0.45)',

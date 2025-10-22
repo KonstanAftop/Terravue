@@ -112,7 +112,7 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
     <Paper
       sx={{
         p: 3,
-        borderRadius: 4,
+        borderRadius: 2,
         boxShadow: '0 18px 40px rgba(21, 101, 192, 0.18)',
         transition: 'transform 160ms ease, box-shadow 160ms ease',
         '&:hover': {

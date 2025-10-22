@@ -1,21 +1,30 @@
 import { ReactNode } from 'react'
-import { Stack, Typography, Box } from '@mui/material'
+import { Stack, Typography, Box, type SxProps, type Theme } from '@mui/material'
 
 interface PageHeaderProps {
   title: string
   subtitle?: string
   eyebrow?: string
   actions?: ReactNode
+  sx?: SxProps<Theme>
 }
 
-export const PageHeader = ({ title, subtitle, eyebrow, actions }: PageHeaderProps) => {
+export const PageHeader = ({ title, subtitle, eyebrow, actions, sx }: PageHeaderProps) => {
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}
       spacing={{ xs: 2.5, md: 3 }}
       alignItems={{ xs: 'flex-start', md: 'center' }}
       justifyContent="space-between"
-      sx={{ mb: { xs: 5, md: 7 } }}
+      sx={[
+        {
+          mb: { xs: 4, md: 5 },
+          maxWidth: '1400px',
+          mx: 'auto',
+          width: '100%'
+        },
+        sx,
+      ]}
     >
       <Stack spacing={1}>
         {eyebrow && (
@@ -41,4 +50,3 @@ export const PageHeader = ({ title, subtitle, eyebrow, actions }: PageHeaderProp
     </Stack>
   )
 }
-
