@@ -1,81 +1,108 @@
-import { Grid, Paper, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, Stack } from '@mui/material'
+import { alpha, useTheme } from '@mui/material/styles'
 import { Landscape, CheckCircle, ShowChart, Receipt } from '@mui/icons-material'
 import { UserSummary } from '../../services/dashboardService'
+import { WidgetContainer } from './WidgetContainer'
 
 interface UserSummaryWidgetProps {
   userSummary: UserSummary | null
 }
 
 export const UserSummaryWidget = ({ userSummary }: UserSummaryWidgetProps) => {
+  const theme = useTheme()
+
   if (!userSummary) {
     return (
-      <Paper sx={{ p: 3 }}>
-        <Typography>Loading...</Typography>
-      </Paper>
+      <WidgetContainer title="Portfolio Overview">
+        <Typography variant="body2" color="text.secondary">
+          Loading your portfolio insights...
+        </Typography>
+      </WidgetContainer>
     )
   }
 
   const stats = [
     {
-      icon: <Landscape sx={{ fontSize: 34, color: '#2e7d32' }} />,
+      icon: <Landscape sx={{ fontSize: 28 }} />,
       label: 'Total Land Parcels',
-      value: userSummary.totalLands,
-      subValue: `${userSummary.verifiedLands} verified`,
+      value: userSummary.totalLands.toLocaleString('en-US'),
+      subValue: `${userSummary.verifiedLands.toLocaleString('en-US')} verified`,
+      palette: theme.palette.primary,
     },
     {
-      icon: <CheckCircle sx={{ fontSize: 34, color: '#1565c0' }} />,
+      icon: <CheckCircle sx={{ fontSize: 28 }} />,
       label: 'Carbon Credits',
-      value: userSummary.totalCredits,
-      subValue: `${userSummary.availableCredits} available`,
+      value: userSummary.totalCredits.toLocaleString('en-US'),
+      subValue: `${userSummary.availableCredits.toLocaleString('en-US')} available`,
+      palette: theme.palette.info,
     },
     {
-      icon: <Receipt sx={{ fontSize: 34, color: '#558b2f' }} />,
+      icon: <Receipt sx={{ fontSize: 28 }} />,
       label: 'Transactions',
-      value: userSummary.totalTransactions,
-      subValue: 'completed transactions',
+      value: userSummary.totalTransactions.toLocaleString('en-US'),
+      subValue: 'Completed trades',
+      palette: theme.palette.success,
     },
     {
-      icon: <ShowChart sx={{ fontSize: 34, color: '#f57c00' }} />,
+      icon: <ShowChart sx={{ fontSize: 28 }} />,
       label: 'Total Revenue',
-      value: `IDR ${(userSummary.totalRevenue / 1000000).toFixed(1)}M`,
-      subValue: 'from credit sales',
+      value: `IDR ${(userSummary.totalRevenue / 1_000_000).toFixed(1)}M`,
+      subValue: 'From credit sales',
+      palette: theme.palette.secondary,
     },
   ]
 
   return (
-    <Grid container spacing={2}>
-      {stats.map((stat, index) => (
-        <Grid item xs={12} sm={6} md={3} key={index}>
-          <Paper
-            sx={{
-              p: 2.25,
-              borderRadius: 2,
-              boxShadow: '0 12px 28px rgba(22, 36, 39, 0.12)',
-              transition: 'transform 150ms ease, box-shadow 150ms ease',
-              '&:hover': {
-                transform: 'translateY(-3px)',
-                boxShadow: '0 18px 36px rgba(22, 36, 39, 0.16)',
-              },
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              {stat.icon}
-              <Box sx={{ ml: 2 }}>
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                  {stat.value}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500, opacity: 0.8 }}>
-                  {stat.label}
-                </Typography>
-              </Box>
+    <WidgetContainer spacing={2.5}>
+      <Grid container spacing={{ xs: 2, md: 2.5 }}>
+        {stats.map((stat) => (
+          <Grid item xs={12} sm={6} md={3} key={stat.label}>
+            <Box
+              sx={{
+                height: '100%',
+                borderRadius: 2,
+                border: `1px solid ${alpha(stat.palette.main, 0.18)}`,
+                backgroundColor: alpha(stat.palette.main, 0.08),
+                boxShadow: `0 18px 32px ${alpha(stat.palette.main, 0.12)}`,
+                p: 2.25,
+                transition: 'transform 160ms ease, box-shadow 160ms ease',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: `0 26px 46px ${alpha(stat.palette.main, 0.2)}`,
+                },
+              }}
+            >
+              <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 2,
+                    display: 'grid',
+                    placeItems: 'center',
+                    backgroundColor: alpha(stat.palette.main, 0.16),
+                    color: stat.palette.main,
+                  }}
+                >
+                  {stat.icon}
+                </Box>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 700, letterSpacing: '-0.01em' }}>
+                    {stat.value}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {stat.label}
+                  </Typography>
+                </Box>
+              </Stack>
+
+              <Typography variant="caption" color="text.secondary" sx={{ opacity: 0.7 }}>
+                {stat.subValue}
+              </Typography>
             </Box>
-            <Typography variant="caption" color="text.secondary" sx={{ opacity: 0.65 }}>
-              {stat.subValue}
-            </Typography>
-          </Paper>
-        </Grid>
-      ))}
-    </Grid>
+          </Grid>
+        ))}
+      </Grid>
+    </WidgetContainer>
   )
 }
-

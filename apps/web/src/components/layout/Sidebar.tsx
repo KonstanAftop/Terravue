@@ -195,23 +195,39 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
 
   const drawerContent = (
     <Box
-      sx={{
+      sx={(theme) => ({
+        position: 'relative',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'hidden',
         background: drawerGradient,
         color: '#E9F5F1',
-      }}
+        borderRight: `1px solid ${alpha(theme.palette.common.white, 0.08)}`,
+        backdropFilter: 'blur(16px)',
+      })}
     >
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          background: drawerAccent,
+          opacity: 0.85,
+          pointerEvents: 'none',
+        }}
+      />
+
       <Stack
         spacing={1}
         alignItems="center"
         sx={(theme) => ({
+          position: 'relative',
           px: 2.5,
           pt: 3,
           pb: 2.5,
-          borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.1)}`,
+          borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.08)}`,
           textAlign: 'center',
+          zIndex: 1,
         })}
       >
         {sidebarLogoErrored ? (
@@ -246,55 +262,67 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             }}
           />
         )}
-        <Typography variant="caption" sx={{ opacity: 0.7 }}>
-          Monitor · Verify · Trade
+        <Typography variant="caption" sx={{ opacity: 0.72, letterSpacing: 2 }}>
+          Monitor - Verify - Trade
         </Typography>
       </Stack>
 
-      {renderNavigation()}
+      <Box
+        sx={{
+          position: 'relative',
+          flexGrow: 1,
+          zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {renderNavigation()}
 
-      <Box sx={{ px: 2.5, pb: 3, pt: 1.5 }}>
-        {user && (
-          <Stack
-            spacing={0.5}
-            sx={{
-              px: 1.8,
-              py: 2,
-              mb: 1.5,
+        <Box sx={{ px: 2.5, pb: 3, pt: 2, mt: 'auto' }}>
+          {user && (
+            <Stack
+              spacing={0.5}
+              sx={(theme) => ({
+                px: 1.8,
+                py: 2,
+                mb: 1.75,
+                borderRadius: 3,
+                backgroundColor: alpha(theme.palette.common.white, 0.08),
+                border: `1px solid ${alpha(theme.palette.common.white, 0.12)}`,
+                boxShadow: `0 18px 34px ${alpha(theme.palette.common.black, 0.28)}`,
+              })}
+            >
+              <Typography variant="body2" sx={{ fontWeight: 600, color: '#ffffff' }}>
+                {user.fullName}
+              </Typography>
+              <Typography variant="caption" sx={{ opacity: 0.68 }}>
+                {user.userType === 'landowner' ? 'Landowner' : 'Buyer'}
+              </Typography>
+            </Stack>
+          )}
+
+          <Button
+            fullWidth
+            variant="outlined"
+            color="error"
+            onClick={handleLogoutClick}
+            startIcon={<LogoutIcon />}
+            sx={(theme) => ({
               borderRadius: 3,
-                  backgroundColor: alpha(theme.palette.primary.main, 0.08),
-                  border: `1px solid ${alpha(theme.palette.primary.main, 0.22)}`,
-                }}
-              >
-                <Typography variant="body2" sx={{ fontWeight: 600, color: '#ffffff' }}>
-              {user.fullName}
-            </Typography>
-            <Typography variant="caption" sx={{ opacity: 0.65 }}>
-              {user.userType === 'landowner' ? 'Landowner' : 'Buyer'}
-            </Typography>
-          </Stack>
-        )}
-
-        <Button
-          fullWidth
-          variant="outlined"
-          color="error"
-          onClick={handleLogoutClick}
-          startIcon={<LogoutIcon />}
-          sx={(theme) => ({
-            borderRadius: 3,
-            borderColor: alpha(theme.palette.error.main, 0.55),
-            color: alpha(theme.palette.error.light, 0.92),
-            fontWeight: 600,
-            py: 1.1,
-            '&:hover': {
-              borderColor: theme.palette.error.main,
-              backgroundColor: alpha(theme.palette.error.main, 0.16),
-            },
-          })}
-        >
-          Logout
-        </Button>
+              borderColor: alpha(theme.palette.error.main, 0.55),
+              color: alpha(theme.palette.error.light, 0.92),
+              fontWeight: 600,
+              py: 1.1,
+              backdropFilter: 'blur(6px)',
+              '&:hover': {
+                borderColor: theme.palette.error.main,
+                backgroundColor: alpha(theme.palette.error.main, 0.16),
+              },
+            })}
+          >
+            Logout
+          </Button>
+        </Box>
       </Box>
     </Box>
   )
@@ -351,8 +379,10 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
           '& .MuiDrawer-paper': {
             width: SIDEBAR_WIDTH,
             boxSizing: 'border-box',
-            background: drawerGradient,
+            background: 'transparent',
             borderRadius: 0,
+            overflow: 'hidden',
+            backdropFilter: 'blur(20px)',
           },
         }}
       >
@@ -369,10 +399,12 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
           '& .MuiDrawer-paper': {
             width: SIDEBAR_WIDTH,
             boxSizing: 'border-box',
-            background: drawerGradient,
+            background: 'transparent',
             color: '#E9F5F1',
-            borderRight: `1px solid ${alpha(theme.palette.common.white, 0.05)}`,
+            borderRight: 'none',
             borderRadius: 0,
+            overflow: 'hidden',
+            backdropFilter: 'blur(20px)',
           },
         }}
       >
@@ -403,3 +435,4 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
     </>
   )
 }
+

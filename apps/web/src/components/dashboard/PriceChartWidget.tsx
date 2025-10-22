@@ -1,5 +1,5 @@
 import { alpha, useTheme } from '@mui/material/styles'
-import { Paper, Typography, Box } from '@mui/material'
+import { Typography, Box, Stack, Chip } from '@mui/material'
 import { Line } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -13,6 +13,7 @@ import {
   Filler,
 } from 'chart.js'
 import { MarketDataPoint } from '../../services/dashboardService'
+import { WidgetContainer } from './WidgetContainer'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
 
@@ -109,25 +110,26 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
   }
 
   return (
-    <Paper
-      sx={{
-        p: 3,
-        borderRadius: 2,
-        boxShadow: '0 18px 40px rgba(21, 101, 192, 0.18)',
-        transition: 'transform 160ms ease, box-shadow 160ms ease',
-        '&:hover': {
-          transform: 'translateY(-3px)',
-          boxShadow: '0 22px 50px rgba(21, 101, 192, 0.22)',
-        },
-      }}
+    <WidgetContainer
+      title="Carbon Price Trend"
+      subtitle="Average daily price over the past 7 days."
+      spacing={2}
     >
-      <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, opacity: 0.85 }}>
-        Carbon Price Trend (7 Days)
-      </Typography>
+      <Stack direction="row" justifyContent="flex-start">
+        <Chip
+          label="7D"
+          size="small"
+          sx={{
+            fontWeight: 600,
+            letterSpacing: 0.5,
+          }}
+        />
+      </Stack>
+
       <Box
         sx={{
-          height: 180,
-          mt: 1.5,
+          height: { xs: 220, md: 240 },
+          mt: 0.5,
           width: '100%',
         }}
       >
@@ -137,7 +139,7 @@ export const PriceChartWidget = ({ marketData }: PriceChartWidgetProps) => {
           <Typography color="text.secondary">Loading chart...</Typography>
         )}
       </Box>
-    </Paper>
+    </WidgetContainer>
   )
 }
 
