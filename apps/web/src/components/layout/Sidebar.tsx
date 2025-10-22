@@ -118,46 +118,60 @@ export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
             <ListItemButton
               onClick={() => handleNavigate(item.path)}
               sx={(theme) => {
-                const primaryTint = alpha(theme.palette.primary.main, 0.2)
-                const borderColor = alpha(theme.palette.primary.main, isActive ? 0.55 : 0.18)
-                const hoverColor = alpha(theme.palette.primary.main, 0.16)
+                const palette = theme.palette
+                const activeBg = `linear-gradient(135deg, ${alpha(palette.primary.main, 0.38)} 0%, ${alpha(
+                  palette.primary.dark,
+                  0.52
+                )} 100%)`
+                const hoverBg = alpha(palette.primary.main, 0.18)
+                const inactiveBorder = alpha(palette.common.white, 0.05)
+                const activeBorder = alpha(palette.primary.light, 0.65)
+
                 return {
                   position: 'relative',
                   borderRadius: 3,
                   px: 1.8,
                   py: 1,
-                  color: alpha(theme.palette.common.white, isActive ? 0.95 : 0.78),
-                  backgroundColor: isActive ? primaryTint : 'transparent',
-                  border: `1px solid ${isActive ? borderColor : 'transparent'}`,
-                  boxShadow: isActive ? `0 20px 38px ${alpha(theme.palette.common.black, 0.38)}` : 'none',
+                  gap: 1,
+                  color: alpha(palette.common.white, isActive ? 0.98 : 0.82),
+                  background: isActive ? activeBg : alpha(palette.common.white, 0.02),
+                  border: `1px solid ${isActive ? activeBorder : inactiveBorder}`,
+                  boxShadow: isActive ? `0 22px 42px ${alpha(palette.common.black, 0.32)}` : '0 8px 18px rgba(0,0,0,0.12)',
+                  backdropFilter: 'blur(6px)',
                   transition: 'all 0.25s ease',
                   '&::before': {
                     content: '""',
                     position: 'absolute',
-                    inset: '8px auto 8px 8px',
-                    width: 2,
+                    inset: '10px auto 10px 10px',
+                    width: 3,
                     borderRadius: 999,
-                    backgroundColor: isActive ? alpha(theme.palette.primary.light, 0.85) : 'transparent',
-                    transition: 'background-color 0.25s ease, transform 0.25s ease',
+                    background: isActive ? alpha(palette.success.light, 0.85) : alpha(palette.common.white, 0.08),
+                    transition: 'background 0.3s ease, transform 0.3s ease',
                   },
                   '&:hover': {
-                    backgroundColor: hoverColor,
-                    border: `1px solid ${alpha(theme.palette.primary.main, 0.32)}`,
+                    background: isActive ? activeBg : hoverBg,
+                    borderColor: isActive ? activeBorder : alpha(palette.primary.main, 0.35),
                     '&::before': {
-                      backgroundColor: alpha(theme.palette.primary.main, 0.6),
+                      background: alpha(palette.primary.light, 0.8),
                       transform: 'scaleY(1.1)',
                     },
+                  },
+                  '&:focus-visible': {
+                    outline: `2px solid ${alpha(palette.primary.light, 0.9)}`,
+                    outlineOffset: 2,
                   },
                 }
               }}
             >
               <ListItemIcon
                 sx={{
-                  minWidth: 36,
+                  minWidth: 34,
                   color: 'inherit',
-                  opacity: isActive ? 1 : 0.75,
+                  opacity: isActive ? 1 : 0.72,
                   '& svg': {
-                    transform: 'scale(0.92)',
+                    fontSize: 22,
+                    transform: isActive ? 'scale(1)' : 'scale(0.94)',
+                    transition: 'transform 0.25s ease',
                   },
                 }}
               >
