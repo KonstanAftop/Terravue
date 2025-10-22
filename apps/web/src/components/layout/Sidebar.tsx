@@ -50,7 +50,8 @@ interface NavigationItem {
 
 export const SIDEBAR_WIDTH = 300
 
-const drawerGradient = 'linear-gradient(200deg, #091512 0%, #040807 80%)'
+const drawerGradient = 'linear-gradient(180deg, rgba(5,18,15,0.92) 0%, rgba(10,49,38,0.94) 45%, rgba(6,22,18,0.9) 100%)'
+const drawerAccent = 'linear-gradient(160deg, rgba(65,205,160,0.28) 0%, rgba(27,118,93,0.16) 38%, transparent 100%)'
 const LOGO_PLACEHOLDER_SRC = new URL('../../../assets/S__206069779.jpg', import.meta.url).href
 
 export const Sidebar = ({ mobileOpen, onDrawerToggle }: SidebarProps) => {
