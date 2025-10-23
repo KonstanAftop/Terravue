@@ -826,15 +826,24 @@ export const LandingPage = () => {
           </Container>
         </Box>
 
-        <Container id="cta" sx={{ py: { xs: 10, md: 14 } }} ref={ctaReveal.ref}>
+        <Container
+          id="cta"
+          sx={{
+            py: { xs: 10, md: 14 },
+            position: 'relative',
+          }}
+          ref={ctaReveal.ref}
+        >
           <Card
             elevation={0}
             sx={{
               borderRadius: 4,
               overflow: 'hidden',
-              background: 'linear-gradient(135deg, #1B5E20 0%, #388E3C 100%)',
+              background: 'linear-gradient(140deg, rgba(12,59,43,0.96) 0%, rgba(9,31,29,0.92) 55%, rgba(20,98,74,0.88) 100%)',
               color: '#ffffff',
               position: 'relative',
+              border: '1px solid rgba(255,255,255,0.14)',
+              boxShadow: '0 32px 90px rgba(9,31,29,0.35)',
               ...revealStyles(ctaReveal.visible),
             }}
           >
@@ -852,7 +861,7 @@ export const LandingPage = () => {
                   <Typography variant="h3" sx={{ fontWeight: 800, mb: 2 }}>
                     Ready to accelerate your climate impact?
                   </Typography>
-                  <Typography variant="body1" sx={{ opacity: 0.9 }}>
+                  <Typography variant="body1" sx={{ opacity: 0.85 }}>
                     Join the Terravue ecosystem and unlock a complete toolkit for credible carbon management. Our team can onboard your projects, data providers, and trading partners in weeks.
                   </Typography>
                 </Grid>
@@ -864,10 +873,14 @@ export const LandingPage = () => {
                       variant="contained"
                       endIcon={<ArrowForward />}
                       sx={{
-                        backgroundColor: '#ffffff',
-                        color: palette.pine,
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(180,255,218,0.32) 100%)',
+                        color: '#ffffff',
+                        '& .MuiButton-startIcon': { color: '#ffffff' },
                         fontWeight: 700,
-                        '&:hover': { backgroundColor: 'rgba(255,255,255,0.92)' },
+                        boxShadow: '0 18px 36px rgba(4,18,12,0.25)',
+                        '&:hover': {
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(180,255,218,0.38) 100%)',
+                        },
                       }}
                     >
                       Start the Conversation
@@ -896,27 +909,24 @@ export const LandingPage = () => {
         </Container>
       </Box>
 
-      <Box component="footer" sx={{ backgroundColor: '#0F5132', color: '#ffffff' }}>
+      <Box
+        component="footer"
+        sx={{
+          background: 'linear-gradient(135deg, #0B3D2D 0%, #0F5132 60%, #0A3324 100%)',
+          color: '#ffffff',
+        }}
+      >
         <Container sx={{ py: { xs: 8, md: 12 } }}>
           <Grid container spacing={6}>
             <Grid item xs={12} md={4}>
               <Stack spacing={2}>
                 <Stack direction="row" spacing={1.5} alignItems="center">
                   <Box
-                    sx={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 2.5,
-                      backgroundColor: '#ffffff',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: palette.pine,
-                      fontWeight: 700,
-                    }}
-                  >
-                    T
-                  </Box>
+                    component="img"
+                    src="/assets/logo-nobg.PNG"
+                    alt="Terravue"
+                    sx={{ width: 44, height: 'auto' }}
+                  />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     Terravue
                   </Typography>
